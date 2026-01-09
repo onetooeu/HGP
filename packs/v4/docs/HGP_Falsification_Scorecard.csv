@@ -1,0 +1,10 @@
+Gate,Criterion,PassFail,EvidenceLink,Notes
+G0,"Instrument sanity (calibration, saturation, metadata)",,,
+G1,Null equivalence under blinding,,,
+G2,Polarity flips + wiring/ground topology swaps do not explain effect,,,
+G3,Environment confounds recorded + regressed (temp/humidity/EMI),,,
+G4,"Independent replication (same protocol, comparable effect)",,,
+G5,Optional: strict energy accounting excludes conventional sources,,,
+B1,Bayes factor computed with declared priors; sensitivity analysis done,,,
+B2,Model comparison favors anomaly model across reasonable priors,,,
+R1,Full raw data + scripts archived immutably,,,
