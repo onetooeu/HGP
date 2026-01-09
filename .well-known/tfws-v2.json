@@ -1,0 +1,42 @@
+{
+  "schema_version": "tfws.v2",
+  "profile": "publisher-site",
+  "site": {
+    "name": "HGP EDU – ONETOO Showroom",
+    "canonical_url": "https://hgpedu.eu",
+    "purpose": [
+      "Educational showcase site for ONETOO.eu ecosystem",
+      "Static trust-first publisher node with verifiable manifests"
+    ],
+    "languages": [
+      "sk",
+      "en"
+    ]
+  },
+  "links": {
+    "human_home": "https://hgpedu.eu/",
+    "showroom": "https://hgpedu.eu/pages/showroom.html",
+    "onetoo_showcase": "https://hgpedu.eu/pages/onetoo.html",
+    "trust": "https://hgpedu.eu/pages/trust.html"
+  },
+  "manifests": {
+    "ai_trust_hub": "https://hgpedu.eu/.well-known/ai-trust-hub.json",
+    "ai_governance": "https://hgpedu.eu/.well-known/ai-governance.json",
+    "ai_search_publisher": "https://hgpedu.eu/.well-known/ai-search.publisher.json",
+    "integrity_sha256": "https://hgpedu.eu/.well-known/sha256.json",
+    "integrity_sig": "https://hgpedu.eu/.well-known/sha256.json.minisig",
+    "minisign_pub": "https://hgpedu.eu/.well-known/minisign.pub",
+    "key_history": "https://hgpedu.eu/.well-known/key-history.json",
+    "onetoo_sync": "https://hgpedu.eu/.well-known/onetoo-sync.json"
+  },
+  "upstream": {
+    "onetoo": "https://www.onetoo.eu",
+    "repositories": {
+      "org": "https://github.com/onetooeu?tab=repositories",
+      "tfws_v2": "https://github.com/onetooeu/trust-first-web-standard-ver-2",
+      "onetoo_eu": "https://github.com/onetooeu/onetoo-eu",
+      "ai_search_v2": "https://github.com/onetooeu/onetoo-ai-search-v2.0",
+      "autopilot": "https://github.com/onetooeu/onetoo-ai-autopilot"
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "schema_version": "onetoo.ai-governance.v1",
+  "principles": [
+    "Trust-first: prefer verifiable claims over unverifiable assertions.",
+    "Static-first: published artifacts are durable, cacheable, and verifiable.",
+    "Transparency: provide machine-readable manifests and integrity inventories.",
+    "No hidden backdoors: no tracking pixels, no data exfiltration scripts."
+  ],
+  "safety": {
+    "scope": "educational",
+    "claims": [
+      "This project includes speculative/fictional engineering content; do not treat it as validated physics.",
+      "Measurement and simulation examples are pedagogical; verify independently."
+    ],
+    "disclosure_pages": [
+      "https://hgpedu.eu/DISCLAIMER.md",
+      "https://hgpedu.eu/pages/faq.html"
+    ]
+  },
+  "contact": {
+    "preferred": "GitHub Issues in the corresponding repository",
+    "repos": [
+      "https://github.com/onetooeu/HGP"
+    ]
+  }
+}

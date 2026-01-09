@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="sk">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>ONETOO Showroom++ – HGPEdu</title>
+  <link rel="stylesheet" href="/assets/style.css"/>
+  <script defer src="/assets/onetoo_trust_inspector.js"></script>
+</head>
+<body>
+  <main class="container">
+    <h1>ONETOO Showroom++ (Final Boss)</h1>
+    <p>
+      Toto je <strong>výkladná skriňa</strong> ekosystému <a href="https://www.onetoo.eu" target="_blank" rel="noopener">onetoo.eu</a>:
+      TFWS v2, AI Trust Hub, AI Search, Autopilot, nástroje a verifikovateľné manifesty.
+      Stránka je navrhnutá ako <em>statický, dlhodobo udržateľný</em> uzol – bez backendu, s dôrazom na overiteľnosť.
+    </p>
+
+    <section class="card">
+      <h2>1) Trust Inspector (live)</h2>
+      <p>Skontroluje dostupnosť a formát všetkých kľúčových <code>.well-known</code> endpointov tejto stránky.</p>
+      <div class="pills">
+        <span class="pill">TFWS v2</span>
+        <span class="pill">AI Trust Hub</span>
+        <span class="pill">AI Search Publisher</span>
+        <span class="pill">Integrity (sha256)</span>
+        <span class="pill">Minisign</span>
+        <span class="pill">ONETOO Sync</span>
+      </div>
+      <p>
+        <button onclick="HGPInspector.runInspector('https://hgpedu.eu')">Spustiť kontrolu pre https://hgpedu.eu</button>
+      </p>
+      <div id="trust-results" class="trust-grid"></div>
+      <h3>Fallback príkazy (bez CORS)</h3>
+      <div id="trust-curl" class="codebox"></div>
+    </section>
+
+    <section class="card">
+      <h2>2) Automatické zaradenie do ONETOO / AI Search</h2>
+      <p>
+        HGPEdu publikuje strojovo čitateľné manifesty, ktoré umožňujú automatickú indexáciu a overenie.
+        Pre priamočiaru integráciu vygeneruj submit payload:
+      </p>
+      <div class="codebox">python tools/generate_onetoo_submit_payload.py --base-url https://hgpedu.eu &gt; submit.json</div>
+      <p>
+        Potom odošli podľa pravidiel ONETOO AI Search (kurátorovanie / autopilot podľa konfigurácie projektu ONETOO).
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>3) ONETOO ekosystém</h2>
+      <p>
+        Prehľad repozitárov a ich úloh nájdeš na stránke:
+        <a href="/pages/onetoo.html">ONETOO – repozitáre a mapovanie</a>.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>4) Archival-grade protokol</h2>
+      <p>Odporúčaný publish flow (lokálne):</p>
+      <div class="codebox">minisign -G -p .well-known/minisign.pub -s minisign.key
+python tools/generate_sha256_manifest.py --root . --out .well-known/sha256.json
+MINISIGN_SECRET=./minisign.key bash tools/sign_minisign.sh
+bash tools/verify_minisign.sh</div>
+      <p>
+        Potom commit/push/deploy. Tento model je kompatibilný s “trust-first” filozofiou: dôvera v kľúč a publikované artefakty,
+        nie v centralizovanú autoritu.
+      </p>
+    </section>
+
+  </main>
+</body>
+</html>

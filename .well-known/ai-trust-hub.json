@@ -1,0 +1,20 @@
+{
+  "schema_version": "onetoo.ai-trust-hub.v1",
+  "publisher": {
+    "name": "HGP EDU (Showroom)",
+    "canonical_url": "https://hgpedu.eu",
+    "role": "ecosystem-showcase",
+    "notes": "This site is a showcase/mirror of ONETOO.eu capabilities; ONETOO.eu remains the trust root."
+  },
+  "entrypoints": {
+    "tfws": "https://hgpedu.eu/.well-known/tfws-v2.json",
+    "governance": "https://hgpedu.eu/.well-known/ai-governance.json",
+    "search_publisher": "https://hgpedu.eu/.well-known/ai-search.publisher.json",
+    "integrity": "https://hgpedu.eu/.well-known/sha256.json",
+    "minisign_pub": "https://hgpedu.eu/.well-known/minisign.pub"
+  },
+  "upstream": {
+    "trust_root": "https://www.onetoo.eu",
+    "ai_search": "https://search.onetoo.eu"
+  }
+}

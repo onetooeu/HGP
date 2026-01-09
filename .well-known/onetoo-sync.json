@@ -1,0 +1,8 @@
+{
+  "schema_version": "onetoo.sync.v1",
+  "mode": "showroom",
+  "canonical_upstream": "https://www.onetoo.eu",
+  "prefer_upstream_for_authority": true,
+  "allow_indexing": true,
+  "notes": "hgpedu.eu is intended as a demonstrator and educational mirror for ONETOO.eu; it should not compete with the trust root."
+}

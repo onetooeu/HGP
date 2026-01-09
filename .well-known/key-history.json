@@ -1,0 +1,12 @@
+{
+  "schema_version": "onetoo.key-history.v1",
+  "keys": [
+    {
+      "kid": "current",
+      "alg": "Ed25519",
+      "pub": "https://hgpedu.eu/.well-known/minisign.pub",
+      "status": "placeholder",
+      "created": "2026-01-09"
+    }
+  ]
+}

@@ -1,0 +1,513 @@
+{
+  "schema_version": "onetoo.integrity.sha256.v1",
+  "generated_utc": "2026-01-09T17:47:45Z",
+  "root": "hgpedu_finalboss_work",
+  "count": 101,
+  "files": [
+    {
+      "path": "ACCESSIBILITY.md",
+      "sha256": "113346f1eef3ce172da0abe0cf61fd96cce17f44b3a65a69e81f8a02cd4d1982",
+      "bytes": 167
+    },
+    {
+      "path": "ARCHIVE.md",
+      "sha256": "c77b92c24d320bae9f96e0b49d5039c82e10ed8ebbf51efeaa9cbb2dc29cfeb8",
+      "bytes": 781
+    },
+    {
+      "path": "ASSUMPTIONS.md",
+      "sha256": "ff07e4fea3ccc2ebf99e05205d5918962d41667d09f1db9102e6de437387ba01",
+      "bytes": 1897
+    },
+    {
+      "path": "CASE_STUDY_TEMPLATE.md",
+      "sha256": "9a076c59eab680c54aaf32efef0a14f9a24f3e3e3b607d874b99a1cf98598b5e",
+      "bytes": 793
+    },
+    {
+      "path": "CHANGELOG.md",
+      "sha256": "83a64c3b963924d29509deb159b2cba2e555c173124ec0cefab0d15fd2d00f76",
+      "bytes": 882
+    },
+    {
+      "path": "CHECKLIST.md",
+      "sha256": "572891cee6ec46841a8932004af676503e57cf92452856a7a2aad54d208ee839",
+      "bytes": 1554
+    },
+    {
+      "path": "CITATIONS.md",
+      "sha256": "74c001e30cee9f02c09fb33b494f072540671b38936d2eb66761a44f133fa3f2",
+      "bytes": 205
+    },
+    {
+      "path": "CODE_OF_CONDUCT.md",
+      "sha256": "920d8eb373265f4e5453a78e096d80300c47a57576946a4a7862ff3783b873c6",
+      "bytes": 488
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "sha256": "b37043371e79bf20a240156efcede7c0bf61e4def24d6e72909bb4116d97f221",
+      "bytes": 1476
+    },
+    {
+      "path": "DISCLAIMER.md",
+      "sha256": "2470163731b1c7352b6b83a38f941fddb34c10a5f36fe05c6cf1fb6f635fe7b9",
+      "bytes": 1767
+    },
+    {
+      "path": "DISCUSSIONS.md",
+      "sha256": "b4b6f89f20420f2d8b16d957fab36db214d02133186dea7569ed14a2df3c76ff",
+      "bytes": 484
+    },
+    {
+      "path": "ETHICS.md",
+      "sha256": "40b18c93d54e0c42c427ce82ebb04e8e5f86e02334c277e5a19731ef4f87dfb0",
+      "bytes": 163
+    },
+    {
+      "path": "FINAL_RELEASE.md",
+      "sha256": "1f123aa90764c4969b5d39b022b89e472a6e6fd9b8896b3630cb74e53f0765ce",
+      "bytes": 991
+    },
+    {
+      "path": "FORENSIC_APPENDIX.md",
+      "sha256": "14c54d197fdd1f97d0dd5b392be7abc81a6a6a451476192b7e4e39fd918a3700",
+      "bytes": 743
+    },
+    {
+      "path": "FOR_EDUCATORS.md",
+      "sha256": "99529eb9cb0c590cf7deb05cf59deaaf935fd3ffd1fe20e91618dab67a2a3aa1",
+      "bytes": 1291
+    },
+    {
+      "path": "FUTURE_WORK.md",
+      "sha256": "8a96b5ac7e35455827cfe24af3495e1f4bd769e291c94938c35d2fc2323240a5",
+      "bytes": 1073
+    },
+    {
+      "path": "GLOSSARY.md",
+      "sha256": "e9cae24828a363d947e463e7da09f0776194e711369dad7d9d04a736100cc38e",
+      "bytes": 379
+    },
+    {
+      "path": "HARDENING.md",
+      "sha256": "158ca1f594b9cfeecba95734f2be545d59b903e87af2a4cf9285db57308309a6",
+      "bytes": 544
+    },
+    {
+      "path": "LICENSE",
+      "sha256": "b44d3625dd09c751bb428cbec36c232593519920ac2a66cde6477c7fc54c01f6",
+      "bytes": 32
+    },
+    {
+      "path": "PEER_REVIEW.md",
+      "sha256": "45980fc9ec1b0b054764599b575675361777ecd970073d7939a76221b3682b2f",
+      "bytes": 1157
+    },
+    {
+      "path": "PRINT/README.md",
+      "sha256": "114c5859bd0dc8d4c5c7596cc43c9a2e9c162dcc68f8ed692568909c1ebc1fe5",
+      "bytes": 37
+    },
+    {
+      "path": "PRINT/checklist_print.md",
+      "sha256": "572891cee6ec46841a8932004af676503e57cf92452856a7a2aad54d208ee839",
+      "bytes": 1554
+    },
+    {
+      "path": "PUBLISHING.md",
+      "sha256": "752ca1093a76e659d46cce0d6135436aa673ccd718fe674bae09f076af410ccb",
+      "bytes": 842
+    },
+    {
+      "path": "README.md",
+      "sha256": "f902d4ecc8208970ff449849c5e3fcbec31be72a74128ecdd11a194c93651a1c",
+      "bytes": 1950
+    },
+    {
+      "path": "ROADMAP.md",
+      "sha256": "ebdac61194253a42a15de4894687a95ea63111be699f1a1d46f0f0d1ace4e119",
+      "bytes": 2025
+    },
+    {
+      "path": "SECURITY.md",
+      "sha256": "1f1b5820aa7b1a2f10426e01eda226e6cc25d3dc574a4ac69a0b379ffefe37ac",
+      "bytes": 281
+    },
+    {
+      "path": "_headers",
+      "sha256": "56ffe622a19925e959ec110943e388e5e93d8e8f625e0e95019063534beebce5",
+      "bytes": 665
+    },
+    {
+      "path": "_linkcheck.txt",
+      "sha256": "0f1e573d9a8e85fceea943265a8d33b8e486d8823367040990376dd756e22129",
+      "bytes": 493
+    },
+    {
+      "path": "assets/app.js",
+      "sha256": "e896845f9d36268523693e7619a3a8df8109b17fd9fdfe211617db6dd026687f",
+      "bytes": 3226
+    },
+    {
+      "path": "assets/data/synthetic_timeseries.csv",
+      "sha256": "d0ba0d85a33b4bc153f2ff92ca1ce07681d5f5803165097ca0297f0f32d01a00",
+      "bytes": 94400
+    },
+    {
+      "path": "assets/onetoo_trust_inspector.js",
+      "sha256": "25d63e177080323b8b92001a97f475e0474411fde1227ff0e3f7c7db981a05fa",
+      "bytes": 2626
+    },
+    {
+      "path": "assets/plots/allan_example.png",
+      "sha256": "0fe06272cb059ac3415f2160f4e6ca6206066b534bd5481dd4beb09679649e9e",
+      "bytes": 56595
+    },
+    {
+      "path": "assets/plots/psd_example.png",
+      "sha256": "f01d4ea311f6cc68f3289c7f0b870578941323691468a57268c9334a0b8fa081",
+      "bytes": 75481
+    },
+    {
+      "path": "assets/schematics/null_box.svg",
+      "sha256": "d99753c7581261be7794f249529606a5e979954a62524a5c85d83b189edd1fda",
+      "bytes": 1928
+    },
+    {
+      "path": "assets/style.css",
+      "sha256": "6e4857bff3fa6a52533249582a6482bf92d46093fe305c323b49695d843dde63",
+      "bytes": 6408
+    },
+    {
+      "path": "case-studies/README.md",
+      "sha256": "de42ef60fcaaad741b3bffcd0670aea867bb642559bdbddda29b12fd3c0c0cb0",
+      "bytes": 174
+    },
+    {
+      "path": "en/index.html",
+      "sha256": "7c477a7b1340a42498c92fcc65fb1e1c0042b57bab4afeb5b7a6c4f3e80a3edc",
+      "bytes": 5454
+    },
+    {
+      "path": "en/pages/axioms.html",
+      "sha256": "57599a331e95b8e39faece64dc9cd1bbdf877fc8e5cc7cc6bb29042eb0739b5d",
+      "bytes": 4035
+    },
+    {
+      "path": "en/pages/checklist.html",
+      "sha256": "91d1a57a2f6d2025c0471109c0023416ffd2d453a26be72f04a969e8bd852593",
+      "bytes": 3082
+    },
+    {
+      "path": "en/pages/demo.html",
+      "sha256": "da73b5741830b688a7749b54d5cfa90c4db49ace59fff9cb7bb84d5b6d33fb39",
+      "bytes": 5307
+    },
+    {
+      "path": "en/pages/educators.html",
+      "sha256": "5459767c8d36339d29723e595768c45a7207b30ece6230e80a5d859fa29af3e2",
+      "bytes": 2226
+    },
+    {
+      "path": "en/pages/faq.html",
+      "sha256": "d12054c710221a8a7e926520abf2a1af1d54084e68efa206af939806ad71bc70",
+      "bytes": 2196
+    },
+    {
+      "path": "en/pages/future-ai.html",
+      "sha256": "45484699f80a9475f093032ee4e05972560e1f935163de70341cb0e422835ee6",
+      "bytes": 3182
+    },
+    {
+      "path": "en/pages/glossary.html",
+      "sha256": "156d863d31d3175e19234c0305c137cf6dd933456b8257e8a2067469be3029c1",
+      "bytes": 2848
+    },
+    {
+      "path": "en/pages/manifest.html",
+      "sha256": "70472b74ad0d9e9490bfc444ec7943ebae9f93ce20f76fe4777f2ba00833a954",
+      "bytes": 3291
+    },
+    {
+      "path": "en/pages/method.html",
+      "sha256": "d7ae79f0f343a6462c95dd020f6f14b572d3cac8da251804698d8d74dfc40dd2",
+      "bytes": 6054
+    },
+    {
+      "path": "en/pages/models.html",
+      "sha256": "4091f5b50f1bb397bbdf1533d543f96732bfea0eff8186b86a2e7fc111e9c18d",
+      "bytes": 3227
+    },
+    {
+      "path": "en/pages/museum/antigravity.html",
+      "sha256": "3fde7ea896fde7c9d718b15681ce3a56f5f8f3ca514b7295fde3d8344374dafd",
+      "bytes": 2129
+    },
+    {
+      "path": "en/pages/museum/magnets-pm.html",
+      "sha256": "358e46eae227742674b39035bcafe28868432eca21b38ae6bf1a12c0731ea628",
+      "bytes": 2038
+    },
+    {
+      "path": "en/pages/museum/overunity-gyro.html",
+      "sha256": "8f1aff7ad6966214b93870968c44b575e0b2917b72bd8d966ee0c9ea95944b77",
+      "bytes": 2409
+    },
+    {
+      "path": "en/pages/museum/water-fuel.html",
+      "sha256": "92429a4ed5b9f7189de1bd74697eb092de2ed8dfa5cd1cb21c3dd3b601262ad0",
+      "bytes": 2081
+    },
+    {
+      "path": "en/pages/museum.html",
+      "sha256": "95ca0f974f2a555de45f40b9174a9e4e5f8aa64da748080fe62328cf5a0406f3",
+      "bytes": 2938
+    },
+    {
+      "path": "en/pages/noise.html",
+      "sha256": "c717f7ae588561db7ea0dce5e7ea677d789c3ba05996764ae889b5615d75bfa5",
+      "bytes": 3129
+    },
+    {
+      "path": "en/pages/notebook.html",
+      "sha256": "3c30cc75e277ed82be7f4306c5d36585a41e4c310637ca4a261a940a0abc14dd",
+      "bytes": 2380
+    },
+    {
+      "path": "en/pages/onetoo.html",
+      "sha256": "88c49e8726c58aeaa68727b84b2f8929a8a3169773b4eb8bcfbf1e45253d5ec6",
+      "bytes": 4571
+    },
+    {
+      "path": "en/pages/roadmap.html",
+      "sha256": "2ccff84a6ff95b14be6eb7b5740bd6931fa02a61a7ff823900328afb25e99363",
+      "bytes": 3210
+    },
+    {
+      "path": "en/pages/schematics.html",
+      "sha256": "7d23ef1127ec1905f94f8314f9a370c135ffc3eccceddcf9416ed01d8a9b8257",
+      "bytes": 3139
+    },
+    {
+      "path": "en/pages/showroom.html",
+      "sha256": "2dfc55bfbc6e5b37b62ede5a01c484a4094b3fa6dbd5111b7935cb6903f1c879",
+      "bytes": 2872
+    },
+    {
+      "path": "en/pages/simulations.html",
+      "sha256": "86723efd83c7f026d4d56296fb25a8ba7a4c6deb13bdaf2ad15716fab51efc9e",
+      "bytes": 3370
+    },
+    {
+      "path": "en/pages/speculative-log.html",
+      "sha256": "769cb6295d4c86eff2037639402b1b779742796a53194c14a486ae069f635cac",
+      "bytes": 3010
+    },
+    {
+      "path": "en/pages/whitepaper.html",
+      "sha256": "1bef7551bfafe146aba7275b9713a98ee9c60f306b016063e2857e096c9e43a9",
+      "bytes": 3119
+    },
+    {
+      "path": "index.html",
+      "sha256": "d343f2169f9e8979d394be7ed139e030cff0de851ae2a1d6b119993659e37581",
+      "bytes": 5423
+    },
+    {
+      "path": "pages/axioms.html",
+      "sha256": "f2528a884fc2c441c161b9345d27dea22ad992882da3586c409b890303fc0725",
+      "bytes": 4005
+    },
+    {
+      "path": "pages/checklist.html",
+      "sha256": "fe3f47df8236dbf573a882def4d7131878e84527cfad58a4c2b076529d3668df",
+      "bytes": 3001
+    },
+    {
+      "path": "pages/demo.html",
+      "sha256": "9640b1ae33b6ff870019b457ab5fa96c40143e22aae69b6aff1095602142fb48",
+      "bytes": 5269
+    },
+    {
+      "path": "pages/educators.html",
+      "sha256": "d09cded1e493f8feedcc1b467c3b14c32089234e471693d4ad3bc752c64743d7",
+      "bytes": 2174
+    },
+    {
+      "path": "pages/faq.html",
+      "sha256": "e403a356535f362fc80731f9497e2cd963bcaeaeaea709ceb0298f573a02b17e",
+      "bytes": 2164
+    },
+    {
+      "path": "pages/future-ai.html",
+      "sha256": "844884cdb50fbcafafb086405225ceff548e0f31ab5f6ebecca9fb1cce6e409f",
+      "bytes": 3149
+    },
+    {
+      "path": "pages/glossary.html",
+      "sha256": "d9954602219b36be05bf5dae4bf3fae22a2d5a04353f9b0880fa9eb13d2061b0",
+      "bytes": 2824
+    },
+    {
+      "path": "pages/manifest.html",
+      "sha256": "4e9a6f5e328774527446693b059fcaf758bd8a97617a8bcf5ffa2f81d2dd0b59",
+      "bytes": 3243
+    },
+    {
+      "path": "pages/method-critical-example.md",
+      "sha256": "a2c1ba1438ce75382871e308bcfff4060e8f2cb5af3df719627e957de425b8a9",
+      "bytes": 327
+    },
+    {
+      "path": "pages/method.html",
+      "sha256": "a496cd5dd4db9e9c8f14d8f68d60af8af484c5107971af8d412172b7009c4606",
+      "bytes": 6134
+    },
+    {
+      "path": "pages/models.html",
+      "sha256": "36a9243fb1d1b6752953c8f47e88d0e3613194bb75c1809086e330998b43d66f",
+      "bytes": 3181
+    },
+    {
+      "path": "pages/museum/antigravity.html",
+      "sha256": "89b82ef5fda4fff5729c34dafe8c1c0e889d036b7eae008a4b9c1224688bdc3f",
+      "bytes": 2164
+    },
+    {
+      "path": "pages/museum/magnets-pm.html",
+      "sha256": "ebb995f2170d82657b52aceb362eaeff9fbe549a5554d7c4e8fcd4910b714029",
+      "bytes": 2097
+    },
+    {
+      "path": "pages/museum/overunity-gyro.html",
+      "sha256": "cb48f5e90418ee3fc0767ab0485c6101fbcfdbe72d26e61f82beb1da35fa780a",
+      "bytes": 2412
+    },
+    {
+      "path": "pages/museum/water-fuel.html",
+      "sha256": "886897a16e3fd5e8df2eca637ee1a768500a6dc68e4c761886dbf1f6fc3f858a",
+      "bytes": 2126
+    },
+    {
+      "path": "pages/museum.html",
+      "sha256": "309c9006ac5e73e9e500a5261657fca61f6a86c6dd3ea926daa5c45529c981e8",
+      "bytes": 2987
+    },
+    {
+      "path": "pages/noise.html",
+      "sha256": "7ef27e99a9f0384aa72c21fa7987f0a7669f24fc2f5f93c0f3c6395d167d26f9",
+      "bytes": 3088
+    },
+    {
+      "path": "pages/notebook.html",
+      "sha256": "4de9fc8f6d6c01b256ed91050df162d6e31bd796a34639197ee61390fee9f530",
+      "bytes": 2355
+    },
+    {
+      "path": "pages/onetoo.html",
+      "sha256": "2383b1e8504e413b13063b14b688f671c2201c6798c3e7813c819c5ee459950c",
+      "bytes": 4544
+    },
+    {
+      "path": "pages/roadmap.html",
+      "sha256": "46f26122337a8658b859100a48cdcd5fb0ecdf488328343f6824cbe84658d340",
+      "bytes": 3170
+    },
+    {
+      "path": "pages/schematics.html",
+      "sha256": "d825354916088ddfc8861c71abada5bf1d6dd279bfbd3452923def4c420fac12",
+      "bytes": 3082
+    },
+    {
+      "path": "pages/showroom.html",
+      "sha256": "d1bc66dfb428a0d8e5548d2a9e30c5d2bd8cdadc7e4576a28c7cdf20ce0f9313",
+      "bytes": 3027
+    },
+    {
+      "path": "pages/simulations.html",
+      "sha256": "41197024c4c47b0cea5f5dd1dfe84a076d66a371a19c2eb79e1892eb899ab5d4",
+      "bytes": 3348
+    },
+    {
+      "path": "pages/speculative-log.html",
+      "sha256": "00d1c6b7fb139f68ebb0ac7a8a03a63433ccf53bc369e04df31fa12afd91f45a",
+      "bytes": 3146
+    },
+    {
+      "path": "pages/trust.html",
+      "sha256": "293c302847452383f3358ccf06f68c99b74863ee5922c9ea830d82718a51a0e0",
+      "bytes": 87
+    },
+    {
+      "path": "pages/whitepaper.html",
+      "sha256": "a3177af7605c407fb75402ccf615c7b370425e370e5ad468e48f64968744ed20",
+      "bytes": 3108
+    },
+    {
+      "path": "robots.txt",
+      "sha256": "16ceb5ee3e0dc13aa9adf31a3ebbe45a1d965b8c2b9f72eaf84e5911e140ed95",
+      "bytes": 23
+    },
+    {
+      "path": "sim/01_landauer_bounds.py",
+      "sha256": "a1dde253f5dd4fadf53653fbeeff845056646058a14392e7a57b3b38619d1574",
+      "bytes": 567
+    },
+    {
+      "path": "sim/02_cost_function_relaxation.py",
+      "sha256": "b3fa55e7e8b7916b7e9994499aa5f4cead17cdc7f1c71e19d6766a014130e57d",
+      "bytes": 463
+    },
+    {
+      "path": "sim/03_instrument_noise_mc.py",
+      "sha256": "22f4cdb092ec7b566123f1645c9b19a27ce89d4e2a95c865b91031cf45dfef46",
+      "bytes": 450
+    },
+    {
+      "path": "sim/04_annealing_optimizer.py",
+      "sha256": "a50a708a9d97642b70eb12e75ce0481822725cf8ae8e2ce15a15610f8014b968",
+      "bytes": 456
+    },
+    {
+      "path": "sim/05_noise_metrics.py",
+      "sha256": "3a5c422a92bff508a52254a6a7dacde5662bb20b87a205a8eb69f5d914430b4b",
+      "bytes": 426
+    },
+    {
+      "path": "sim/README.md",
+      "sha256": "0b317d228a7bfb71699afdeac519fef1a5156ca7dbcc03ac6b78877256bd8611",
+      "bytes": 293
+    },
+    {
+      "path": "sim/example_gradient_test.py",
+      "sha256": "88fc2c75a88d7d53574cd760078ea86148b1cce0c2f42872f8977f4e3982430e",
+      "bytes": 573
+    },
+    {
+      "path": "sitemap.xml",
+      "sha256": "1dd63b507e93213f7e987aeaf7848165ee523c12bd58bf398a452a3cde5cf93a",
+      "bytes": 267
+    },
+    {
+      "path": "tools/generate_onetoo_submit_payload.py",
+      "sha256": "5bbc6fadb904bc2e03c526a7c1f0109066499a4bedd996a625fb0683af45f969",
+      "bytes": 1553
+    },
+    {
+      "path": "tools/generate_sha256_manifest.py",
+      "sha256": "5474b74c9cde89ef9259ac91aaa347f0bdfdd99063262ce80b478e1000453fb5",
+      "bytes": 2152
+    },
+    {
+      "path": "tools/sign_minisign.sh",
+      "sha256": "92b4e66acc347cf239d67c0ec8c7f815240a3c2a816b6cf0cc4060ca2156e180",
+      "bytes": 697
+    },
+    {
+      "path": "tools/verify_minisign.sh",
+      "sha256": "69a5f063e5e066fa9cc8df6deec56d10169206a5748a3d2ace6870e787663097",
+      "bytes": 384
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>ONETOO Showroom++ – HGPEdu</title>
+  <link rel="stylesheet" href="/assets/style.css"/>
+  <script defer src="/assets/onetoo_trust_inspector.js"></script>
+</head>
+<body>
+  <main class="container">
+    <h1>ONETOO Showroom++ (Final Boss)</h1>
+    <p>
+      This site is a <strong>showcase</strong> of the <a href="https://www.onetoo.eu" target="_blank" rel="noopener">onetoo.eu</a> ecosystem:
+      TFWS v2, AI Trust Hub, AI Search, Autopilot, tools, and verifiable manifests.
+      It is designed as a <em>static, long-lived</em> node—no backend, verifiability-first.
+    </p>
+
+    <section class="card">
+      <h2>1) Trust Inspector (live)</h2>
+      <p>Checks the availability and schema shape of the most important <code>.well-known</code> endpoints for this site.</p>
+      <div class="pills">
+        <span class="pill">TFWS v2</span>
+        <span class="pill">AI Trust Hub</span>
+        <span class="pill">AI Search Publisher</span>
+        <span class="pill">Integrity (sha256)</span>
+        <span class="pill">Minisign</span>
+        <span class="pill">ONETOO Sync</span>
+      </div>
+      <p>
+        <button onclick="HGPInspector.runInspector('https://hgpedu.eu')">Run checks for https://hgpedu.eu</button>
+      </p>
+      <div id="trust-results" class="trust-grid"></div>
+      <h3>Fallback commands (no CORS required)</h3>
+      <div id="trust-curl" class="codebox"></div>
+    </section>
+
+    <section class="card">
+      <h2>2) Automatic onboarding to ONETOO / AI Search</h2>
+      <p>
+        HGPEdu publishes machine-readable manifests enabling discovery, indexing, and verification.
+        Generate a submission payload like this:
+      </p>
+      <div class="codebox">python tools/generate_onetoo_submit_payload.py --base-url https://hgpedu.eu &gt; submit.json</div>
+      <p>
+        Then submit it according to ONETOO AI Search rules (curation / autopilot depending on your ONETOO configuration).
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>3) ONETOO ecosystem map</h2>
+      <p>
+        See: <a href="/en/pages/onetoo.html">ONETOO – repositories and mapping</a>.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>4) Archival-grade publishing protocol</h2>
+      <p>Recommended publish flow (local):</p>
+      <div class="codebox">minisign -G -p .well-known/minisign.pub -s minisign.key
+python tools/generate_sha256_manifest.py --root . --out .well-known/sha256.json
+MINISIGN_SECRET=./minisign.key bash tools/sign_minisign.sh
+bash tools/verify_minisign.sh</div>
+      <p>
+        Commit/push/deploy. The model is trust-first: trust anchored in keys and published artifacts,
+        not in a central authority.
+      </p>
+    </section>
+
+  </main>
+</body>
+</html>

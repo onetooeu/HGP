@@ -1,0 +1,37 @@
+{
+  "schema_version": "onetoo.ai-search.publisher.v1",
+  "publisher": {
+    "name": "HGP EDU – ONETOO Showroom",
+    "url": "https://hgpedu.eu",
+    "category": [
+      "Education",
+      "Research",
+      "Trust Infrastructure",
+      "AI"
+    ]
+  },
+  "content": {
+    "type": "static-site",
+    "topics": [
+      "ONETOO.eu ecosystem overview",
+      "TFWS v2 trust-first publishing",
+      "AI Search and Autopilot demos",
+      "Integrity inventories and signing"
+    ],
+    "start_urls": [
+      "https://hgpedu.eu/pages/showroom.html",
+      "https://hgpedu.eu/pages/onetoo.html",
+      "https://hgpedu.eu/en/pages/showroom.html",
+      "https://hgpedu.eu/en/pages/onetoo.html"
+    ]
+  },
+  "verification": {
+    "minisign_pub": "https://hgpedu.eu/.well-known/minisign.pub",
+    "sha256_manifest": "https://hgpedu.eu/.well-known/sha256.json",
+    "sha256_manifest_sig": "https://hgpedu.eu/.well-known/sha256.json.minisig"
+  },
+  "upstream": {
+    "onetoo_trust_root": "https://www.onetoo.eu",
+    "ai_search": "https://search.onetoo.eu"
+  }
+}
