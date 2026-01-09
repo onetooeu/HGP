@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 520">
+  <defs><style>
+      .b{fill:none;stroke:#7cc4ff;stroke-width:2}
+      .g{fill:none;stroke:#34d399;stroke-width:2}
+      .t{fill:#e8eaf0;font-family:ui-sans-serif,system-ui;font-size:14px}
+      .m{fill:#a2a9b6;font-family:ui-sans-serif,system-ui;font-size:12px}
+      .w{fill:none;stroke:#ffb86c;stroke-width:2;stroke-dasharray:6 6}
+  </style></defs>
+  <rect x="40" y="40" width="840" height="440" rx="18" class="b"/>
+  <text x="60" y="72" class="t">Null-box measurement rig (A/B, polarity flip, controls)</text>
+  <rect x="80" y="110" width="340" height="160" rx="16" class="g"/>
+  <text x="100" y="140" class="t">Test Cell</text>
+  <text x="100" y="162" class="m">• asymmetric electrodes (ON/OFF)</text>
+  <text x="100" y="182" class="m">• symmetric control</text>
+  <text x="100" y="202" class="m">• reset / cycling</text>
+  <text x="100" y="222" class="m">• insulation & dielectric</text>
+  <rect x="460" y="110" width="380" height="160" rx="16" class="g"/>
+  <text x="480" y="140" class="t">Measurement</text>
+  <text x="480" y="162" class="m">• differential front-end</text>
+  <text x="480" y="182" class="m">• shunt / transimpedance</text>
+  <text x="480" y="202" class="m">• temperature channels (3×)</text>
+  <text x="480" y="222" class="m">• battery data logger</text>
+  <path d="M420 190 L460 190" class="b"/>
+  <text x="420" y="176" class="m">I,V</text>
+  <rect x="80" y="300" width="760" height="140" rx="16" class="w"/>
+  <text x="100" y="332" class="t">Anti-artifact layers</text>
+  <text x="100" y="356" class="m">Faraday cage • thermal control • vibration damping • vacuum (optional)</text>
+  <text x="100" y="378" class="m">randomized order • blind runs • polarity flip • symmetric geometries</text>
+  <text x="100" y="400" class="m">grounding without loops • EMI audit • corona/leakage audit at HV</text>
+</svg>
