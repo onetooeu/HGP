@@ -1,0 +1,23 @@
+{
+  "tfws_version": "2.0",
+  "project": "HGP (Hypotetický Gravitovoltaický Panel)",
+  "type": "educational-speculative-portal",
+  "status": "theoretical",
+  "languages": [
+    "sk",
+    "en"
+  ],
+  "endpoints": {
+    "home": "/",
+    "en": "/en/",
+    "manifest": "/pages/manifest.html",
+    "method": "/pages/method.html",
+    "whitepaper": "/pages/whitepaper.html",
+    "pdfs": "/pages/pdfs.html"
+  },
+  "integrity": {
+    "signing": "optional",
+    "public_key_url": "/.well-known/minisign.pub",
+    "note": "For archival integrity you MAY publish minisign signatures for static artifacts. This repo ships without private keys."
+  }
+}

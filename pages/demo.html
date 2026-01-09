@@ -1,0 +1,132 @@
+<!doctype html><html lang="sk"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HGP • Interaktívne demo</title>
+<link rel="stylesheet" href="../assets/style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head><body>
+<div class="topbar"><div class="container topbar-inner">
+  <div class="brand"><div class="logo" aria-hidden="true"></div>
+  <div><h1>HGP Extreme Research</h1><p class="sub">Hypotetický výskum • Falzifikácia • Reprodukovateľnosť</p></div></div>
+  <div class="spacer"></div>
+  <div class="lang"><a class="active" href="../pages/demo.html">SK</a><a class="" href="../en/pages/demo.html">EN</a></div>
+</div></div>
+
+<div class="container" style="padding-top:.7rem"><div class="pill-row">
+<a class="pill" href="../pages/method.html">Metóda</a><a class="pill" href="../pages/safety.html">Bezpečnosť</a><a class="pill" href="../pages/educators.html">Pre učiteľov</a>
+<a class="pill" href="../pages/demo.html">Demo</a>
+<a class="pill" href="../pages/checklist.html">Checklist</a>
+<a class="pill" href="../pages/speculative-log.html">Sci‑fantasy log</a>
+</div></div>
+
+<main class="container">
+<section class="section">
+  <h2>Interaktívne demo: “chybný model” vs. nulový baseline</h2>
+  <p class="lead">Vizualizácia, prečo interaktivita nie je dôkaz. Vľavo je “model” (úmyselne zjednodušený), vpravo fyzikálny baseline (0).</p>
+
+  <div class="notice">
+    <strong>Upozornenie:</strong> Toto demo je pedagogická pomôcka. “Výkon” je len číslo z hračkárskej rovnice.
+    Skutočný fyzikálny očakávaný výstup bez gradientu je <strong>0</strong>.
+  </div>
+
+  <div class="grid" style="grid-template-columns:1fr 1fr; gap:1rem">
+    <div class="card">
+      <h3>Ovládače (hypotetický parameter)</h3>
+      <label>“Hustota fluktuácie” (bezrozmerné): <span id="rhoVal">0.50</span></label>
+      <input id="rho" type="range" min="0" max="1" value="0.5" step="0.01" style="width:100%">
+      <label>Koeficient k (škála): <span id="kVal">10</span></label>
+      <input id="k" type="range" min="1" max="100" value="10" step="1" style="width:100%">
+      <p class="small">Pozn.: tieto parametre nemajú fyzikálnu validáciu. Slúžia na ukážku toho, ako ľahko vznikne “pekna krivka”.</p>
+      <button id="exportBtn" class="btn">Export JSON</button>
+    </div>
+    <div class="card">
+      <h3>Graf</h3>
+      <canvas id="chart" height="160"></canvas>
+      <p class="small">Baseline je vždy 0. Ak “model” nevie vysvetliť, prečo nie je baseline nula, je to červená vlajka.</p>
+    </div>
+  </div>
+
+  <h3>Ako to čítať kriticky</h3>
+  <ol>
+    <li>Je zdroj energie explicitný? (tu nie)</li>
+    <li>Je gradient/posun? (tu nie)</li>
+    <li>Sú jednotky definované? (tu nie)</li>
+    <li>Preto “výkon” nie je fyzikálny výkon.</li>
+  </ol>
+</section>
+</main>
+
+<script>
+const ctx = document.getElementById('chart');
+const rhoEl = document.getElementById('rho');
+const kEl = document.getElementById('k');
+const rhoVal = document.getElementById('rhoVal');
+const kVal = document.getElementById('kVal');
+
+function buildData(rho, k){
+  const xs = [];
+  const model = [];
+  const baseline = [];
+  for(let i=0;i<=50;i++){
+    const x = i/50; // normalized "input"
+    xs.push(x.toFixed(2));
+    // intentionally flawed toy "power" curve
+    model.push(k * rho * x * (1-x));
+    baseline.push(0);
+  }
+  return {xs, model, baseline};
+}
+
+let {xs, model, baseline} = buildData(parseFloat(rhoEl.value), parseFloat(kEl.value));
+
+const chart = new Chart(ctx, {
+  type: 'line',
+  data: {
+    labels: xs,
+    datasets: [
+      { label: 'Toy “model” output', data: model, tension: 0.3 },
+      { label: 'Physics baseline (0)', data: baseline, tension: 0.0 }
+    ]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { display: true } },
+    scales: { y: { beginAtZero: true } }
+  }
+});
+
+function update(){
+  const rho = parseFloat(rhoEl.value);
+  const k = parseFloat(kEl.value);
+  rhoVal.textContent = rho.toFixed(2);
+  kVal.textContent = k.toFixed(0);
+  const d = buildData(rho, k);
+  chart.data.labels = d.xs;
+  chart.data.datasets[0].data = d.model;
+  chart.data.datasets[1].data = d.baseline;
+  chart.update();
+}
+
+rhoEl.addEventListener('input', update);
+kEl.addEventListener('input', update);
+
+document.getElementById('exportBtn').addEventListener('click', () => {
+  const rho = parseFloat(rhoEl.value);
+  const k = parseFloat(kEl.value);
+  const d = buildData(rho, k);
+  const payload = { rho, k, x: d.xs, toy_model: d.model, baseline: d.baseline, note: "Educational toy model; not physics." };
+  const blob = new Blob([JSON.stringify(payload, null, 2)], {type: 'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'hgp_demo_export.json';
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+});
+</script>
+
+<footer class="footer"><div class="container">
+  <p>Demo • interactive visualization for critical thinking.</p>
+</div></footer>
+</body></html>
