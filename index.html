@@ -1,0 +1,57 @@
+<!doctype html><html lang="sk"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HGP Extreme Research — SK</title><link rel="stylesheet" href="assets/style.css"></head>
+<body>
+<div class="topbar">
+  <div class="container topbar-inner">
+    <div class="brand">
+      <div class="logo" aria-hidden="true"></div>
+      <div><h1>HGP Extreme Research</h1><p class="sub">Hypotetický výskum • Falzifikácia • Reprodukovateľnosť</p></div>
+    </div>
+    <div class="spacer"></div>
+    <div class="lang"><a class="active" href="index.html">SK</a><a class="" href="en/index.html">EN</a></div>
+    <div class="search"><span class="badge">⌕</span><input id="siteSearch" placeholder="Hľadať v tejto stránke…" autocomplete="off"/><span class="kbd">Ctrl K</span></div>
+  </div>
+</div>
+<div class="container" style="padding-top:.7rem"><div class="pill-row"><a class="pill" href="pages/manifest.html">Manifest</a><a class="pill" href="pages/axioms.html">Axiómy & vetvy</a><a class="pill" href="pages/schematics.html">Schematics</a><a class="pill" href="pages/models.html">Modely</a><a class="pill" href="pages/simulations.html">Simulácie</a><a class="pill" href="pages/noise.html">Noise Lab</a><a class="pill" href="pages/whitepaper.html">Whitepaper</a><a class="pill" href="pages/future-ai.html">Budúca AI</a><a class="pill" href="pages/roadmap.html">Roadmapa</a><a class="pill" href="pages/glossary.html">Slovník</a></div></div>
+<main class="container">
+<section class="hero"><div class="hero-grid">
+<div class="card pad">
+  <div class="pill-row"><span class="pill">Hypotézy → modely → simulácie → experimenty</span><span class="pill">Null-test first</span><span class="pill">Reprodukovateľnosť</span></div>
+  <h2 class="h-title">Z hranice „zázraku“ spravíme výskum.</h2>
+  <p class="h-lead">Verzia 2.0: dvojjazyčný (SK/EN) výskumný web, ktorý spája odvahu hypotézy s disciplínou falzifikácie. Cieľom nie je presvedčiť. Cieľom je zistiť.</p>
+  <div class="cta-row">
+    <a class="cta primary" href="pages/roadmap.html"><span class="dot"></span>Začať roadmapou</a>
+    <a class="cta" href="pages/noise.html">Noise Lab (PSD/Allan)</a>
+    <a class="cta" href="pages/whitepaper.html">Whitepaper</a>
+  </div>
+  <hr>
+  <div class="notice"><strong>Upozornenie:</strong> nejde o sľub nekonečnej energie. Ide o protokol, ako hľadať efekt bez sebaklamu.</div>
+  <hr>
+  <div class="two">
+<details open data-search="Pre laika"><summary>Pre laika</summary><div class="callout"><p class="small">Ak sa niekde skrýva nový jav, najprv ho treba odlíšiť od chyby merania. Preto meriame nulu a robíme kontroly.</p></div></details>
+<details data-search="Pre vedca"><summary>Pre vedca</summary><div class="callout"><p class="small">Dizajn stojí na kontrolách, randomizácii, slepých runoch a štatistike (PSD/Allan). Landauer slúži ako mierkový sanity-check.</p></div></details>
+</div>
+</div>
+<div class="card pad">
+  <h3 style="margin:.2rem 0 .5rem">Landauer kalkulátor</h3>
+  <p class="small">Výkon P ↔ minimálny bitový tok pri teplote T.</p>
+  <div class="card pad" style="background:rgba(15,20,32,.55); box-shadow:none">
+    <label class="small">Teplota T (K)</label><input id="T" type="range" min="3" max="600" value="300"><div class="small"><span id="Tval"></span></div>
+    <hr>
+    <label class="small">Výkon P (W)</label><input id="P" type="range" min="0.001" max="2000" step="0.001" value="1"><div class="small"><span id="Pval"></span></div>
+    <hr>
+    <div class="pill-row"><span class="badge good">E_bit: <span id="Ebit"></span></span><span class="badge warn">Ṅ_bits: <span id="Bps"></span></span></div>
+    <p class="small" style="margin-top:.7rem">Ctrl/⌘+K = vyhľadávanie v stránke</p>
+  </div>
+</div>
+</div></section>
+<section class="section"><div class="grid3">
+  <div class="card pad" data-search="Manifest"><h3>Manifest</h3><p class="small">Odvaha bez kultu. Každá vetva má falzifikáciu a stop-condition.</p><p class="small"><a href="pages/manifest.html">Otvoriť →</a></p></div>
+  <div class="card pad" data-search="Schematics"><h3>Schematics</h3><p class="small">Konkrétne meracie zapojenia: null-box, polarity flip, kontrolné vrstvy.</p><p class="small"><a href="pages/schematics.html">Otvoriť →</a></p></div>
+  <div class="card pad" data-search="Noise Lab"><h3>Noise Lab</h3><p class="small">PSD a Allan deviation s ukážkovými grafmi a postupmi zberu dát.</p><p class="small"><a href="pages/noise.html">Otvoriť →</a></p></div>
+</div></section>
+<div id="searchResults" class="pill-row"></div></main>
+<div class="footer"><div class="container"><div class="small">© 2026-01-09 • MIT License • Hypotézy ≠ sľuby. Bez dát = bez tvrdení.</div></div></div>
+<script src="assets/app.js"></script>
+</body></html>
