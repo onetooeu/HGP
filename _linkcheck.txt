@@ -1,0 +1,11 @@
+en/index.html -> ../../index.html
+en/pages/manifest.html -> ../../../index.html
+en/pages/axioms.html -> ../../../index.html
+en/pages/schematics.html -> ../../../index.html
+en/pages/models.html -> ../../../index.html
+en/pages/simulations.html -> ../../../index.html
+en/pages/noise.html -> ../../../index.html
+en/pages/whitepaper.html -> ../../../index.html
+en/pages/future-ai.html -> ../../../index.html
+en/pages/roadmap.html -> ../../../index.html
+en/pages/glossary.html -> ../../../index.html
