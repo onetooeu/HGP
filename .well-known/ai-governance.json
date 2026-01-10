@@ -1,0 +1,15 @@
+{
+  "schema_version": "onetoo.ai-governance.v1",
+  "principles": [
+    "Trust-first: prefer verifiable claims over unverifiable assertions.",
+    "Static-first: artifacts are durable, cacheable, and verifiable.",
+    "Transparency: publish machine-readable manifests and integrity inventories."
+  ],
+  "safety": {
+    "scope": "educational",
+    "docs": [
+      "https://hgpedu.eu/DISCLAIMER.md",
+      "https://hgpedu.eu/SAFETY.md"
+    ]
+  }
+}

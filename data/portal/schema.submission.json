@@ -1,0 +1,53 @@
+{
+  "type": "object",
+  "required": [
+    "type",
+    "version",
+    "date",
+    "title",
+    "url"
+  ],
+  "properties": {
+    "type": {
+      "const": "hgp.portal.submission"
+    },
+    "version": {
+      "type": "string"
+    },
+    "date": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "url": {
+      "type": "string",
+      "minLength": 3
+    },
+    "summary": {
+      "type": "string"
+    },
+    "categories": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "author": {
+      "type": "string"
+    },
+    "contact": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "license": {
+      "type": "string"
+    },
+    "safety": {
+      "type": "object"
+    }
+  }
+}

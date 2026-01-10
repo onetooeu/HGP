@@ -1,0 +1,90 @@
+name: Portal Autopilot
+
+on:
+  issues:
+    types: [opened, edited, reopened]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: portal-autopilot
+  cancel-in-progress: false
+
+jobs:
+  autopilot:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch' || (github.event.issue && startsWith(github.event.issue.title, '[PORTAL]'))
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Extract JSON from issue body
+        id: extract
+        env:
+          BODY: ${{ github.event.issue.body }}
+        run: |
+          python - <<'PY'
+          import os, re, sys
+          body = os.environ.get("BODY","")
+          m = re.search(r'\{.*\}', body, flags=re.S)
+          if not m:
+            print("No JSON object found in issue body", file=sys.stderr)
+            sys.exit(2)
+          raw = m.group(0).strip()
+          with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as f:
+            f.write("raw_json<<EOF\n"+raw+"\nEOF\n")
+          PY
+
+      - name: Validate payload (strict)
+        run: |
+          echo "${{ steps.extract.outputs.raw_json }}" | python tools/portal_validate.py > /tmp/entry.json
+
+      - name: Append to portal store
+        run: |
+          mkdir -p portal
+          touch portal/entries.jsonl
+          python - <<'PY'
+          import json, pathlib
+          entry = json.load(open("/tmp/entry.json","r",encoding="utf-8"))
+          p = pathlib.Path("portal/entries.jsonl")
+          p.write_text(p.read_text(encoding="utf-8") + json.dumps(entry, ensure_ascii=False) + "\n", encoding="utf-8")
+          PY
+
+      - name: Build portal index
+        run: |
+          python tools/portal_build_index.py --in portal/entries.jsonl --out portal/index.json
+
+      - name: Commit + push
+        run: |
+          git config user.name "hgpedu-portal-autopilot"
+          git config user.email "actions@users.noreply.github.com"
+          git add portal/index.json portal/entries.jsonl
+          git commit -m "portal: autopublish entry from issue #${{ github.event.issue.number }}" || echo "No changes"
+          git push
+
+      - name: Comment + close
+        if: ${{ github.event.issue.number }}
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issue_number = context.payload.issue.number;
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number,
+              body: "✅ Portal autopilot: entry validated and published to `/portal/index.json` (visible on `/pages/portal.html` after Pages rebuild)."
+            });
+            await github.rest.issues.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number,
+              state: "closed"
+            });

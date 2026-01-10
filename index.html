@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="sk">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>HGP Edu Portal (SK)</title>
+  <link rel="stylesheet" href="/assets/style.css"/>
+  <script defer src="/assets/app.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="topbar">
+      <div class="brand">
+        <div class="logo"></div>
+        <div>
+          <div style="font-weight:800;letter-spacing:.2px">HGP Edu Portal</div>
+          <div class="badge">TFWS v2 · ONETOO Showcase · Static Trust Node</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end">
+        <a class="pill" href="/index.html">SK</a>
+        <a class="pill" href="/en/index.html">EN</a>
+        <a class="pill" href="https://www.onetoo.eu" target="_blank" rel="noopener">onetoo.eu</a>
+      </div>
+    </div>
+    <div class="nav">
+      <a class="pill" href="/index.html">← Back</a>
+      <a class="pill" href="/pages/showroom.html">Showroom</a>
+      <a class="pill" href="/pages/tfws.html">TFWS v2</a>
+      <a class="pill" href="/pages/safety.html">Safety</a>
+      <a class="pill" href="/pages/research.html">Research</a>
+      <a class="pill" href="/pages/portal.html">Portal</a>
+      <a class="pill" href="/pages/downloads.html">Downloads</a>
+      <a class="pill" href="/pages/onetoo.html">ONETOO Map</a>
+      <a class="pill" href="/pages/api.html">Automation</a>
+    </div>
+    
+    <div class="warez-marquee">
+      <div class="track">
+        <span id="warez-slogan">WELCOME</span>
+        &nbsp;::&nbsp; VISITS <span id="warez-counter">000000</span>
+        &nbsp;::&nbsp; <span style="color:var(--neonM);text-shadow:var(--glowM)">HGPeDU</span>
+        &nbsp;::&nbsp; <span style="color:var(--neonC);text-shadow:var(--glowC)">TFWS v2</span>
+        &nbsp;::&nbsp; <span style="color:var(--neonG);text-shadow:var(--glowG)">ONETOO</span>
+        &nbsp;::&nbsp; AUTOPILOT ONLINE
+      </div>
+    </div>
+
+    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:flex-end;margin:0 0 10px;">
+      <button class="btn" id="btn-safe-toggle">SAFE MODE: OFF</button>
+      <span class="badge">Tip: Safe Mode disables CRT + neon</span>
+    </div>
+<div class="hero">
+<h1>HGP Edu Portal (SK)</h1>
+<p><strong>Kompletný statický web</strong> pripravený ako repozitár aj ako produkčné WWW (Cloudflare Pages).
+Štýl ONETOO.eu + kompatibilita TFWS v2: manifesty, integrita, AI discovery.</p>
+<div class="grid">
+  <div class="card"><h3>Showroom + Trust Inspector</h3><p>Live kontrola .well-known endpointov + demo integrácie ONETOO/AI Search.</p><a class="btn" href="/pages/showroom.html">Otvoriť Showroom</a></div>
+  <div class="card"><h3>TFWS v2</h3><p>Publishing protokol, manifesty, integrita, podpisy.</p><a class="btn" href="/pages/tfws.html">Otvoriť TFWS</a></div>
+  <div class="card"><h3>Safety</h3><p>Bezpečnostné hranice, falsification gates, disclaimery.</p><a class="btn" href="/pages/safety.html">Otvoriť Safety</a></div>
+  <div class="card"><h3>Downloads</h3><p>Štruktúra pre PDF packy v2–v4, zdroje, exporty.</p><a class="btn" href="/pages/downloads.html">Otvoriť Downloads</a></div>
+</div>
+<hr/>
+<div class="kv">
+  <div><strong>Deploy</strong></div><div>GitHub → Cloudflare Pages, bez build kroku.</div>
+  <div><strong>Trust</strong></div><div>/.well-known/* + sha256.json + minisign podpisy.</div>
+</div>
+</div>
+    <div class="footer">Static-first, verifiable, archival-grade portal. No backend. Trust-first.</div>
+  </div>
+<script src="/assets/warez.js"></script>
+</body>
+</html>

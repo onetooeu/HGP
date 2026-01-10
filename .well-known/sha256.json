@@ -1,0 +1,253 @@
+{
+  "schema_version": "onetoo.integrity.sha256.v1",
+  "generated_utc": "2026-01-10T10:25:58Z",
+  "root": "HGP_EDU_PORTAL_v4_WAREZ_PUNK",
+  "count": 49,
+  "files": [
+    {
+      "path": ".well-known/ai-governance.json",
+      "sha256": "139a54d19be961e5b7a42c991b6d02f0c7b9a86778cbe2ef182024794417f2a0",
+      "bytes": 445
+    },
+    {
+      "path": ".well-known/ai-search.publisher.json",
+      "sha256": "8c1b6b84df6db31b66d4c95f47d072b4d2cfdae0a5d6fb8d19ef99b658a10c91",
+      "bytes": 787
+    },
+    {
+      "path": ".well-known/ai-trust-hub.json",
+      "sha256": "3b0c7a73708c37f8339c2feec6c25e3967fabc589e58d5281a0cc77b2c875fd3",
+      "bytes": 483
+    },
+    {
+      "path": ".well-known/minisign.pub",
+      "sha256": "6dff3d895a3da0af8b1cfe2eddd87e891d0792669743debbfaa468c9056e90c4",
+      "bytes": 136
+    },
+    {
+      "path": ".well-known/onetoo-sync.json",
+      "sha256": "195055d5b8909173dbfbf4fff85c795cde2a02144aaf0d9d6dc7fb63b6e0ebf2",
+      "bytes": 177
+    },
+    {
+      "path": ".well-known/sha256.json.minisig",
+      "sha256": "7dfda2bf7449b2bd3a5a0516564fb57a9b91de2800dd56fa141539f119b696b7",
+      "bytes": 145
+    },
+    {
+      "path": ".well-known/tfws-v2.json",
+      "sha256": "3d2e4da0afbe222775fa239d2cd6541f7095b1eede377cb118c68313105e7bbb",
+      "bytes": 765
+    },
+    {
+      "path": "DISCLAIMER.md",
+      "sha256": "0969ddd0b2eef0027d07aace1d604116b4dcccfbf63147a7730cefde401792f2",
+      "bytes": 90
+    },
+    {
+      "path": "LICENSE",
+      "sha256": "adc37366f403835c1470ab2df93d3837d4719372fc1ef8593d922e06f033f8b2",
+      "bytes": 4
+    },
+    {
+      "path": "PORTAL.md",
+      "sha256": "19652431c9fdad3aebc45d44327820c03590d6c6c387fae650fb1495cfc41fd8",
+      "bytes": 906
+    },
+    {
+      "path": "README.md",
+      "sha256": "d9c841fe56015de04d8bab4c8dabe8f06537b964be8352f484742b85ba7a5c7f",
+      "bytes": 435
+    },
+    {
+      "path": "SAFETY.md",
+      "sha256": "be535551bc4a128959b5d19e0ec5c6ea1aa571db6c53715627375215cac7a0b4",
+      "bytes": 106
+    },
+    {
+      "path": "_headers",
+      "sha256": "56ffe622a19925e959ec110943e388e5e93d8e8f625e0e95019063534beebce5",
+      "bytes": 665
+    },
+    {
+      "path": "assets/app.js",
+      "sha256": "d6d46386c86b58749a784f8006d947f3ca85103603e75e532be1748d3838eee9",
+      "bytes": 1817
+    },
+    {
+      "path": "assets/style.css",
+      "sha256": "d6ca349fe60af1104fe2ef36897d7303837540fa31dc1ff6d80de577a9ce0ce6",
+      "bytes": 10718
+    },
+    {
+      "path": "assets/warez.js",
+      "sha256": "e74c8155282ae215452416ad9762c34fab353823d90672e03ddda665378cd692",
+      "bytes": 3225
+    },
+    {
+      "path": "data/portal/index.json",
+      "sha256": "8055e583e79aa9f73701d37b54918b350818351feac134bdf80c2ba45e05aa59",
+      "bytes": 449
+    },
+    {
+      "path": "data/portal/schema.submission.json",
+      "sha256": "8644b4bec8216be0c8ce04ebdd4a567791c264943d54b29fb3b827558b7e98a7",
+      "bytes": 777
+    },
+    {
+      "path": "en/index.html",
+      "sha256": "10d17088ffeee14e8f4d2d9cf70463b66aad488259d6e27e0c654360edbd6f59",
+      "bytes": 3638
+    },
+    {
+      "path": "en/pages/api.html",
+      "sha256": "c7beb5c3856132e3069eaf12d5cd22cc059eadb45e32b56fc9ae937d1789fd79",
+      "bytes": 1938
+    },
+    {
+      "path": "en/pages/downloads.html",
+      "sha256": "1c8fe9326213704e690df574f2d1970edb540261b184b6f9369d4503100b9f75",
+      "bytes": 1998
+    },
+    {
+      "path": "en/pages/onetoo-integration.html",
+      "sha256": "d5fba64e11e8efff9e811497a1896864a76c02fcbacdce37d277f12846354f72",
+      "bytes": 3681
+    },
+    {
+      "path": "en/pages/onetoo.html",
+      "sha256": "d48b62f0cd1f479a61a62d18bbff4aae1b2dd488e2a96db9a907f528c42d82fb",
+      "bytes": 2563
+    },
+    {
+      "path": "en/pages/portal.html",
+      "sha256": "c337e6bdecbc2d3222e9e5d8b241187bfc0c2e64b20c066cd9abe0ec855335e8",
+      "bytes": 9300
+    },
+    {
+      "path": "en/pages/research.html",
+      "sha256": "40340e91eef1ab3a3fbd628cd2acec3a5a2d70ab873c854f99cddcae19479e0f",
+      "bytes": 3943
+    },
+    {
+      "path": "en/pages/safety.html",
+      "sha256": "921f12b9efbcdb1feb1f4cc9dd6639a1ae10ccbfa4e7a136c5af28d6f2931a73",
+      "bytes": 2098
+    },
+    {
+      "path": "en/pages/showroom.html",
+      "sha256": "f53ba871254c0b2753526289a4a136ab894bc535db4394cbf5117a93607ecb17",
+      "bytes": 3026
+    },
+    {
+      "path": "en/pages/tfws.html",
+      "sha256": "4f850ac4d3339df6cf7356e679f822d7891fac0f4d64277595e1a1a1258b6d8f",
+      "bytes": 2422
+    },
+    {
+      "path": "index.html",
+      "sha256": "75795f3a02f8a2a0c6cfaa35676c34b56a3763ba01833a707fed9f59cc6ec1ec",
+      "bytes": 3648
+    },
+    {
+      "path": "pages/api.html",
+      "sha256": "1f42e9a7fe6687484e192f39afe897d585eaa7a719f407b6a386a0f99b54e84b",
+      "bytes": 1935
+    },
+    {
+      "path": "pages/downloads.html",
+      "sha256": "85d23a796a9d8693b9f49a1e51b3cb02d0ca99900cca3ec1c1d1f626ad7bc78b",
+      "bytes": 1995
+    },
+    {
+      "path": "pages/onetoo-integration.html",
+      "sha256": "d5fba64e11e8efff9e811497a1896864a76c02fcbacdce37d277f12846354f72",
+      "bytes": 3681
+    },
+    {
+      "path": "pages/onetoo.html",
+      "sha256": "8e23beeb8307f12b7b3beb54bc99bb0cee58d21625e74d8277629a40afc7d3eb",
+      "bytes": 2560
+    },
+    {
+      "path": "pages/portal.html",
+      "sha256": "a18f59cdbfba28c89c122c39465987941898a8fe852e6413c923c4ece8bc293b",
+      "bytes": 9381
+    },
+    {
+      "path": "pages/research.html",
+      "sha256": "171a0aabada6f911011b11bc04dafaaffb415fee19d3878a5827069418ade832",
+      "bytes": 3940
+    },
+    {
+      "path": "pages/safety.html",
+      "sha256": "7374e9fda8a043ec7f71d3029f49881f90ffc14a39a776d7cf342907c764753d",
+      "bytes": 2095
+    },
+    {
+      "path": "pages/showroom.html",
+      "sha256": "e4bc7da5482cc41f296930702bb91206992530594dbea198b5701e218d0da1ae",
+      "bytes": 3023
+    },
+    {
+      "path": "pages/tfws.html",
+      "sha256": "eb1f53f35d22b294f9fa6da74a9d403652f1c33adc5f9b1c9f2b38f27dc8e003",
+      "bytes": 2419
+    },
+    {
+      "path": "portal/index.json",
+      "sha256": "bc1412bdf9e94ae21445cc36247a7005a132bdc185858446e801a0b0c5b5cb66",
+      "bytes": 123
+    },
+    {
+      "path": "robots.txt",
+      "sha256": "befa30284d46cf89ba3ab58ba65af7e987be472e9efcdd368c98cea0530e378b",
+      "bytes": 45
+    },
+    {
+      "path": "sitemap.xml",
+      "sha256": "d349c7578a89b87bf5d09693eaae2f207df1e73ff5e6f6b109319526feaffb3c",
+      "bytes": 1326
+    },
+    {
+      "path": "tools/generate_onetoo_submit_payload.py",
+      "sha256": "4dfb2f91606659beb4fec6dc9aa6d97e58fe7bd225517f3c72afb224b3024daa",
+      "bytes": 1574
+    },
+    {
+      "path": "tools/generate_sha256_manifest.py",
+      "sha256": "aaf4351c2bcdc7ff19969fd3319402814c21e28f09692bb21dff40bd8e719a9b",
+      "bytes": 1718
+    },
+    {
+      "path": "tools/linkcheck_local.py",
+      "sha256": "dcb29977084b696af14a05a7339634fa6cbae24ff4e98ddabe745876e651d743",
+      "bytes": 1164
+    },
+    {
+      "path": "tools/onetoo_submit.py",
+      "sha256": "8ce24494c3726833091c89f1dcdc28aa5a72755dc3dc36942b0a0f817ca3919d",
+      "bytes": 5418
+    },
+    {
+      "path": "tools/portal_build_index.py",
+      "sha256": "bce5dcc61e502a292e4405643b054203191216b82bba9ecb59b42b30b7f60af8",
+      "bytes": 1025
+    },
+    {
+      "path": "tools/portal_validate.py",
+      "sha256": "edd8258fee3696d5720c07566e0e03b08527449581408bb604ad53faea758548",
+      "bytes": 1974
+    },
+    {
+      "path": "tools/sign_minisign.sh",
+      "sha256": "18b17682a476ec57dc6ea521ceee60c340ddab7e6c29affd388a36889bcf6986",
+      "bytes": 316
+    },
+    {
+      "path": "tools/verify_minisign.sh",
+      "sha256": "38a5cf5a69b8ee3bd04ef0311ae5a77fc2c45c120c14098b35edb3f321fe3b45",
+      "bytes": 299
+    }
+  ]
+}
