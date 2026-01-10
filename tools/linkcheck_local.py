@@ -14,6 +14,8 @@ for p in htmls:
     s = p.read_text(encoding="utf-8", errors="replace")
     for m in re.finditer(r'''(?:href|src)=["']([^"']+)["']''', s):
         u = m.group(1).strip()
+        if "${" in u:
+            continue
         if not u or u.startswith("#") or u.startswith("mailto:") or u.startswith("http://") or u.startswith("https://"):
             continue
         # normalize
