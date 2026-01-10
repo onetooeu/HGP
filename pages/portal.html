@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Downloads (SK)</title>
   <link rel="stylesheet" href="/assets/style.css"/>
-  <script defer src="/assets/app.js"></script>
+  <script defer src="/assets/app.js?v=20260110-portal-fix2"></script>
 </head>
 <body>
   <div class="container">
@@ -189,7 +189,7 @@
     // issue link
     const issueTitle = encodeURIComponent("Submission: " + (payload.title || "(untitled)"));
     const issueBody = encodeURIComponent(
-      "Please review this submission and (if accepted) add it to /data/data/portal/index.json\n\n" +
+      "Please review this submission and (if accepted) add it to /data/portal/index.json\n\n" +
       "```json\n" + json + "\n```\n"
     );
     document.getElementById("issueBtn").href = ISSUE_BASE + "?title=" + issueTitle + "&body=" + issueBody;
@@ -208,6 +208,6 @@
 
 </div>
   </div>
-<script src="/assets/warez.js"></script>
+<script src="/assets/warez.js?v=20260110-portal-fix2"></script>
 </body>
 </html>
