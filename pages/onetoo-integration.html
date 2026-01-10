@@ -48,12 +48,12 @@
 
       <div class="card">
         <h3>Autonomous pipeline</h3>
-        <div class="code">Issue → validate JSON → publish /portal/index.json → submit to search.onetoo.eu → track status → rebuild</div>
+        <div class="code">Issue → validate JSON → publish /data/portal/index.json → submit to search.onetoo.eu → track status → rebuild</div>
       </div>
 
       <h2>Roadmap</h2>
       <ul>
-        <li><b>Now:</b> Issue-driven publishing to <code>/portal/index.json</code> (no human step).</li>
+        <li><b>Now:</b> Issue-driven publishing to <code>/data/portal/index.json</code> (no human step).</li>
         <li><b>Next:</b> Automatic submit to ONETOO contrib API and local submission ledger <code>/portal/submissions.json</code>.</li>
         <li><b>Next:</b> Display ONETOO acceptance status in the portal table (accepted / pending / rejected).</li>
         <li><b>Optional:</b> Signed payloads (Minisign) using GitHub Actions secrets for fully auditable provenance.</li>
@@ -61,7 +61,7 @@
 
       <h2>Where the data lives</h2>
       <ul>
-        <li>Portal feed: <a href="/portal/index.json">/portal/index.json</a></li>
+        <li>Portal feed: <a href="/data/portal/index.json">/data/portal/index.json</a></li>
         <li>Submission store: <a href="/portal/submissions.json">/portal/submissions.json</a></li>
       </ul>
 

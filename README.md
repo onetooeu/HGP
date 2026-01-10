@@ -4,7 +4,7 @@ Static TFWS v2 / ONETOO showcase portal.
 
 ## Portal Autopilot
 
-Create an Issue titled `[PORTAL] ...` using the template. Autopilot validates JSON and publishes to `portal/index.json`.
+Create an Issue titled `[PORTAL] ...` using the template. Autopilot validates JSON and publishes to `data/portal/index.json`.
 
 ## ONETOO Submit Autopilot
 

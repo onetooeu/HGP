@@ -26,47 +26,37 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Extract JSON from issue body
-        id: extract
+      - name: Run autopilot (validate + publish)
         env:
           BODY: ${{ github.event.issue.body }}
         run: |
-          python - <<'PY'
-          import os, re, sys
-          body = os.environ.get("BODY","")
-          m = re.search(r'\{.*\}', body, flags=re.S)
-          if not m:
-            print("No JSON object found in issue body", file=sys.stderr)
-            sys.exit(2)
-          raw = m.group(0).strip()
-          with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as f:
-            f.write("raw_json<<EOF\n"+raw+"\nEOF\n")
-          PY
+          python tools/portal_autopilot.py --issue ${{ github.event.issue.number }}
 
-      - name: Validate payload (strict)
+      - name: Update TFWS sha256 manifest
         run: |
-          echo "${{ steps.extract.outputs.raw_json }}" | python tools/portal_validate.py > /tmp/entry.json
+          python tools/gen_sha256_json.py --include data/portal/index.json --include data/portal/entries.jsonl
 
-      - name: Append to portal store
+      - name: Optional minisign (if secret key provided)
+        env:
+          MINISIGN_SECRET_KEY: ${{ secrets.MINISIGN_SECRET_KEY }}
+          MINISIGN_PASSPHRASE: ${{ secrets.MINISIGN_PASSPHRASE }}
         run: |
-          mkdir -p portal
-          touch portal/entries.jsonl
-          python - <<'PY'
-          import json, pathlib
-          entry = json.load(open("/tmp/entry.json","r",encoding="utf-8"))
-          p = pathlib.Path("portal/entries.jsonl")
-          p.write_text(p.read_text(encoding="utf-8") + json.dumps(entry, ensure_ascii=False) + "\n", encoding="utf-8")
-          PY
+          set -e
+          if [ -z "${MINISIGN_SECRET_KEY}" ]; then
+            echo "No MINISIGN_SECRET_KEY secret configured; skipping signature."
+            exit 0
+          fi
+          sudo apt-get update -y
+          sudo apt-get install -y minisign
+          echo "${MINISIGN_SECRET_KEY}" > minisign.key
+          minisign -S -s minisign.key -m .well-known/sha256.json -x .well-known/sha256.json.minisig -P "${MINISIGN_PASSPHRASE}"
+          rm -f minisign.key
 
-      - name: Build portal index
-        run: |
-          python tools/portal_build_index.py --in portal/entries.jsonl --out portal/index.json
-
-      - name: Commit + push
+      - name: Commit changes
         run: |
           git config user.name "hgpedu-portal-autopilot"
           git config user.email "actions@users.noreply.github.com"
-          git add portal/index.json portal/entries.jsonl
+          git add data/portal/index.json data/portal/entries.jsonl data/portal/decisions .well-known/sha256.json .well-known/sha256.json.minisig
           git commit -m "portal: autopublish entry from issue #${{ github.event.issue.number }}" || echo "No changes"
           git push
 
@@ -80,7 +70,7 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number,
-              body: "✅ Portal autopilot: entry validated and published to `/portal/index.json` (visible on `/pages/portal.html` after Pages rebuild)."
+              body: "✅ Portal autopilot: processed submission. If accepted, it is now in `data/portal/index.json` and will appear on `/pages/portal.html` after Pages rebuild."
             });
             await github.rest.issues.update({
               owner: context.repo.owner,

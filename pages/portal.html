@@ -112,7 +112,7 @@
 
 <script>
 (function(){
-  const INDEX_URL = "/data/portal/index.json";
+  const INDEX_URL = "/data/data/portal/index.json";
   const ISSUE_BASE = "https://github.com/onetooeu/HGP/issues/new";
 
   function nowISO(){ return new Date().toISOString(); }
@@ -189,7 +189,7 @@
     // issue link
     const issueTitle = encodeURIComponent("Submission: " + (payload.title || "(untitled)"));
     const issueBody = encodeURIComponent(
-      "Please review this submission and (if accepted) add it to /data/portal/index.json\n\n" +
+      "Please review this submission and (if accepted) add it to /data/data/portal/index.json\n\n" +
       "```json\n" + json + "\n```\n"
     );
     document.getElementById("issueBtn").href = ISSUE_BASE + "?title=" + issueTitle + "&body=" + issueBody;

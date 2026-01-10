@@ -4,8 +4,8 @@ on:
   push:
     branches: [main]
     paths:
-      - "portal/index.json"
-      - "portal/entries.jsonl"
+      - "data/portal/index.json"
+      - "data/portal/entries.jsonl"
   schedule:
     - cron: "17 */6 * * *"  # every 6h
   workflow_dispatch:
@@ -34,7 +34,7 @@ jobs:
           ONETOO_TOKEN: ${{ secrets.ONETOO_TOKEN }}
           ONETOO_SUBMIT_ENDPOINT: ${{ secrets.ONETOO_SUBMIT_ENDPOINT }}
         run: |
-          python tools/onetoo_submit.py --portal-index portal/index.json --state portal/submissions.json
+          python tools/onetoo_submit.py --portal-index data/portal/index.json
 
       - name: Commit submission state
         run: |

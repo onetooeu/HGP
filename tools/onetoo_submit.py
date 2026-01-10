@@ -52,7 +52,7 @@ def build_payload(entry: dict, publisher: dict) -> dict:
         # Optional: link back to HGPEdu
         "source": {
             "type": "hgpedu-portal",
-            "portal_index": "https://www.hgpedu.eu/portal/index.json",
+            "portal_index": "https://www.hgpedu.eu/data/portal/index.json",
             "submitted_utc": utc_now(),
         },
     }
@@ -87,7 +87,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--endpoint", default=os.environ.get("ONETOO_SUBMIT_ENDPOINT", DEFAULT_ENDPOINT))
     ap.add_argument("--token", default=os.environ.get("ONETOO_TOKEN"))
-    ap.add_argument("--portal-index", default="portal/index.json")
+    ap.add_argument("--portal-index", default="data/portal/index.json")
     ap.add_argument("--state", default="portal/submissions.json")
     ap.add_argument("--limit", type=int, default=50)
     ap.add_argument("--dry-run", action="store_true")
@@ -96,7 +96,7 @@ def main():
     portal = load_json(Path(args.portal_index), {})
     entries = portal.get("entries", [])
     if not isinstance(entries, list):
-        print("portal/index.json entries must be an array", file=sys.stderr)
+        print("data/portal/index.json entries must be an array", file=sys.stderr)
         return 2
 
     state = load_json(Path(args.state), {"schema_version":"hgpedu.onetoo.submissions.v1","generated_utc":utc_now(),"items":{}})
