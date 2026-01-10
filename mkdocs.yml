@@ -1,0 +1,18 @@
+site_name: HGP Edukačný Archív
+nav:
+  - Úvod: index.md
+  - Ako čítať archív: how-to-read.md
+  - Teórie a hypotézy:
+      - Prehľad: theories/overview.md
+      - H0–H4: theories/hypotheses-h0-h4.md
+  - Metodika:
+      - Prehľad: methodology/overview.md
+      - Falsifikácia: methodology/falsification-gates.md
+  - Dáta a výstupy: data/overview.md
+  - Koncepty zariadení:
+      - Prehľad: concepts/overview.md
+      - HGP: concepts/hgp-concept.md
+      - KTHK: concepts/kthk-concept.md
+      - NKTRK: concepts/nktrk-concept.md
+  - Bezpečnosť: safety/overview.md
+  - Archív: archive/overview.md
