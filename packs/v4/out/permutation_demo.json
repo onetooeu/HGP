@@ -1,0 +1,7 @@
+{
+  "n": 8000,
+  "block": 200,
+  "obs_effect": -0.11061784410071107,
+  "p_perm": 0.0003332222592469177,
+  "note": "Synthetic; illustrates how drift can look significant if not modeled."
+}

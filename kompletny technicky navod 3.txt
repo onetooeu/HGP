@@ -1,0 +1,435 @@
+KOMPLETNÝ TECHNICKÝ NÁVOD NA STAVBU HGP ZARIADENIA
+Integrovaná verzia – teoretická a praktická syntéza
+Verzia 2.0 – Január 2026
+
+VAROVANIE – POVINNÉ PRED ČÍTANÍM
+Tento dokument je čisto hypotetický, špekulatívny a neoverený. Opisuje myšlienkový experiment založený na nekonvenčných hypotézach, ktoré porušujú súčasné fyzikálne zákony (zákon zachovania energie, druhý termodynamický zákon).
+
+NIKDY NEKONŠTRUJTE TOTO ZARIADENIE. Hrozí:
+
+Smrteľný úraz elektrickým prúdom (až 5 MV)
+
+Výbuch kondenzátorov, požiar
+
+Zničenie drahého vybavenia (náklady > 500 000 €)
+
+Právne následky
+
+Toto je akademická fikcia – intelektuálna explorácia hypotetického konceptu. Pokračovaním súhlasíte s týmto varovaním.
+
+ČASŤ 1: TEORETICKÝ RÁMEC A HYPOTÉZY
+1.1 Integrovaná teória HGP
+HGP (Hypotetický Gravitovoltaický Panel) vychádza z troch nekonvenčných teórií:
+
+Druhý zákon infodynamiky (Vopson 2023–2026)
+
+∂
+S
+i
+n
+f
+∂
+t
+≤
+0
+∂t
+∂S 
+inf
+​
+ 
+​
+ ≤0
+Informačná entropia vesmíru má tendenciu klesať – gravitácia ako emergentný fenomén kompresie informácie.
+
+Entropická gravitácia (Verlinde 2010–2026)
+
+F
+=
+T
+∇
+S
+F=T∇S
+Sila vzniká z gradientu entropie na holografickej obrazovke.
+
+Asymetrický thrust (Buhler 2023–2026)
+
+P
+=
+1
+2
+ϵ
+0
+E
+2
+×
+asymetria
+P= 
+2
+1
+​
+ ϵ 
+0
+​
+ E 
+2
+ ×asymetria
+Tretiorádové QED efekty menia entropiu virtuálnych fotónov v silne asymetrických poliach.
+
+1.2 Mechanizmus HGP (hypotetický)
+Asymetrické vysokonapäťové pole (IEK-A vrstva) vytvára gradient informačnej entropie v kvantovom vákuu.
+
+Vesmír minimalizuje 
+S
+i
+n
+f
+S 
+inf
+​
+  podľa Vopsona – proces uvoľňuje energiu.
+
+Entropická sila (Verlinde) konvertuje gradient na silu/energiu.
+
+Asymetrický thrust (Buhler) zosilňuje efekt geometrickou asymetriou.
+
+Energetický tok je zachytený senzormi (GGH) a akumulovaný (EVM).
+
+1.3 Hypotézy (H0–H4)
+H0: Všetky signály sú artefakty (šum, drift, EMI).
+
+H1: Konvenčné zdroje energie (tepelné gradienty, RF).
+
+H2: Informačno-termická väzba (Landauer bound).
+
+H3: Štruktúrovaná anomália-relaxácia (merateľné signály).
+
+H4: Maximálne exotické kanály (substrátová optimalizácia).
+
+ČASŤ 2: ARCHITEKTÚRA SYSTÉMU
+2.1 Vrstvová štruktúra
+text
+IEK-A → GGH → EVM → RS
+│          │         │
+Asymetrická  Izolačná  Energetická  Riadiace
+vrstva      senzorická akumulačná   systémy
+2.2 Funkcie vrstiev
+IEK-A (Asymetrická elektrodová konfigurácia):
+
+Generovanie asymetrického HV poľa (1–5 MV).
+
+CNT (Carbon Nanotube) elektródy s pomerom asymetrie 1:1000.
+
+Pulzný Marxov generátor.
+
+GGH (Izolačná a senzorická vrstva):
+
+SQUID magnetometre (10⁻¹⁵ T/√Hz).
+
+YBCO supravodičové filmy (77 K).
+
+Diferenčné snímače (INA849).
+
+EVM (Energetický akumulačný modul):
+
+Superkondenzátory (3000 F, 2.7 V) v sérii (150 V banky).
+
+SiC boost meniče (95% účinnosť).
+
+LiFePO4 batérie (96 V, 100 Ah).
+
+RS (Riadiaci systém):
+
+FPGA (Xilinx Versal) + STM32H743ZI.
+
+Protokol G0–G6 (falsifikačné brány).
+
+Blinded randomization.
+
+ČASŤ 3: KOMPONENTY A MATERIÁLY
+3.1 Kritické komponenty
+A) IEK-A vrstva:
+Keramická doska: Al₂O₃ 99.9%, 1600×1000×3 mm.
+
+HfO₂ dielektrikum: ALD depozícia, 100–200 nm, εᵣ ≈ 25.
+
+CNT elektródy: MWCNT, priemer 20–50 nm, dĺžka 10–50 μm.
+
+HV generátor: Marxov generátor, 0–3 MV, 1–10 ns pulzy.
+
+MOSFET driver: IXYS IXFN132N100 + ADuM4135.
+
+B) GGH vrstva:
+SQUID magnetometre: STAR Cryoelectronics SQ-MAG 4ch.
+
+YBCO filmy: PLD depozícia na SrTiO₃, Tc = 92 K.
+
+Diferenčné snímače: Texas Instruments INA849 (zosilnenie 1000×).
+
+Toroidálne transformátory: Nano-kryštalické jadro, izolácia 10 kV.
+
+C) EVM vrstva:
+Superkondenzátory: Maxwell BCAP3000 (3000 F, 2.7 V).
+
+Boost meniče: Wolfspeed CAS325M12HM2 (10 kV, 100 kW).
+
+Batérie: LiFePO4 12V 100Ah, 8 ks v sérii (96 V).
+
+D) RS vrstva:
+MCU: STM32H743ZI (480 MHz, 16-bit ADC 5 MSPS).
+
+FPGA: Xilinx Versal ACAP VC1902.
+
+Komunikácia: W5500 Ethernet, 64 GB SD karta.
+
+3.2 Špecifikácie
+Rozmery: 1600 × 1000 × 300 mm.
+
+Hmotnosť: ~250 kg.
+
+Prevádzkové podmienky:
+
+Vákuum: ≤ 10⁻⁶ Torr.
+
+Teplota: 77 K (LN₂) alebo 4 K (LHe).
+
+HV: 1–5 MV, prúd ≤ 1 mA.
+
+ČASŤ 4: VÝROBNÉ POSTUPY
+4.1 Výroba IEK-A vrstvy
+python
+# Krok 1: ALD depozícia HfO₂
+def deposit_hfo2():
+    system = "Beneq TFS 500"
+    precursor = "TEMAHf + H₂O"
+    temp = 250°C
+    thickness = 100–200 nm
+    cycles = 1000
+
+# Krok 2: CNT elektródy
+def grow_cnt_electrodes():
+    method = "CVD + photolithography"
+    catalyst = "Fe/Mo (0.5/0.1 nm)"
+    gas = "C₂H₄/H₂/Ar"
+    temp = 750°C
+    height = 50 μm
+4.2 Výroba GGH vrstvy
+python
+# PLD depozícia YBCO
+def deposit_ybco():
+    laser = "KrF excimer (248 nm)"
+    energy = 300 mJ/pulse
+    substrate = "SrTiO₃ (100)"
+    temp = 780°C
+    oxygen = 0.3 mbar
+4.3 Montáž
+Spodná doska (hliník 5 mm) – EVM vrstva.
+
+Izolačná vrstva (PTFE 10 mm).
+
+GGH vrstva – SQUID, YBCO, snímače.
+
+IEK-A vrstva – keramická doska s CNT elektródami.
+
+Vrchný kryt (polykarbonát 5 mm).
+
+ČASŤ 5: ELEKTRICKÉ SCHÉMY
+5.1 HV pulzný obvod (Marxov generátor)
+text
+10-stupňový Marx generator:
+C1--S1--C2--S2--...--C10--S10
+│    │    │    │         │
+Rc   Rd   Rc   Rd        Rd
+Kondenzátory: TDK CeraLink 100 nF, 30 kV.
+
+Spínače: Krytron KN22.
+
+Výstup: 300 kV, 10 ns nábeh.
+
+5.2 SQUID diferenčný systém
+text
+SQUID → Preamp (100×) → ADC (24-bit, 64 kSPS) → FPGA
+4× diferenciálne páry (NS, EW, UD, diagonálne).
+
+Filter chain: 50 Hz notch, 10 kHz low-pass, 0.1 Hz high-pass.
+
+5.3 Superkondenzátorová banka
+text
+3700× BCAP3000:
+137 sériových reťazcov × 27 paralelných
+Celkom: 10 kV, ~10 kJ
+ČASŤ 6: RIADIACI SYSTÉM A SOFTWARE
+6.1 FPGA kód (VHDL)
+vhdl
+entity HGP_CONTROL is
+    port(
+        HV_TRIGGER    : out std_logic;
+        SQUID_DATA    : in  std_logic_vector(31 downto 0);
+        INTERLOCK_OK  : in  std_logic
+    );
+end entity;
+6.2 STM32 firmware (C++)
+cpp
+void HGP_Main_Loop() {
+    init_ADC(5_MSPS, 16bit);
+    init_HV_driver(PS350_CONFIG);
+    
+    while(experiment_running) {
+        bool is_test = get_blinded_state();
+        set_HV_pulse(5_kV, 1_kHz, is_test ? ASYMMETRIC : SYMMETRIC);
+        acquire_data(1000_samples);
+        check_safety_gates(G0_G5);
+    }
+}
+6.3 Python analýza
+python
+class HGP_Analyzer:
+    def gate_g0_instrument_sanity(self):
+        saturation = np.any(np.abs(self.data['sensor']) > 4.9)
+        drift = self.calculate_allan_deviation()
+        return {'passed': not saturation, 'drift': drift}
+ČASŤ 7: EXPERIMENTÁLNY PROTOKOL G0–G6
+7.1 Falsifikačné brány
+text
+G0: PASS/FAIL – Inštrumentálna integrita
+G1: PASS/FAIL – Nulová ekvivalencia (blinded test)
+G2: PASS/FAIL – Polarita a symetria
+G3: PASS/FAIL – Environmentálne konfundy
+G4: PASS/FAIL – Nezávislá replikácia
+G5: PASS/FAIL – Energetické účtovníctvo
+G6: PASS/FAIL – Bayesovská modelová komparácia
+7.2 Postup experimentu
+Inicializácia: Vákuum, chladenie, kalibrácia.
+
+Blinded randomization: TEST vs CONTROL (automatizované).
+
+Meranie: 24 hodín, 1 kHz vzorkovanie, 8 kanálov.
+
+Analýza: Permutačné testy, Allanova odchýlka, Bayesovské faktory.
+
+Validácia: Kontrola artefaktov (EMI, teplota, drift).
+
+ČASŤ 8: BEZPEČNOSTNÝ SYSTÉM
+8.1 Hardvérové interlocks
+Dvere uzavreté → HV povolené.
+
+Teplota OK (3–100 K) → napájanie povolené.
+
+Prúd < 1 mA → HV udržané.
+
+Človek prítomný → HV vypnuté.
+
+8.2 Bezpečnostné prvky
+Faradayova klietka (medená sieťka).
+
+HV izolátory (Al₂O₃ keramika).
+
+Požiarna ochrana (FM-200, Inergen).
+
+Kryogénne senzory (hladina, tlak, O₂).
+
+8.3 Emergency shutdown
+python
+def emergency_shutdown():
+    hv_generator.off()
+    discharge_capacitors()
+    sound_alarm()
+    log_event("EMERGENCY_SHUTDOWN")
+ČASŤ 9: KALIBRÁCIA A VALIDÁCIA
+9.1 Metrologická kalibrácia
+Napätie: Josephson array (NIST traceable).
+
+Magnetické pole: NMR teslameter.
+
+Teplota: ITS-90 fixed points.
+
+Čas: GPS-disciplined oscillator.
+
+9.2 Cross-validation
+python
+def interlab_comparison():
+    labs = ['LabA', 'LabB', 'LabC', 'LabD']
+    results = {}
+    for lab in labs:
+        results[lab] = lab.measure_standard_device()
+    return anova_results(results)
+ČASŤ 10: TEORETICKÁ ANALÝZA A LIMITY
+10.1 Hlavné teoretické problémy
+Porušenie zákona zachovania energie:
+Hypotetický mechanizmus konverzie informačnej entropie na energiu nemá oporu v štandardnej fyzike.
+
+Termodynamické limity:
+Carnotova účinnosť a Landauerov limit sú fundamentálne prekážky.
+
+Experimentálne artefakty:
+Elektrostatika, magnetický pickup, tepelné EMF, triboelektrické efekty.
+
+10.2 Očakávané signály vs šum
+python
+def calculate_expected_signal():
+    ΔS_inf = estimate_entropy_change()  # hypotetický výpočet
+    E_max = temperature * ΔS_inf
+    P_expected = E_max * repetition_rate * efficiency
+    SNR = P_expected / measurement_noise
+    return SNR  # Pravdepodobne << 1
+ČASŤ 11: DOKUMENTÁCIA A PUBLIKÁCIA
+11.1 Povinná dokumentácia
+Raw data: CSV s časovými pečiatkami, SHA256 hash.
+
+Analytické skripty: Python/R, version-controlled (Git).
+
+Kalibračné certifikáty: NIST-traceable.
+
+Experimentálny protokol: Preregistrovaný dizajn.
+
+11.2 Publikačná etika
+Zverejniť aj nulové výsledky.
+
+Poskytnúť raw data (Zenodo, DOI).
+
+Umožniť nezávislú replikáciu.
+
+Vyhnúť sa senzačným tvrdeniam.
+
+ČASŤ 12: BUDGET A ČASOVÝ PLÁN
+12.1 Nákladová štruktúra
+Vybavenie: €1,2–1,4 milióna (HV, vákuum, kryogénne, SQUID).
+
+Materiály: €50 000 (CNT, YBCO, špeciálne keramiky).
+
+Práca: €550 000 (inžinieri, výskumníci, technici).
+
+Laboratórium: €600 000 (2 roky).
+
+Celkom: ≈ €3,3 milióna s kontingenciou 30%.
+
+12.2 Časový plán
+Fáza 1 (mesiace 1–6): Dizajn a plánovanie.
+
+Fáza 2 (7–18): Výroba komponentov.
+
+Fáza 3 (19–24): Zostavenie a testovanie.
+
+Fáza 4 (25–36): Experimenty a publikácia.
+
+ZÁVER
+Tento kompletný technický návod integruje všetky poskytnuté materiály do jedného organického celku. Predstavuje maximálne detailnú hypotetickú konštrukciu HGP zariadenia založenú na špekulatívnych fyzikálnych hypotézach.
+
+Kľúčové body:
+
+Teoretický rámec kombinuje Vopsona, Verlindeho a Buhlera.
+
+Architektúra 4 vrstiev (IEK-A, GGH, EVM, RS).
+
+Podrobné výrobné postupy a schémy.
+
+Rigorózny experimentálny protokol s falsifikačnými bránami.
+
+Komplexný bezpečnostný systém pre extrémne podmienky.
+
+Úplná dokumentácia a publikačná etika.
+
+Pamätajte: Toto je myšlienkový experiment. Reálna konštrukcia by bola mimoriadne nebezpečná, drahá a pravdepodobne by nefungovala podľa očakávaní.
+
+Dokument dokončený: Január 2026
+Stav: Kompletný hypotetický technický návod – verzia 2.0
+Účel: Akademická explorácia, nie stavebný návod

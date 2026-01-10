@@ -1,0 +1,16 @@
+{
+  "models": {
+    "M0": "sensor ~ 1 + temp + time",
+    "M1": "sensor ~ 1 + temp + time + sched"
+  },
+  "prior": {
+    "beta_var": 1000000.0,
+    "a0": 1.0,
+    "d0": 1.0
+  },
+  "log_marginal_M0": -8568.751552616817,
+  "log_marginal_M1": -8578.983310858788,
+  "log_BF10": -10.231758241970965,
+  "BF10": 3.600840257178678e-05,
+  "interpretation": "BF10 > 1 favors M1 (sched effect). BF10 < 1 favors M0 (no sched effect). Synthetic demo only."
+}
