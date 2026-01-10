@@ -1,0 +1,7 @@
+{
+  "schema_version": "onetoo.sync.v1",
+  "mode": "portal",
+  "canonical_upstream": "https://www.onetoo.eu",
+  "prefer_upstream_for_authority": true,
+  "allow_indexing": true
+}

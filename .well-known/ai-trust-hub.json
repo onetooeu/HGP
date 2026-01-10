@@ -1,0 +1,17 @@
+{
+  "schema_version": "onetoo.ai-trust-hub.v1",
+  "publisher": {
+    "name": "HGP Edu Portal",
+    "canonical_url": "https://hgpedu.eu",
+    "role": "showcase"
+  },
+  "entrypoints": {
+    "tfws": "https://hgpedu.eu/.well-known/tfws-v2.json",
+    "integrity": "https://hgpedu.eu/.well-known/sha256.json",
+    "minisign_pub": "https://hgpedu.eu/.well-known/minisign.pub"
+  },
+  "upstream": {
+    "trust_root": "https://www.onetoo.eu",
+    "ai_search": "https://search.onetoo.eu"
+  }
+}

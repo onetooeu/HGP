@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Automation (EN)</title>
+  <link rel="stylesheet" href="/assets/style.css"/>
+  <script defer src="/assets/app.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="topbar">
+      <div class="brand">
+        <div class="logo"></div>
+        <div>
+          <div style="font-weight:800;letter-spacing:.2px">HGP Edu Portal</div>
+          <div class="badge">TFWS v2 · ONETOO Showcase · Static Trust Node</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end">
+        <a class="pill" href="/index.html">SK</a>
+        <a class="pill" href="/en/index.html">EN</a>
+        <a class="pill" href="https://www.onetoo.eu" target="_blank" rel="noopener">onetoo.eu</a>
+      </div>
+    </div>
+    <div class="nav">
+      <a class="pill" href="/en/index.html">← Back</a>
+      <a class="pill" href="/pages/showroom.html">Showroom</a>
+      <a class="pill" href="/pages/tfws.html">TFWS v2</a>
+      <a class="pill" href="/pages/safety.html">Safety</a>
+      <a class="pill" href="/pages/downloads.html">Downloads</a>
+      <a class="pill" href="/pages/onetoo.html">ONETOO Map</a>
+      <a class="pill" href="/pages/api.html">Automation</a>
+    </div>
+    <div class="hero">
+<h1>Automation</h1>
+<p>Generate payload for ONETOO AI Search submit + integrity inventory.</p>
+<div class="code">python tools/generate_onetoo_submit_payload.py --base-url https://hgpedu.eu &gt; submit.json
+python tools/generate_sha256_manifest.py --root . --out .well-known/sha256.json</div>
+</div>
+    <div class="footer">Static-first, verifiable, archival-grade portal. No backend. Trust-first.</div>
+  </div>
+</body>
+</html>
