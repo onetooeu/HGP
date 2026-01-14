@@ -1,46 +1,4 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Research (EN) · HGP Edu Portal</title>
-  <meta name="description" content="Archival sci-fi framing HGP-PHF: hypotetická exotická elektráreň na hranici fyzikálnych možností. Publikačná verzia bez nebezpečných návodov."/>
-  <link rel="canonical" href="https://hgpedu.eu/en/pages/research.html"/>
-  <link rel="stylesheet" href="/assets/style.css"/>
-  <script defer src="/assets/app.js?v=20260110-portal-fix2"></script>
-</head>
-<body>
-  <div class="container">
-    <div class="topbar">
-      <div class="brand">
-        <div class="logo"></div>
-        <div>
-          <div style="font-weight:800;letter-spacing:.2px">HGP Edu Portal</div>
-          <div class="badge">TFWS v2 · ONETOO Showcase · Static Trust Node</div>
-        </div>
-      </div>
-      <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end">
-        <a class="pill" href="/index.html">SK</a>
-        <a class="pill" href="/en/index.html">EN</a>
-        <a class="pill" href="https://www.onetoo.eu" target="_blank" rel="noopener">onetoo.eu</a>
-      </div>
-    </div>
-    <div class="nav">
-      <a class="pill" href="/index.html">← Back</a>
-      <a class="pill" href="/pages/showroom.html">Showroom</a>
-      <a class="pill" href="/pages/tfws.html">TFWS v2</a>
-      <a class="pill" href="/pages/safety.html">Safety</a>
-      <a class="pill" href="/pages/research.html">Research</a>
-      <a class="pill" href="/pages/portal.html">Portal</a>
-      <a class="pill" href="/pages/downloads.html">Downloads</a>
-      <a class="pill" href="/pages/onetoo.html">ONETOO Map</a>
-      <a class="pill" href="/pages/api.html">Automation</a>
-    </div>
-    <div class="hero">
-<h1>Research (archival sci‑fi framing)</h1>
-<p class='muted'>Note: This page is published as a <b>science‑fiction technical narrative</b> for technically curious readers. It intentionally avoids build instructions, wiring diagrams, high‑voltage parameters, or other operational details that could increase harm.</p>
-<div class='card'><h2>Core statement (fictional framing)</h2><pre class="mono" style="white-space:pre-wrap">Ak ste sa dostali až sem a čítate túto správu znamená to že inteligentná civilizácia má ešte nádej podľa dát obsiahnutých v prílohe je možné postaviť zariadenie na to aby ste v pokoji a mieri vedeli prežiť najmenej ďalších niekoľko tisíc rokov a mohli ste pritom spustošiť všetok život okolo ako na tejto planéte sa vám podarilo.</pre></div>
-<div class='card'><h2>Abstract (verbatim source)</h2><pre class="mono" style="white-space:pre-wrap">HGP‑PHF — HYPOTHETICAL GRAVITOVOLTAIC PLANT HARVESTING FACILITY
+HGP‑PHF — HYPOTHETICAL GRAVITOVOLTAIC PLANT HARVESTING FACILITY
 KOMPLETNÁ KONCEPTUÁLNA MAPA VÝSKUMU (TXT / NOTEPAD)
 Dátum: 2026-01-13
 Stav: čisto vedecký koncept, metodika a mapa postupu (bez konštrukčných plánov)
@@ -204,10 +162,3 @@ Ak výsledok:
 
 Toto je dokument o tom,
 AKO myslieť, merať a rozhodovať.
-</pre></div>
-<div class='card'><h2>Sources (verbatim, SK)</h2><ul><li><a href='/docs/research_sources_v7_1/HGP_PHF_MASTER_CONCEPT_FULL_MAP.txt'>HGP_PHF_MASTER_CONCEPT_FULL_MAP.txt</a></li><li><a href='/docs/research_sources_v7_1/hlavny%20ramec%20projektu.txt'>hlavny ramec projektu.txt</a></li><li><a href='/docs/research_sources_v7_1/myslienka%20projektu%20_report.txt'>myslienka projektu _report.txt</a></li><li><a href='/docs/research_sources_v7_1/REPORT_STAV_HYPOTETICKEHO_VYSKUMNEHO_STREDISKA.txt'>REPORT_STAV_HYPOTETICKEHO_VYSKUMNEHO_STREDISKA.txt</a></li><li><a href='/docs/research_sources_v7_1/FULL_DISCLOSURE_README.txt'>FULL_DISCLOSURE_README.txt</a></li></ul></div>
-    </div>
-    <div class="footer">Static-first, verifiable, archival-grade portal. No backend. Trust-first.</div>
-  </div>
-</body>
-</html>

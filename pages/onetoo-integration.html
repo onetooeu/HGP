@@ -39,47 +39,95 @@
       <button class="btn" id="btn-safe-toggle">SAFE MODE: OFF</button>
       <span class="badge">Tip: Safe Mode disables CRT + neon</span>
     </div>
+
 <div class="hero">
-      <h1>Full integration (Portal Autopilot + ONETOO AI Search Autopilot)</h1>
-      <p>
-        This site is static, but it behaves like a living system: contributions arrive via GitHub Issues, are validated,
-        published to the portal feed, and then automatically submitted to ONETOO AI Search (global index).
-      </p>
+  <h1>HGPeDU ↔ ONETOO: Holy‑Grail integration</h1>
+  <p>
+    Tento dokument je „svätý grál“ pre to, ako sa má statická TFWS v2 stránka (hgpedu.eu) správať ako plnohodnotný uzol
+    v ekosystéme ONETOO: <b>publikovateľná, auditovateľná, indexovateľná, decentralizovaná</b>.
+  </p>
 
-      <div class="card">
-        <h3>Autonomous pipeline</h3>
-        <div class="code">Issue → validate JSON → publish /data/portal/index.json → submit to search.onetoo.eu → track status → rebuild</div>
-      </div>
+  <div class="card">
+    <h3>Pipeline (bez backendu)</h3>
+    <div class="code">Issue/PR → validate JSON → publish portal feed → submit to ONETOO contrib API → show status → rebuild</div>
+    <p class="muted">Cieľ: pridať „záložku“ do ONETOO vyhľadávania tak, aby bola dôveryhodná (TFWS), opakovateľná a podpisovo auditovateľná.</p>
+  </div>
 
-      <h2>Roadmap</h2>
-      <ul>
-        <li><b>Now:</b> Issue-driven publishing to <code>/data/portal/index.json</code> (no human step).</li>
-        <li><b>Next:</b> Automatic submit to ONETOO contrib API and local submission ledger <code>/portal/submissions.json</code>.</li>
-        <li><b>Next:</b> Display ONETOO acceptance status in the portal table (accepted / pending / rejected).</li>
-        <li><b>Optional:</b> Signed payloads (Minisign) using GitHub Actions secrets for fully auditable provenance.</li>
-      </ul>
+  <h2>1) Priprav TFWS v2 trust‑surface (na webe)</h2>
+  <ol>
+    <li><b>Publikuj trust hub:</b> <code>/ai-trust-hub.json</code> + podpis <code>.minisig</code>.</li>
+    <li><b>Publikuj verejný kľúč:</b> <code>/minisign.pub</code> (a prípadne aj ed25519 pubkey, ak používaš viac systémov).</li>
+    <li><b>Publikuj integrity:</b> <code>/SHA256SUMS.txt</code> (+ podpis) pre archívne balíky a dôležité súbory.</li>
+    <li><b>Publikuj sitemap:</b> <code>/sitemap.xml</code> a umožni indexovanie cez <code>/robots.txt</code>.</li>
+  </ol>
 
-      <h2>Where the data lives</h2>
-      <ul>
-        <li>Portal feed: <a href="/data/portal/index.json">/data/portal/index.json</a></li>
-        <li>Submission store: <a href="/portal/submissions.json">/portal/submissions.json</a></li>
-      </ul>
+  <h2>2) Priprav „záložku“ (contribution record)</h2>
+  <div class="card">
+    <h3>Odporúčaný minimálny záznam (TFWS‑štýl JSON)</h3>
+    <p class="muted">Neobsahuj nebezpečné návody / HV parametre. Záznam má byť o publikácii, metodike, dátach a verifikácii.</p>
+    <pre class="mono" style="white-space:pre-wrap">{
+  "type": "onetoo.contribution",
+  "version": "2.0",
+  "date": "YYYY-MM-DDTHH:MM:SSZ",
+  "title": "HGP-PHF · Research page (publication-safe)",
+  "url": "https://hgpedu.eu/pages/research.html",
+  "summary": "Archival sci-fi technical narrative + verbatim sources, TFWS v2 trust surface, safe publication framing.",
+  "categories": ["research", "tfws", "hgp-phf"],
+  "license": "CC BY 4.0",
+  "safety": {"no_build_instructions": true, "no_hv_schematics": true}
+}</pre>
+  </div>
 
-      <h2>How users contribute</h2>
-      <ol>
-        <li>Open a GitHub Issue titled <code>[PORTAL] ...</code></li>
-        <li>Paste one JSON object (template is provided)</li>
-        <li>Autopilot does the rest</li>
-      </ol>
+  <h2>3) Odoslanie do HGPeDU Portalu (GitHub)</h2>
+  <ol>
+    <li>Na <a href="/pages/portal.html">Portal 2.0</a> vygeneruj JSON.</li>
+    <li>Odošli ako GitHub Issue (alebo PR do <code>/data/portal/submissions/</code>).</li>
+    <li>Po merge sa záznam objaví vo feede (<code>/data/portal/index.json</code>).</li>
+  </ol>
 
-      <div class="card">
-        <h3>Important</h3>
-        <p>
-          ONETOO submission requires an API token. Store it as a GitHub Actions secret (e.g. <code>ONETOO_TOKEN</code>).
-          This keeps the pipeline autonomous while protecting credentials.
-        </p>
-      </div>
-    </div>
+  <h2>4) Odoslanie do ONETOO (contrib API)</h2>
+  <div class="card">
+    <h3>Autopilot režim (odporúčané)</h3>
+    <ul>
+      <li>GitHub Actions workflow načíta nové portal záznamy.</li>
+      <li>Validuje JSON (schema + pravidlá bezpečnosti).</li>
+      <li>Odošle do <code>search.onetoo.eu</code> contrib endpointu.</li>
+      <li>Zapíše lokálny ledger (submission log) a zobrazí status v tabuľke portalu.</li>
+    </ul>
+    <p class="muted">Token sa drží ako GitHub Secret (napr. <code>ONETOO_TOKEN</code>). Nikdy sa nepíše do repo.</p>
+  </div>
+
+  <h2>5) Čo ONETOO indexuje</h2>
+  <ul>
+    <li><b>URL + meta</b>: title/description, jazyk, kategórie.</li>
+    <li><b>Trust surface</b>: ai‑trust‑hub + minisign pubkey + integrity.</li>
+    <li><b>Audit</b>: dátum, verzia, podpisy, prepojenia na zdroje a balíky.</li>
+  </ul>
+
+  <h2>6) Kontroly kvality („svätý grál“ checklist)</h2>
+  <div class="grid">
+    <div class="card"><h3>Indexing</h3><ul>
+      <li>Sitemap obsahuje research/portal/downloads.</li>
+      <li>robots.txt povoľuje crawlovanie.</li>
+      <li>Každá stránka má správny <code>&lt;title&gt;</code> a <code>description</code>.</li>
+    </ul></div>
+    <div class="card"><h3>TFWS v2</h3><ul>
+      <li>ai-trust-hub.json existuje a je podpísaný.</li>
+      <li>minisign.pub dostupný.</li>
+      <li>SHA256SUMS publikované (a podpis).</li>
+    </ul></div>
+    <div class="card"><h3>Safety</h3><ul>
+      <li>Žiadne build‑kroky / HV parametre.</li>
+      <li>Publikuj metodiku, dáta, negatívne výsledky.</li>
+      <li>Jasné disclaimer texty + Safety stránka.</li>
+    </ul></div>
+  </div>
+
+  <p class="muted" style="margin-top:12px">
+    Poznámka: Táto stránka je dokumentácia integrácie. Výskumný obsah je na <a href="/pages/research.html">Research</a>.
+  </p>
+</div>
+
 
     <div class="footer">Static-first · Audit-ready · TFWS v2 compatible</div>
   </div>
