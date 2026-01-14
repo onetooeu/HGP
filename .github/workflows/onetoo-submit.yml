@@ -1,24 +1,25 @@
-name: ONETOO Submit Autopilot
+name: onetoo-status-sync
 
 on:
+  workflow_dispatch:
+  schedule:
+    - cron: "15 * * * *"
   push:
-    branches: [main]
     paths:
       - "data/portal/index.json"
       - "data/portal/entries.jsonl"
-  schedule:
-    - cron: "17 */6 * * *"  # every 6h
-  workflow_dispatch:
+      - "pages/portal.html"
+      - "tools/onetoo_submit.py"
+
+concurrency:
+  group: onetoo-status-sync
+  cancel-in-progress: true
 
 permissions:
   contents: write
 
-concurrency:
-  group: onetoo-submit
-  cancel-in-progress: false
-
 jobs:
-  submit:
+  sync:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -27,19 +28,20 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: "3.11"
 
-      - name: Submit new portal entries to ONETOO
-        env:
-          ONETOO_TOKEN: ${{ secrets.ONETOO_TOKEN }}
-          ONETOO_SUBMIT_ENDPOINT: ${{ secrets.ONETOO_SUBMIT_ENDPOINT }}
+      - name: Run ONETOO status sync (read-only)
         run: |
-          python tools/onetoo_submit.py --portal-index data/portal/index.json
+          python tools/onetoo_submit.py --portal-index data/portal/index.json --state portal/submissions.json
 
-      - name: Commit submission state
+      - name: Commit status ledger (if changed)
         run: |
-          git config user.name "hgpedu-onetoo-submit"
-          git config user.email "actions@users.noreply.github.com"
+          if git diff --quiet; then
+            echo "No changes."
+            exit 0
+          fi
           git add portal/submissions.json
-          git commit -m "onetoo: update submission ledger" || echo "No changes"
+          git config user.name "hgpedu-onetoo-status-sync"
+          git config user.email "hgpedu-onetoo-status-sync@users.noreply.github.com"
+          git commit -m "chore: sync ONETOO status ledger (read-only)"
           git push

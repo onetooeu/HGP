@@ -1,4 +1,0 @@
-Contact: mailto:security@hgpedu.eu
-Expires: 2026-12-31
-Acknowledgments: https://www.hgpedu.eu/
-Policy: https://www.hgpedu.eu/pages/research

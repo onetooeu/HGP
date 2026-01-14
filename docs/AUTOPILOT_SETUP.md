@@ -38,17 +38,24 @@ Potom Autopilot po každom publish:
 
 > Bez týchto secrets bude portál stále fungovať, len sa podpis nebude automaticky obnovovať.
 
-## 3) ONETOO integrácia (submit do AI Search)
+## 3) ONETOO integrácia (štandard 2026 – read-only)
 
-Workflow **ONETOO Submit Autopilot** beží:
-- pri push do `data/portal/index.json` / `data/portal/entries.jsonl`
-- a tiež plánovane (cron)
+V roku 2026 je verejný runtime `search.onetoo.eu` **GET-only** (napr. `/search/v1`) a
+nezverejňuje verejný `POST /contrib/.../submit` endpoint.
 
-Aby reálne submitoval záznamy, nastav secrets:
-- `ONETOO_TOKEN` – token (ak endpoint vyžaduje autentifikáciu)
-- `ONETOO_SUBMIT_ENDPOINT` – napr. `https://search.onetoo.eu/contrib/v2/submit`
+Preto integrácia HGPEdu vyzerá takto:
 
-Skript: `tools/onetoo_submit.py`
+1. Portál autopilot publikuje príspevky do `data/portal/index.json` (statický feed).
+2. Aktualizuje integrity inventár (`.well-known/sha256.json`) a podpis (`.minisig`), ak máš secrets.
+3. Vygeneruje sa ONETOO „candidate“ JSON payload (na zdieľanie s maintainerom).
+4. ONETOO strana (kurátorsky/autopilot) zaradí záznam do accepted-set.
+
+Praktický test ONETOO search runtime:
+
+- `https://search.onetoo.eu/search/v1?q=hgpedu&limit=10`
+
+> Ak ONETOO neskôr zverejní submit endpoint, dá sa doplniť voliteľný submit krok.
+
 
 ## 4) Lokálny test
 

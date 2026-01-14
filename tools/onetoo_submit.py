@@ -1,15 +1,27 @@
 #!/usr/bin/env python3
 """
-Submit HGPEdu portal entries to ONETOO AI Search (contrib API).
+HGPEdu ↔ ONETOO integration helper (NEW standard: read-only status sync).
 
-Goals:
-- autonomous: runs in GitHub Actions with secrets
-- idempotent: tracks submitted URLs in portal/submissions.json
-- transparent: writes machine-readable state + prints clear errors
-- canonical: uses https://hgpedu.eu (no www) everywhere
+Why this file is still called onetoo_submit.py:
+- Historically it was intended to POST into ONETOO contrib endpoints.
+- Since ONETOO Universal Backend moved to a public GET-only surface (e.g. /search/v1),
+  HGPEdu should NOT attempt to push data upstream automatically.
+- Instead, we keep a transparent local ledger and periodically check whether a URL
+  is already visible in the ONETOO accepted-set (search index).
 
-NOTE:
-The exact submit payload may evolve. Adjust `build_payload()` to match ONETOO OpenAPI.
+What this tool does:
+- reads portal feed items from data/portal/index.json
+- calls: GET https://search.onetoo.eu/search/v1?q=<url>
+- if it finds an exact URL match in results[] -> status = "accepted"
+- if not found -> status = "missing"
+- on errors -> status = "error"
+- writes portal/submissions.json (machine-readable ledger)
+- can be used in GitHub Actions (no secrets required)
+
+Safe by design:
+- NO POST requests to ONETOO
+- NO tokens required
+- deterministic and auditable
 """
 
 from __future__ import annotations
@@ -17,25 +29,24 @@ from __future__ import annotations
 import argparse
 import datetime as _dt
 import json
-import os
 import sys
 import time
 from pathlib import Path
-from typing import Any
-from urllib.parse import urlparse
+from typing import Any, Dict, List, Tuple
+from urllib.parse import urlparse, quote
 import urllib.request
 import urllib.error
 
 
-DEFAULT_ENDPOINT = "https://search.onetoo.eu/contrib/v2/submit"
-
+SEARCH_ENDPOINT_DEFAULT = "https://search.onetoo.eu/search/v1"
 CANONICAL_SITE = "https://hgpedu.eu"
 PORTAL_INDEX_URL = f"{CANONICAL_SITE}/data/portal/index.json"
 TFWS_V2_URL = f"{CANONICAL_SITE}/.well-known/tfws-v2.json"
 
 
 def utc_now() -> str:
-    return _dt.datetime.utcnow().replace(microsecond=0).isoformat() + "Z"
+    # timezone-aware UTC timestamp (no deprecation warning)
+    return _dt.datetime.now(_dt.timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
 
 
 def load_json(path: Path, default: Any) -> Any:
@@ -57,26 +68,12 @@ def is_https(u: str) -> bool:
         return False
 
 
-def compact(obj: Any) -> Any:
-    """
-    Remove empty/null-ish values recursively for cleaner payloads.
-    Keeps 0 and False.
-    """
-    if isinstance(obj, dict):
-        out = {}
-        for k, v in obj.items():
-            vv = compact(v)
-            if vv is None:
-                continue
-            if vv == "" or vv == [] or vv == {}:
-                continue
-            out[k] = vv
-        return out
-    if isinstance(obj, list):
-        out = [compact(x) for x in obj]
-        out = [x for x in out if x is not None and x != "" and x != [] and x != {}]
-        return out
-    return obj
+def normalize_url(u: str) -> str:
+    """Normalize trivial variants (strip whitespace, remove trailing slash)."""
+    u = (u or "").strip()
+    if u.endswith("/") and u != "https://":
+        u = u[:-1]
+    return u
 
 
 def build_publisher() -> dict:
@@ -84,82 +81,30 @@ def build_publisher() -> dict:
         "name": "HGPEdu",
         "domain": "hgpedu.eu",
         "homepage": CANONICAL_SITE,
-        "tfws": {
-            "v2": TFWS_V2_URL,
-        },
-        # Optional: link to trust hub/integrity if ONETOO schema supports it.
-        # "trust_hub": f"{CANONICAL_SITE}/ai-trust-hub.json",
-        # "integrity": f"{CANONICAL_SITE}/.well-known/sha256.json",
+        "tfws": {"v2": TFWS_V2_URL},
+        "portal_index": PORTAL_INDEX_URL,
     }
 
 
-def build_payload(entry: dict, publisher: dict) -> dict:
+def portal_items(portal: dict) -> List[dict]:
     """
-    Build ONETOO submit payload.
-
-    Current mapping (safe default):
-    - title, url
-    - description (from notes/summary fields)
-    - categories + tags
-    - publisher
-    - manifests (if provided)
-    - source backlink to HGPEdu portal index
-
-    Adjust this function if ONETOO OpenAPI differs.
+    Accept both historical shapes:
+    - { "items": [...] }  (current HGPEdu portal index)
+    - { "entries": [...] } (older drafts)
     """
-    title = (entry.get("title") or "").strip()
-    url = (entry.get("url") or "").strip()
-
-    # Try to accept multiple possible fields for "description".
-    description = (
-        (entry.get("notes") or "").strip()
-        or (entry.get("summary") or "").strip()
-        or ""
-    )
-
-    # categories: accept either "category" (single) or "categories" (list)
-    categories = []
-    if isinstance(entry.get("categories"), list):
-        categories = [str(x).strip() for x in entry.get("categories", []) if str(x).strip()]
-    elif entry.get("category"):
-        categories = [str(entry.get("category")).strip()]
-
-    tags = entry.get("tags", [])
-    if not isinstance(tags, list):
-        tags = []
-
-    manifests = entry.get("manifests", {})
-    if not isinstance(manifests, dict):
-        manifests = {}
-
-    payload = {
-        "title": title,
-        "url": url,
-        "description": description,
-        "categories": categories,
-        "tags": tags,
-        "publisher": publisher,
-        "manifests": manifests,
-        "source": {
-            "type": "hgpedu-portal",
-            "portal_index": PORTAL_INDEX_URL,
-            "submitted_utc": utc_now(),
-        },
-    }
-
-    return compact(payload)
+    items = portal.get("items")
+    if isinstance(items, list):
+        return [x for x in items if isinstance(x, dict)]
+    entries = portal.get("entries")
+    if isinstance(entries, list):
+        return [x for x in entries if isinstance(x, dict)]
+    return []
 
 
-def post_json(url: str, data: dict, token: str | None, timeout: int = 25) -> tuple[int, dict | str]:
-    body = json.dumps(data, ensure_ascii=False).encode("utf-8")
-    req = urllib.request.Request(url, data=body, method="POST")
-    req.add_header("Content-Type", "application/json; charset=utf-8")
-    req.add_header("User-Agent", "hgpedu-onetoo-submit/1.0 (+https://hgpedu.eu)")
-
-    if token:
-        # Token style can differ; change header if ONETOO expects something else.
-        req.add_header("Authorization", f"Bearer {token}")
-
+def http_get_json(url: str, timeout: int = 25) -> Tuple[int, dict | str]:
+    req = urllib.request.Request(url, method="GET")
+    req.add_header("accept", "application/json")
+    req.add_header("user-agent", "hgpedu-onetoo-status-sync/1.0 (+https://hgpedu.eu)")
     try:
         with urllib.request.urlopen(req, timeout=timeout) as resp:
             raw = resp.read().decode("utf-8", errors="replace")
@@ -167,110 +112,116 @@ def post_json(url: str, data: dict, token: str | None, timeout: int = 25) -> tup
                 return resp.status, json.loads(raw)
             except Exception:
                 return resp.status, raw
-
     except urllib.error.HTTPError as e:
         raw = e.read().decode("utf-8", errors="replace")
         try:
             return e.code, json.loads(raw)
         except Exception:
             return e.code, raw
-
     except Exception as e:
         return 0, str(e)
 
 
+def check_url_in_onetoo(url: str, endpoint: str, limit: int) -> Tuple[str, int, dict | str]:
+    """
+    Returns: (status, http_code, response)
+    status in: accepted | missing | error
+    """
+    q = quote(url, safe="")
+    full = f"{endpoint}?q={q}&limit={max(1, min(50, int(limit)))}"
+    code, resp = http_get_json(full)
+
+    if not (200 <= code < 300) or not isinstance(resp, dict):
+        return "error", code, resp
+
+    results = resp.get("results", [])
+    if not isinstance(results, list):
+        return "error", code, resp
+
+    target = normalize_url(url)
+    for r in results:
+        if not isinstance(r, dict):
+            continue
+        rurl = normalize_url(str(r.get("url", "")))
+        if rurl == target:
+            return "accepted", code, resp
+
+        # fallback: consider www/non-www equivalence
+        if rurl.replace("https://www.", "https://") == target.replace("https://www.", "https://"):
+            return "accepted", code, resp
+
+    return "missing", code, resp
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--endpoint", default=os.environ.get("ONETOO_SUBMIT_ENDPOINT", DEFAULT_ENDPOINT))
-    ap.add_argument("--token", default=os.environ.get("ONETOO_TOKEN"))
+    ap.add_argument("--search-endpoint", default=SEARCH_ENDPOINT_DEFAULT, help="ONETOO search endpoint (/search/v1)")
     ap.add_argument("--portal-index", default="data/portal/index.json", help="Local portal feed JSON path")
-    ap.add_argument("--state", default="portal/submissions.json", help="Local submission state JSON path")
-    ap.add_argument("--limit", type=int, default=50)
+    ap.add_argument("--state", default="portal/submissions.json", help="Local status ledger JSON path")
+    ap.add_argument("--limit", type=int, default=50, help="Max entries to process per run")
+    ap.add_argument("--query-limit", type=int, default=50, help="limit= query param for /search/v1 (1..50)")
     ap.add_argument("--dry-run", action="store_true")
-    ap.add_argument("--only-url", default="", help="Submit only this URL if present in portal entries")
-    ap.add_argument("--sleep", type=float, default=1.0, help="Delay between submits (seconds)")
+    ap.add_argument("--only-url", default="", help="Check only this URL")
+    ap.add_argument("--sleep", type=float, default=0.5, help="Delay between requests (seconds)")
     args = ap.parse_args()
 
     portal_path = Path(args.portal_index)
     portal = load_json(portal_path, {})
-    entries = portal.get("entries", [])
-
-    if not isinstance(entries, list):
-        print(f"ERROR: {portal_path} entries must be an array", file=sys.stderr)
-        return 2
+    items = portal_items(portal)
 
     state_path = Path(args.state)
     state = load_json(
         state_path,
         {
-            "schema_version": "hgpedu.onetoo.submissions.v1",
+            "schema_version": "hgpedu.onetoo.status.v1",
             "generated_utc": utc_now(),
+            "publisher": build_publisher(),
             "items": {},
         },
     )
 
-    items = state.get("items", {})
-    if not isinstance(items, dict):
-        items = {}
+    ledger: Dict[str, Any] = state.get("items", {})
+    if not isinstance(ledger, dict):
+        ledger = {}
 
-    publisher = build_publisher()
-
-    submitted = 0
-    for entry in entries:
-        if not isinstance(entry, dict):
+    processed = 0
+    for it in items:
+        url = normalize_url(str(it.get("url", "")))
+        if not url or not is_https(url):
+            continue
+        if args.only_url and normalize_url(args.only_url) != url:
             continue
 
-        url = str(entry.get("url", "")).strip()
-        title = str(entry.get("title", "")).strip()
+        status, code, resp = check_url_in_onetoo(url, args.search_endpoint, args.query_limit)
 
-        if not url or not title:
-            continue
-        if not is_https(url):
-            continue
-
-        if args.only_url and url != args.only_url.strip():
-            continue
-
-        # idempotency
-        if url in items and items[url].get("status") in ("submitted", "accepted"):
-            continue
-
-        payload = build_payload(entry, publisher)
-
-        if args.dry_run:
-            print(json.dumps(payload, ensure_ascii=False, indent=2))
-            items[url] = {"status": "dry-run", "last_attempt_utc": utc_now()}
-            submitted += 1
-            if submitted >= args.limit:
-                break
-            continue
-
-        code, resp = post_json(args.endpoint, payload, args.token)
-
-        ok = 200 <= code < 300
-        items[url] = {
-            "status": "submitted" if ok else "error",
-            "http": code,
-            "last_attempt_utc": utc_now(),
-            "response": resp,
+        ledger[url] = {
+            "status": status,
+            "http": int(code),
+            "checked_utc": utc_now(),
         }
 
-        if ok:
-            print(f"OK   {url} -> HTTP {code}")
-        else:
-            print(f"FAIL {url} -> HTTP {code}", file=sys.stderr)
+        # store a short debug sample only on errors (avoid noisy churn)
+        if status == "error":
             if isinstance(resp, str):
-                print(resp[:2000], file=sys.stderr)
+                ledger[url]["error"] = resp[:500]
             else:
-                print(json.dumps(resp, ensure_ascii=False, indent=2)[:2000], file=sys.stderr)
+                ledger[url]["error"] = json.dumps(resp, ensure_ascii=False)[:500]
 
-        submitted += 1
-        if submitted >= args.limit:
+        line = f"{status.upper():8} {url} (HTTP {code})"
+        print(line if status != "error" else "ERROR   " + line, file=sys.stderr if status == "error" else sys.stdout)
+
+        processed += 1
+        if processed >= int(args.limit):
             break
         time.sleep(max(0.0, float(args.sleep)))
 
     state["generated_utc"] = utc_now()
-    state["items"] = items
+    state["items"] = ledger
+
+    if args.dry_run:
+        print(json.dumps(state, ensure_ascii=False, indent=2))
+        return 0
+
     save_json(state_path, state)
     return 0
 
