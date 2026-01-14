@@ -30,7 +30,7 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Run ONETOO status sync (read-only)
+      - name: Sync ONETOO status ledger (read-only)
         run: |
           python tools/onetoo_submit.py --portal-index data/portal/index.json --state portal/submissions.json
 
