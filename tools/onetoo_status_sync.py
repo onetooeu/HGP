@@ -2,22 +2,6 @@
 """
 HGPEdu ↔ ONETOO integration helper (NEW standard: read-only status sync).
 
-Why this file is still called onetoo_submit.py:
-- Historically it was intended to POST into ONETOO contrib endpoints.
-- Since ONETOO Universal Backend moved to a public GET-only surface (e.g. /search/v1),
-  HGPEdu should NOT attempt to push data upstream automatically.
-- Instead, we keep a transparent local ledger and periodically check whether a URL
-  is already visible in the ONETOO accepted-set (search index).
-
-What this tool does:
-- reads portal feed items from data/portal/index.json
-- calls: GET https://search.onetoo.eu/search/v1?q=<url>
-- if it finds an exact URL match in results[] -> status = "accepted"
-- if not found -> status = "missing"
-- on errors -> status = "error"
-- writes portal/submissions.json (machine-readable ledger)
-- can be used in GitHub Actions (no secrets required)
-
 Safe by design:
 - NO POST requests to ONETOO
 - NO tokens required
@@ -45,8 +29,12 @@ TFWS_V2_URL = f"{CANONICAL_SITE}/.well-known/tfws-v2.json"
 
 
 def utc_now() -> str:
-    # timezone-aware UTC timestamp (no deprecation warning)
-    return _dt.datetime.now(_dt.timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
+    return (
+        _dt.datetime.now(_dt.timezone.utc)
+        .replace(microsecond=0)
+        .isoformat()
+        .replace("+00:00", "Z")
+    )
 
 
 def load_json(path: Path, default: Any) -> Any:
@@ -57,7 +45,10 @@ def load_json(path: Path, default: Any) -> Any:
 
 def save_json(path: Path, obj: Any) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(obj, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    path.write_text(
+        json.dumps(obj, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
 
 
 def is_https(u: str) -> bool:
@@ -69,10 +60,31 @@ def is_https(u: str) -> bool:
 
 
 def normalize_url(u: str) -> str:
-    """Normalize trivial variants (strip whitespace, remove trailing slash)."""
-    u = (u or "").strip()
+    """
+    Canonical HGPEdu URL normalization:
+    - strip whitespace
+    - force non-www
+    - remove .html
+    - remove trailing slash
+    """
+    if not isinstance(u, str):
+        return ""
+
+    u = u.strip()
+    if not u:
+        return ""
+
+    # www → non-www
+    u = u.replace("https://www.hgpedu.eu/", "https://hgpedu.eu/")
+
+    # drop .html
+    if u.endswith(".html"):
+        u = u[:-5]
+
+    # drop trailing slash
     if u.endswith("/") and u != "https://":
         u = u[:-1]
+
     return u
 
 
@@ -89,22 +101,48 @@ def build_publisher() -> dict:
 def portal_items(portal: dict) -> List[dict]:
     """
     Accept both historical shapes:
-    - { "items": [...] }  (current HGPEdu portal index)
-    - { "entries": [...] } (older drafts)
+    - { "items": [...] }
+    - { "entries": [...] }
+    Normalize URLs EARLY so ledger never sees duplicates.
     """
+    def normalize_item(x: dict) -> dict | None:
+        if not isinstance(x, dict):
+            return None
+        url = x.get("url")
+        if not isinstance(url, str):
+            return None
+        nx = dict(x)
+        nx["url"] = normalize_url(url)
+        return nx
+
     items = portal.get("items")
     if isinstance(items, list):
-        return [x for x in items if isinstance(x, dict)]
+        out = []
+        for x in items:
+            nx = normalize_item(x)
+            if nx:
+                out.append(nx)
+        return out
+
     entries = portal.get("entries")
     if isinstance(entries, list):
-        return [x for x in entries if isinstance(x, dict)]
+        out = []
+        for x in entries:
+            nx = normalize_item(x)
+            if nx:
+                out.append(nx)
+        return out
+
     return []
 
 
 def http_get_json(url: str, timeout: int = 25) -> Tuple[int, dict | str]:
     req = urllib.request.Request(url, method="GET")
     req.add_header("accept", "application/json")
-    req.add_header("user-agent", "hgpedu-onetoo-status-sync/1.0 (+https://hgpedu.eu)")
+    req.add_header(
+        "user-agent",
+        "hgpedu-onetoo-status-sync/1.0 (+https://hgpedu.eu)",
+    )
     try:
         with urllib.request.urlopen(req, timeout=timeout) as resp:
             raw = resp.read().decode("utf-8", errors="replace")
@@ -122,7 +160,9 @@ def http_get_json(url: str, timeout: int = 25) -> Tuple[int, dict | str]:
         return 0, str(e)
 
 
-def check_url_in_onetoo(url: str, endpoint: str, limit: int) -> Tuple[str, int, dict | str]:
+def check_url_in_onetoo(
+    url: str, endpoint: str, limit: int
+) -> Tuple[str, int, dict | str]:
     """
     Returns: (status, http_code, response)
     status in: accepted | missing | error
@@ -146,27 +186,22 @@ def check_url_in_onetoo(url: str, endpoint: str, limit: int) -> Tuple[str, int, 
         if rurl == target:
             return "accepted", code, resp
 
-        # fallback: consider www/non-www equivalence
-        if rurl.replace("https://www.", "https://") == target.replace("https://www.", "https://"):
-            return "accepted", code, resp
-
     return "missing", code, resp
 
 
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--search-endpoint", default=SEARCH_ENDPOINT_DEFAULT, help="ONETOO search endpoint (/search/v1)")
-    ap.add_argument("--portal-index", default="data/portal/index.json", help="Local portal feed JSON path")
-    ap.add_argument("--state", default="portal/submissions.json", help="Local status ledger JSON path")
-    ap.add_argument("--limit", type=int, default=50, help="Max entries to process per run")
-    ap.add_argument("--query-limit", type=int, default=50, help="limit= query param for /search/v1 (1..50)")
+    ap.add_argument("--search-endpoint", default=SEARCH_ENDPOINT_DEFAULT)
+    ap.add_argument("--portal-index", default="data/portal/index.json")
+    ap.add_argument("--state", default="portal/submissions.json")
+    ap.add_argument("--limit", type=int, default=50)
+    ap.add_argument("--query-limit", type=int, default=50)
     ap.add_argument("--dry-run", action="store_true")
-    ap.add_argument("--only-url", default="", help="Check only this URL")
-    ap.add_argument("--sleep", type=float, default=0.5, help="Delay between requests (seconds)")
+    ap.add_argument("--only-url", default="")
+    ap.add_argument("--sleep", type=float, default=0.5)
     args = ap.parse_args()
 
-    portal_path = Path(args.portal_index)
-    portal = load_json(portal_path, {})
+    portal = load_json(Path(args.portal_index), {})
     items = portal_items(portal)
 
     state_path = Path(args.state)
@@ -186,13 +221,15 @@ def main() -> int:
 
     processed = 0
     for it in items:
-        url = normalize_url(str(it.get("url", "")))
+        url = normalize_url(it.get("url", ""))
         if not url or not is_https(url):
             continue
         if args.only_url and normalize_url(args.only_url) != url:
             continue
 
-        status, code, resp = check_url_in_onetoo(url, args.search_endpoint, args.query_limit)
+        status, code, resp = check_url_in_onetoo(
+            url, args.search_endpoint, args.query_limit
+        )
 
         ledger[url] = {
             "status": status,
@@ -200,15 +237,18 @@ def main() -> int:
             "checked_utc": utc_now(),
         }
 
-        # store a short debug sample only on errors (avoid noisy churn)
         if status == "error":
             if isinstance(resp, str):
                 ledger[url]["error"] = resp[:500]
             else:
-                ledger[url]["error"] = json.dumps(resp, ensure_ascii=False)[:500]
+                ledger[url]["error"] = json.dumps(
+                    resp, ensure_ascii=False
+                )[:500]
 
-        line = f"{status.upper():8} {url} (HTTP {code})"
-        print(line if status != "error" else "ERROR   " + line, file=sys.stderr if status == "error" else sys.stdout)
+        print(
+            f"{status.upper():8} {url} (HTTP {code})",
+            file=sys.stderr if status == "error" else sys.stdout,
+        )
 
         processed += 1
         if processed >= int(args.limit):
