@@ -1,19 +1,6 @@
 {
   "schema_version": "hgpedu.onetoo.status.v2",
-  "generated_utc": "2026-01-14T20:52:48Z",
-  "items": {
-    "https://www.hgpedu.eu/pages/portal.html": {
-      "status": "missing",
-      "http": 200,
-      "checked_utc": "2026-01-14T17:54:18Z"
-    },
-    "https://hgpedu.eu/pages/portal": {
-      "status": "missing",
-      "status_raw": "missing",
-      "http": 200,
-      "checked_utc": "2026-01-14T20:52:48Z"
-    }
-  },
+  "generated_utc": "2026-01-14T20:56:36Z",
   "publisher": {
     "name": "HGPEdu",
     "domain": "hgpedu.eu",
@@ -22,5 +9,13 @@
       "v2": "https://hgpedu.eu/.well-known/tfws-v2.json"
     },
     "portal_index": "https://hgpedu.eu/data/portal/index.json"
+  },
+  "items": {
+    "https://hgpedu.eu/pages/portal": {
+      "status": "missing",
+      "status_raw": "missing",
+      "http": 200,
+      "checked_utc": "2026-01-14T20:56:35Z"
+    }
   }
 }
