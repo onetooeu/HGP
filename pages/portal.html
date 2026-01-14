@@ -150,24 +150,49 @@
     }
     return null;
   }
-  function statusHtml(url, ledgerItems){
-    const rec = ledgerRecordFor(url, ledgerItems);
-    const st = (rec && rec.status) ? String(rec.status) : "planned";
-    const http = (rec && rec.http) ? String(rec.http) : "";
-    const checked = (rec && rec.checked_utc) ? String(rec.checked_utc) : "";
-    const mapBg = { accepted:"#eaffea", missing:"#fff2e6", error:"#ffecec", planned:"#f3f3f3" };
-    const bg = mapBg[st] || "#f3f3f3";
-    const badge = (txt, b) =>
-      `<span style="display:inline-block;padding:2px 8px;border-radius:999px;background:${b};font-size:12px;margin-right:6px;border:1px solid #eee">${esc(txt)}</span>`;
-    const checkedShort = checked ? (checked.slice(0,19).replace("T"," ") + "Z") : "";
-    return (
-      `<div style="margin-top:8px">` +
-      badge("LOCAL: published", "#eef6ff") +
-      badge("ONETOO: " + st + (http ? " (HTTP " + http + ")" : ""), bg) +
-      (checkedShort ? `<span style="color:#888;font-size:12px">checked: ${esc(checkedShort)}</span>` : "") +
-      `</div>`
-    );
-  }
+function statusHtml(url, ledgerItems){
+  const rec = ledgerRecordFor(url, ledgerItems);
+  const st = (rec && rec.status) ? String(rec.status) : "planned";
+  const checked = (rec && rec.checked_utc) ? String(rec.checked_utc) : "";
+
+  const colors = {
+    accepted: "#e6f7ea",
+    missing:  "#fff4e5",
+    error:    "#ffecec",
+    planned:  "#f3f3f3"
+  };
+
+  const label = st.toUpperCase();
+  const bg = colors[st] || colors.planned;
+  const checkedShort = checked
+    ? checked.slice(0,19).replace("T"," ") + "Z"
+    : "";
+
+  return `
+    <div style="
+      margin-top:6px;
+      display:flex;
+      align-items:center;
+      gap:8px;
+    ">
+      <span style="
+        padding:2px 8px;
+        border-radius:999px;
+        background:${bg};
+        font-size:11.5px;
+        border:1px solid #eee;
+        color:#333;
+        letter-spacing:.3px;
+      ">
+        ${esc(label)}
+      </span>
+      ${checkedShort
+        ? `<span style="font-size:11px;color:#888">checked ${esc(checkedShort)}</span>`
+        : ""
+      }
+    </div>
+  `;
+}
 
   async function loadFeed(){
     const feedEl = document.getElementById("feed");
