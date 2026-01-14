@@ -1,0 +1,69 @@
+name: "Portal submission (TFWS-style JSON)"
+description: "Submit a new record to the HGPEdu Portal feed (no backend; Issue/PR workflow)."
+title: "Submission: <title>"
+labels: ["portal-submission"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Rules (Mozart mode / safety)
+        - **No build instructions** (no step-by-step construction)
+        - **No HV schematics / parameters**
+        - Publish **theory, methodology, results, and verifiable data**
+        - This repo is a **static feed**; maintainers curate `data/portal/index.json`
+  - type: input
+    id: url
+    attributes:
+      label: Canonical URL
+      description: "Use canonical form if applicable (no www, no .html). Example: https://hgpedu.eu/pages/portal"
+      placeholder: "https://example.com/path"
+    validations:
+      required: true
+  - type: input
+    id: title
+    attributes:
+      label: Title
+      placeholder: "Short, human-readable title"
+    validations:
+      required: true
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: "Short description (1–4 sentences)."
+      placeholder: "What is this record about?"
+    validations:
+      required: true
+  - type: input
+    id: categories
+    attributes:
+      label: Categories (CSV)
+      placeholder: "research, measurement, theory"
+    validations:
+      required: false
+  - type: textarea
+    id: payload
+    attributes:
+      label: TFWS-style JSON payload
+      description: "Paste JSON (from the Portal UI JSON generator) inside the code block."
+      value: |
+        ```json
+        {
+          "type": "hgp.portal.submission",
+          "version": "2.0",
+          "date": "YYYY-MM-DDTHH:MM:SSZ",
+          "title": "",
+          "url": "",
+          "summary": "",
+          "categories": [],
+          "author": "",
+          "contact": null,
+          "license": "CC BY 4.0",
+          "safety": {
+            "no_build_instructions": true,
+            "no_hv_schematics": true
+          }
+        }
+        ```
+    validations:
+      required: true
