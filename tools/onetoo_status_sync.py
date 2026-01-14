@@ -1,11 +1,18 @@
 #!/usr/bin/env python3
 """
-HGPEdu ↔ ONETOO integration helper (NEW standard: read-only status sync).
+HGPEdu ↔ ONETOO integration helper (read-only status sync, v2).
+
+GET-only:
+- reads portal items from data/portal/index.json
+- calls: https://search.onetoo.eu/search/v1?q=<url>&limit=<n>
+- exact URL match => raw_status=accepted => status=verified
+- not found => raw_status=missing => status=missing
+- errors => raw_status=error => status=error
+- writes portal/submissions.json ledger
 
 Safe by design:
 - NO POST requests to ONETOO
 - NO tokens required
-- deterministic and auditable
 """
 
 from __future__ import annotations
@@ -13,7 +20,6 @@ from __future__ import annotations
 import argparse
 import datetime as _dt
 import json
-import sys
 import time
 from pathlib import Path
 from typing import Any, Dict, List, Tuple
@@ -21,12 +27,10 @@ from urllib.parse import urlparse, quote
 import urllib.request
 import urllib.error
 
-
 SEARCH_ENDPOINT_DEFAULT = "https://search.onetoo.eu/search/v1"
 CANONICAL_SITE = "https://hgpedu.eu"
 PORTAL_INDEX_URL = f"{CANONICAL_SITE}/data/portal/index.json"
 TFWS_V2_URL = f"{CANONICAL_SITE}/.well-known/tfws-v2.json"
-
 
 def utc_now() -> str:
     return (
@@ -36,20 +40,14 @@ def utc_now() -> str:
         .replace("+00:00", "Z")
     )
 
-
 def load_json(path: Path, default: Any) -> Any:
     if not path.exists():
         return default
     return json.loads(path.read_text(encoding="utf-8"))
 
-
 def save_json(path: Path, obj: Any) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(
-        json.dumps(obj, ensure_ascii=False, indent=2) + "\n",
-        encoding="utf-8",
-    )
-
+    path.write_text(json.dumps(obj, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 def is_https(u: str) -> bool:
     try:
@@ -58,35 +56,18 @@ def is_https(u: str) -> bool:
     except Exception:
         return False
 
-
-def normalize_url(u: str) -> str:
-    """
-    Canonical HGPEdu URL normalization:
-    - strip whitespace
-    - force non-www
-    - remove .html
-    - remove trailing slash
-    """
+def normalize_url(u: Any) -> str:
     if not isinstance(u, str):
         return ""
-
     u = u.strip()
     if not u:
         return ""
-
-    # www → non-www
     u = u.replace("https://www.hgpedu.eu/", "https://hgpedu.eu/")
-
-    # drop .html
     if u.endswith(".html"):
         u = u[:-5]
-
-    # drop trailing slash
     if u.endswith("/") and u != "https://":
         u = u[:-1]
-
     return u
-
 
 def build_publisher() -> dict:
     return {
@@ -97,15 +78,8 @@ def build_publisher() -> dict:
         "portal_index": PORTAL_INDEX_URL,
     }
 
-
 def portal_items(portal: dict) -> List[dict]:
-    """
-    Accept both historical shapes:
-    - { "items": [...] }
-    - { "entries": [...] }
-    Normalize URLs EARLY so ledger never sees duplicates.
-    """
-    def normalize_item(x: dict) -> dict | None:
+    def norm_item(x: Any) -> dict | None:
         if not isinstance(x, dict):
             return None
         url = x.get("url")
@@ -117,32 +91,18 @@ def portal_items(portal: dict) -> List[dict]:
 
     items = portal.get("items")
     if isinstance(items, list):
-        out = []
-        for x in items:
-            nx = normalize_item(x)
-            if nx:
-                out.append(nx)
-        return out
+        return [nx for x in items if (nx := norm_item(x))]
 
     entries = portal.get("entries")
     if isinstance(entries, list):
-        out = []
-        for x in entries:
-            nx = normalize_item(x)
-            if nx:
-                out.append(nx)
-        return out
+        return [nx for x in entries if (nx := norm_item(x))]
 
     return []
-
 
 def http_get_json(url: str, timeout: int = 25) -> Tuple[int, dict | str]:
     req = urllib.request.Request(url, method="GET")
     req.add_header("accept", "application/json")
-    req.add_header(
-        "user-agent",
-        "hgpedu-onetoo-status-sync/1.0 (+https://hgpedu.eu)",
-    )
+    req.add_header("user-agent", "hgpedu-onetoo-status-sync/2.0 (+https://hgpedu.eu)")
     try:
         with urllib.request.urlopen(req, timeout=timeout) as resp:
             raw = resp.read().decode("utf-8", errors="replace")
@@ -159,14 +119,7 @@ def http_get_json(url: str, timeout: int = 25) -> Tuple[int, dict | str]:
     except Exception as e:
         return 0, str(e)
 
-
-def check_url_in_onetoo(
-    url: str, endpoint: str, limit: int
-) -> Tuple[str, int, dict | str]:
-    """
-    Returns: (status, http_code, response)
-    status in: accepted | missing | error
-    """
+def check_url_in_onetoo(url: str, endpoint: str, limit: int) -> Tuple[str, int, dict | str]:
     q = quote(url, safe="")
     full = f"{endpoint}?q={q}&limit={max(1, min(50, int(limit)))}"
     code, resp = http_get_json(full)
@@ -182,12 +135,20 @@ def check_url_in_onetoo(
     for r in results:
         if not isinstance(r, dict):
             continue
-        rurl = normalize_url(str(r.get("url", "")))
+        rurl = normalize_url(r.get("url", ""))
         if rurl == target:
+            return "accepted", code, resp
+        if rurl.replace("https://www.", "https://") == target.replace("https://www.", "https://"):
             return "accepted", code, resp
 
     return "missing", code, resp
 
+def evolve_badge(raw_status: str) -> str:
+    if raw_status == "accepted":
+        return "verified"
+    if raw_status in ("missing", "error"):
+        return raw_status
+    return "planned"
 
 def main() -> int:
     ap = argparse.ArgumentParser()
@@ -208,7 +169,7 @@ def main() -> int:
     state = load_json(
         state_path,
         {
-            "schema_version": "hgpedu.onetoo.status.v1",
+            "schema_version": "hgpedu.onetoo.status.v2",
             "generated_utc": utc_now(),
             "publisher": build_publisher(),
             "items": {},
@@ -227,12 +188,12 @@ def main() -> int:
         if args.only_url and normalize_url(args.only_url) != url:
             continue
 
-        status, code, resp = check_url_in_onetoo(
-            url, args.search_endpoint, args.query_limit
-        )
+        raw, code, resp = check_url_in_onetoo(url, args.search_endpoint, args.query_limit)
+        status = evolve_badge(raw)
 
         ledger[url] = {
             "status": status,
+            "status_raw": raw,
             "http": int(code),
             "checked_utc": utc_now(),
         }
@@ -241,15 +202,9 @@ def main() -> int:
             if isinstance(resp, str):
                 ledger[url]["error"] = resp[:500]
             else:
-                ledger[url]["error"] = json.dumps(
-                    resp, ensure_ascii=False
-                )[:500]
+                ledger[url]["error"] = json.dumps(resp, ensure_ascii=False)[:500]
 
-        print(
-            f"{status.upper():8} {url} (HTTP {code})",
-            file=sys.stderr if status == "error" else sys.stdout,
-        )
-
+        print(f"{status.upper():8} {url} (HTTP {code})")
         processed += 1
         if processed >= int(args.limit):
             break
@@ -264,7 +219,6 @@ def main() -> int:
 
     save_json(state_path, state)
     return 0
-
 
 if __name__ == "__main__":
     raise SystemExit(main())

@@ -35,7 +35,6 @@
       <a class="pill" href="/pages/api">Automation</a>
     </div>
 
-
     <div class="warez-marquee">
       <div class="track">
         <span id="warez-slogan">WELCOME</span>
@@ -59,21 +58,19 @@
 
 <div class="card" style="border:1px solid #eee; border-radius:14px; padding:12px; margin:12px 0; background:#fffbe6">
   <div style="font-weight:800; margin-bottom:6px">ONETOO submit: disabled (Mozart mode)</div>
-  <div style="color:#444; line-height:1.35">
-    This portal <b>does not submit</b> records into ONETOO via any submit endpoint (currently not available).
-    It works as a <b>static feed</b> + <b>GitHub Issue/PR</b> workflow.
-    ONETOO status is shown only via a <b>read-only status sync</b> (local ledger <code>/portal/submissions.json</code>).
-  </div>
+  <div style="color:#444; line-height:1.35">This portal <b>does not submit</b> records into ONETOO via any submit endpoint (currently not available). It works as a <b>static feed</b> + <b>GitHub Issue/PR</b> workflow. ONETOO status is shown only via a <b>read-only status sync</b> (local ledger <code>/portal/submissions.json</code>).</div>
 </div>
 
 <div class="grid">
   <div class="card">
     <h3>Latest records</h3>
+
     <div style="margin:6px 0 10px;font-size:13px;color:#666">
       Status:
-      <span style="padding:2px 6px;border-radius:999px;background:#e6f7ea;border:1px solid #eee">ACCEPTED</span>
+      <span style="padding:2px 6px;border-radius:999px;background:#e6f7ea;border:1px solid #eee">VERIFIED</span>
       <span style="padding:2px 6px;border-radius:999px;background:#fff4e5;border:1px solid #eee">MISSING</span>
       <span style="padding:2px 6px;border-radius:999px;background:#ffecec;border:1px solid #eee">ERROR</span>
+      <span style="padding:2px 6px;border-radius:999px;background:#f3f3f3;border:1px solid #eee">PLANNED</span>
     </div>
 
     <div style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0">
@@ -89,28 +86,27 @@
     <h3>Create record</h3>
     <p style="margin-top:-6px;color:#666">TFWS-style JSON → Issue/PR. Minimal fields, everything editable.</p>
     <div class="kv" style="grid-template-columns: 1fr; gap:10px">
-
-            <label>Title<br/>
-              <input id="title" type="text" placeholder=""/>
-            </label>
-            <label>URL<br/>
-              <input id="url" type="text" placeholder=""/>
-            </label>
-            <label>Summary (short)<br/>
-              <textarea id="summary" rows="3" placeholder=""></textarea>
-            </label>
-            <label>Categories (CSV)<br/>
-              <input id="category" type="text" placeholder=""/>
-            </label>
-            <label>Author / handle<br/>
-              <input id="author" type="text" placeholder=""/>
-            </label>
-            <label>Contact (optional)<br/>
-              <input id="contact" type="text" placeholder=""/>
-            </label>
-            <label>License (e.g., CC BY 4.0)<br/>
-              <input id="license" type="text" placeholder=""/>
-            </label>
+      <label>Title<br/>
+        <input id="title" type="text" placeholder=""/>
+      </label>
+      <label>URL<br/>
+        <input id="url" type="text" placeholder=""/>
+      </label>
+      <label>Summary (short)<br/>
+        <textarea id="summary" rows="3" placeholder=""></textarea>
+      </label>
+      <label>Categories (CSV)<br/>
+        <input id="category" type="text" placeholder=""/>
+      </label>
+      <label>Author / handle<br/>
+        <input id="author" type="text" placeholder=""/>
+      </label>
+      <label>Contact (optional)<br/>
+        <input id="contact" type="text" placeholder=""/>
+      </label>
+      <label>License (e.g., CC BY 4.0)<br/>
+        <input id="license" type="text" placeholder=""/>
+      </label>
     </div>
 
     <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
@@ -120,10 +116,6 @@
     </div>
 
     <pre id="out" style="margin-top:12px;white-space:pre-wrap;background:#0b1020;color:#e6e6e6;border-radius:14px;padding:12px;max-height:260px;overflow:auto"></pre>
-
-    <hr/>
-    <h3>How it works</h3>
-    <ol style="margin:0;padding-left:18px"><li>1) Fill the form → it generates a JSON payload.</li><li>2) Click “Open GitHub Issue” (pre-fills the body) or create a PR into /data/portal/submissions/.</li><li>3) Curators (or later autopilot) review and add it into the index.</li><li>4) The feed updates automatically after merge (static website).</li></ol>
   </div>
 </div>
 
@@ -134,7 +126,7 @@
   const ISSUE_BASE = "https://github.com/onetooeu/HGP/issues/new?labels=portal-submission&template=portal-submission.yml";
 
   function nowISO(){ return new Date().toISOString(); }
-  function esc(s){ return (s||"").replace(/[&<>"']/g, (c)=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c])); }
+  function esc(s){ return (s||"").replace(/[&<>\"']/g, (c)=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c])); }
 
   function normUrl(u){
     u = (u||"").trim();
@@ -157,12 +149,17 @@
     }
     return null;
   }
+
   function statusHtml(url, ledgerItems){
     const rec = ledgerRecordFor(url, ledgerItems);
-    const st = (rec && rec.status) ? String(rec.status) : "planned";
+    let st = (rec && rec.status) ? String(rec.status) : "planned";
     const checked = (rec && rec.checked_utc) ? String(rec.checked_utc) : "";
 
+    // Back-compat: old ledgers may still say "accepted"
+    if(st === "accepted") st = "verified";
+
     const colors = {
+      verified: "#e6f7ea",
       accepted: "#e6f7ea",
       missing:  "#fff4e5",
       error:    "#ffecec",
@@ -171,36 +168,22 @@
 
     const label = st.toUpperCase();
     const bg = colors[st] || colors.planned;
-    const checkedShort = checked
-      ? checked.slice(0,19).replace("T"," ") + "Z"
-      : "";
+    const checkedShort = checked ? checked.slice(0,19).replace("T"," ") + "Z" : "";
 
     return `
-      <div style="
-        margin-top:6px;
-        display:flex;
-        align-items:center;
-        gap:8px;
-      ">
-        <span style="
-          padding:2px 8px;
-          border-radius:999px;
-          background:${bg};
-          font-size:11.5px;
-          border:1px solid #eee;
-          color:#333;
-          letter-spacing:.3px;
-        ">
+      <div style="margin-top:6px;display:flex;align-items:center;gap:8px;">
+        <span style="padding:2px 8px;border-radius:999px;background:${bg};font-size:11.5px;border:1px solid #eee;color:#333;letter-spacing:.3px;">
           ${esc(label)}
         </span>
-        ${checkedShort
-          ? `<span style="font-size:11px;color:#888">checked ${esc(checkedShort)}</span>`
-          : ""
-        }
+        ${checkedShort ? `<span style="font-size:11px;color:#888">checked ${esc(checkedShort)}</span>` : ""}
       </div>
     `;
   }
 
+  function issueUrl(base, title, body){
+    const sep = base.includes("?") ? "&" : "?";
+    return base + sep + "title=" + title + "&body=" + body;
+  }
 
   async function loadFeed(){
     const feedEl = document.getElementById("feed");
@@ -248,7 +231,7 @@
   }
 
   function buildPayload(){
-    const payload = {
+    return {
       type: "hgp.portal.submission",
       version: "2.0",
       date: nowISO(),
@@ -264,7 +247,6 @@
         no_hv_schematics: true
       }
     };
-    return payload;
   }
 
   function updateOutputs(){
@@ -273,27 +255,13 @@
     const json = JSON.stringify(payload, null, 2);
     out.textContent = json;
 
-    // download
     const blob = new Blob([json], {type:"application/json"});
     const url = URL.createObjectURL(blob);
-    const dl = document.getElementById("downloadBtn");
-    dl.href = url;
+    document.getElementById("downloadBtn").href = url;
 
-    // issue link
     const issueTitle = encodeURIComponent("Submission: " + (payload.title || "(untitled)"));
-    const issueBody = encodeURIComponent(
-      "## Rules (Mozart mode / safety)\n" +
-      "- No build instructions (no step-by-step construction)\n" +
-      "- No HV schematics / parameters\n" +
-      "- Publish theory, methodology, results, and verifiable data\n\n" +
-      "## Request\n" +
-      "Please review this submission and (if OK) add it to `data/portal/index.json`.\n\n" +
-      "```json\n" + json + "\n```\n"
-    );
-
-    document.getElementById("issueBtn").href = ISSUE_BASE + "&title=" + issueTitle + "&body=" + issueBody;
-
-      ISSUE_BASE + "&title=" + issueTitle + "&body=" + issueBody;
+    const issueBody = encodeURIComponent("## Rules (Mozart mode / safety)\n- No build instructions (no step-by-step construction)\n- No HV schematics / parameters\n- Publish theory, methodology, results, and verifiable data\n\n## Request\nPlease review this submission and (if OK) add it to `data/portal/index.json`.\n\n" + "```json\n" + json + "\n```\n");
+    document.getElementById("issueBtn").href = issueUrl(ISSUE_BASE, issueTitle, issueBody);
   }
 
   document.getElementById("makeJsonBtn").addEventListener("click", updateOutputs);
@@ -301,7 +269,6 @@
   document.getElementById("q").addEventListener("input", ()=>{ clearTimeout(window.__t); window.__t=setTimeout(loadFeed, 150); });
   document.getElementById("cat").addEventListener("input", ()=>{ clearTimeout(window.__t); window.__t=setTimeout(loadFeed, 150); });
 
-  // init
   loadFeed();
   updateOutputs();
 })();
