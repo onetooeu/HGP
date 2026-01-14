@@ -1,6 +1,6 @@
 {
   "schema_version": "hgpedu.onetoo.status.v2",
-  "generated_utc": "2026-01-14T20:48:24Z",
+  "generated_utc": "2026-01-14T20:52:48Z",
   "items": {
     "https://www.hgpedu.eu/pages/portal.html": {
       "status": "missing",
@@ -11,7 +11,7 @@
       "status": "missing",
       "status_raw": "missing",
       "http": 200,
-      "checked_utc": "2026-01-14T20:48:24Z"
+      "checked_utc": "2026-01-14T20:52:48Z"
     }
   },
   "publisher": {
