@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """
-HGPEdu ↔ ONETOO integration helper (read-only status sync, v2).
+HGPEdu ↔ ONETOO integration helper (read-only status sync, v2.1).
 
 GET-only:
 - reads portal items from data/portal/index.json
 - calls: https://search.onetoo.eu/search/v1?q=<url>&limit=<n>
-- exact URL match => raw_status=accepted => status=verified
+- exact URL match => raw_status=accepted => status=verified (+ optional TFWS tier)
 - not found => raw_status=missing => status=missing
 - errors => raw_status=error => status=error
 - writes portal/submissions.json ledger
@@ -27,10 +27,13 @@ from urllib.parse import urlparse, quote
 import urllib.request
 import urllib.error
 
+from tfws_v2_probe import tfws_v2_check
+
 SEARCH_ENDPOINT_DEFAULT = "https://search.onetoo.eu/search/v1"
 CANONICAL_SITE = "https://hgpedu.eu"
 PORTAL_INDEX_URL = f"{CANONICAL_SITE}/data/portal/index.json"
 TFWS_V2_URL = f"{CANONICAL_SITE}/.well-known/tfws-v2.json"
+
 
 def utc_now() -> str:
     return (
@@ -40,14 +43,20 @@ def utc_now() -> str:
         .replace("+00:00", "Z")
     )
 
+
 def load_json(path: Path, default: Any) -> Any:
     if not path.exists():
         return default
     return json.loads(path.read_text(encoding="utf-8"))
 
+
 def save_json(path: Path, obj: Any) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(obj, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    path.write_text(
+        json.dumps(obj, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
+
 
 def is_https(u: str) -> bool:
     try:
@@ -55,6 +64,7 @@ def is_https(u: str) -> bool:
         return p.scheme == "https" and bool(p.netloc)
     except Exception:
         return False
+
 
 def normalize_url(u: Any) -> str:
     if not isinstance(u, str):
@@ -69,6 +79,7 @@ def normalize_url(u: Any) -> str:
         u = u[:-1]
     return u
 
+
 def build_publisher() -> dict:
     return {
         "name": "HGPEdu",
@@ -77,6 +88,7 @@ def build_publisher() -> dict:
         "tfws": {"v2": TFWS_V2_URL},
         "portal_index": PORTAL_INDEX_URL,
     }
+
 
 def portal_items(portal: dict) -> List[dict]:
     def norm_item(x: Any) -> dict | None:
@@ -99,10 +111,14 @@ def portal_items(portal: dict) -> List[dict]:
 
     return []
 
+
 def http_get_json(url: str, timeout: int = 25) -> Tuple[int, dict | str]:
     req = urllib.request.Request(url, method="GET")
     req.add_header("accept", "application/json")
-    req.add_header("user-agent", "hgpedu-onetoo-status-sync/2.0 (+https://hgpedu.eu)")
+    req.add_header(
+        "user-agent",
+        "hgpedu-onetoo-status-sync/2.1 (+https://hgpedu.eu)",
+    )
     try:
         with urllib.request.urlopen(req, timeout=timeout) as resp:
             raw = resp.read().decode("utf-8", errors="replace")
@@ -118,6 +134,7 @@ def http_get_json(url: str, timeout: int = 25) -> Tuple[int, dict | str]:
             return e.code, raw
     except Exception as e:
         return 0, str(e)
+
 
 def check_url_in_onetoo(url: str, endpoint: str, limit: int) -> Tuple[str, int, dict | str]:
     q = quote(url, safe="")
@@ -143,12 +160,14 @@ def check_url_in_onetoo(url: str, endpoint: str, limit: int) -> Tuple[str, int, 
 
     return "missing", code, resp
 
-def evolve_badge(raw_status: str) -> str:
+
+def evolve_badge(raw_status: str, tfws_ok: bool = False) -> str:
     if raw_status == "accepted":
-        return "verified"
+        return "verified_tfws" if tfws_ok else "verified"
     if raw_status in ("missing", "error"):
         return raw_status
     return "planned"
+
 
 def main() -> int:
     ap = argparse.ArgumentParser()
@@ -176,6 +195,9 @@ def main() -> int:
         },
     )
 
+    state["schema_version"] = "hgpedu.onetoo.status.v2"
+    state["publisher"] = build_publisher()
+
     ledger: Dict[str, Any] = state.get("items", {})
     if not isinstance(ledger, dict):
         ledger = {}
@@ -189,7 +211,14 @@ def main() -> int:
             continue
 
         raw, code, resp = check_url_in_onetoo(url, args.search_endpoint, args.query_limit)
-        status = evolve_badge(raw)
+
+        # TFWS v2 is a bonus signal (GET-only), only for accepted tier
+        tfws_ok = False
+        tfws_meta = None
+        if raw == "accepted":
+            tfws_ok, tfws_meta = tfws_v2_check(url, timeout=6)
+
+        status = evolve_badge(raw, tfws_ok=tfws_ok)
 
         ledger[url] = {
             "status": status,
@@ -197,6 +226,15 @@ def main() -> int:
             "http": int(code),
             "checked_utc": utc_now(),
         }
+
+        # Persist TFWS v2 probe fields (never escalates to error)
+        if tfws_meta is not None:
+            ledger[url]["tfws_v2_url"] = tfws_meta.get("url")
+            if tfws_meta.get("http") is not None:
+                ledger[url]["tfws_v2_http"] = tfws_meta.get("http")
+            ledger[url]["tfws_v2_ok"] = bool(tfws_meta.get("ok"))
+            if tfws_meta.get("error"):
+                ledger[url]["tfws_v2_error"] = str(tfws_meta.get("error"))[:160]
 
         if status == "error":
             if isinstance(resp, str):
@@ -219,6 +257,7 @@ def main() -> int:
 
     save_json(state_path, state)
     return 0
+
 
 if __name__ == "__main__":
     raise SystemExit(main())

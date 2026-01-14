@@ -1,0 +1,20 @@
+# Integration snippet for tools/onetoo_status_sync.py (v2 -> v2.1)
+#
+# 1) Add import near the top:
+#     from tools.tfws_v2_probe import tfws_v2_check
+#
+# 2) After you compute raw_status == "accepted" and set status="verified":
+#
+#     ok, tfws = tfws_v2_check(target_url)
+#     item["tfws_v2_url"] = tfws.get("url")
+#     if tfws.get("http") is not None:
+#         item["tfws_v2_http"] = tfws.get("http")
+#     item["tfws_v2_ok"] = bool(tfws.get("ok"))
+#     if tfws.get("error"):
+#         item["tfws_v2_error"] = tfws.get("error")
+#
+#     if ok:
+#         status = "verified_tfws"
+#
+# IMPORTANT:
+#   - Do NOT set status="error" when TFWS fails; keep "verified".
