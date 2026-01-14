@@ -34,7 +34,7 @@
       <a class="pill" href="/pages/onetoo.html">ONETOO Map</a>
       <a class="pill" href="/pages/api.html">Automation</a>
     </div>
-    
+
 
     <div class="warez-marquee">
       <div class="track">
@@ -51,9 +51,19 @@
       <button class="btn" id="btn-safe-toggle">SAFE MODE: OFF</button>
       <span class="badge">Tip: Safe Mode disables CRT + neon</span>
     </div>
+
 <div class="hero">
   <h1>HGP Portal 2.0</h1>
-  <p>Minimalist “bazos-style”: a public feed + a simple submission form. No backend: submissions go via GitHub Issue/PR as TFWS‑style JSON.</p>
+  <p>Minimalist “bazos-style”: a public feed + a simple submission form. No backend: submissions go via GitHub Issue/PR as TFWS-style JSON.</p>
+</div>
+
+<div class="card" style="border:1px solid #eee; border-radius:14px; padding:12px; margin:12px 0; background:#fffbe6">
+  <div style="font-weight:800; margin-bottom:6px">ONETOO submit: disabled (Mozart mode)</div>
+  <div style="color:#444; line-height:1.35">
+    This portal <b>does not submit</b> records into ONETOO via any submit endpoint (currently not available).
+    It works as a <b>static feed</b> + <b>GitHub Issue/PR</b> workflow.
+    ONETOO status is shown only via a <b>read-only status sync</b> (local ledger <code>/portal/submissions.json</code>).
+  </div>
 </div>
 
 <div class="grid">
@@ -70,9 +80,9 @@
 
   <div class="card">
     <h3>Create record</h3>
-    <p style="margin-top:-6px;color:#666">TFWS‑style JSON → Issue/PR. Minimal fields, všetko editovateľné.</p>
+    <p style="margin-top:-6px;color:#666">TFWS-style JSON → Issue/PR. Minimal fields, everything editable.</p>
     <div class="kv" style="grid-template-columns: 1fr; gap:10px">
-      
+
             <label>Title<br/>
               <input id="title" type="text" placeholder=""/>
             </label>
@@ -113,17 +123,66 @@
 <script>
 (function(){
   const INDEX_URL = "/data/portal/index.json";
+  const LEDGER_URL = "/portal/submissions.json";
   const ISSUE_BASE = "https://github.com/onetooeu/HGP/issues/new";
 
   function nowISO(){ return new Date().toISOString(); }
   function esc(s){ return (s||"").replace(/[&<>"']/g, (c)=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c])); }
 
+  function normUrl(u){
+    u = (u||"").trim();
+    if(u.endsWith("/") && u !== "https://") u = u.slice(0,-1);
+    return u;
+  }
+  function eqUrl(a,b){
+    a = normUrl(a); b = normUrl(b);
+    if(a === b) return true;
+    return a.replace("https://www.","https://") === b.replace("https://www.","https://");
+  }
+  function ledgerRecordFor(url, ledgerItems){
+    const u = normUrl(url||"");
+    if(!u) return null;
+    if(ledgerItems && ledgerItems[u]) return ledgerItems[u];
+    if(ledgerItems){
+      for(const k in ledgerItems){
+        if(eqUrl(k,u)) return ledgerItems[k];
+      }
+    }
+    return null;
+  }
+  function statusHtml(url, ledgerItems){
+    const rec = ledgerRecordFor(url, ledgerItems);
+    const st = (rec && rec.status) ? String(rec.status) : "planned";
+    const http = (rec && rec.http) ? String(rec.http) : "";
+    const checked = (rec && rec.checked_utc) ? String(rec.checked_utc) : "";
+    const mapBg = { accepted:"#eaffea", missing:"#fff2e6", error:"#ffecec", planned:"#f3f3f3" };
+    const bg = mapBg[st] || "#f3f3f3";
+    const badge = (txt, b) =>
+      `<span style="display:inline-block;padding:2px 8px;border-radius:999px;background:${b};font-size:12px;margin-right:6px;border:1px solid #eee">${esc(txt)}</span>`;
+    const checkedShort = checked ? (checked.slice(0,19).replace("T"," ") + "Z") : "";
+    return (
+      `<div style="margin-top:8px">` +
+      badge("LOCAL: published", "#eef6ff") +
+      badge("ONETOO: " + st + (http ? " (HTTP " + http + ")" : ""), bg) +
+      (checkedShort ? `<span style="color:#888;font-size:12px">checked: ${esc(checkedShort)}</span>` : "") +
+      `</div>`
+    );
+  }
+
   async function loadFeed(){
     const feedEl = document.getElementById("feed");
     feedEl.innerHTML = "<div>Loading…</div>";
     try {
-      const res = await fetch(INDEX_URL + "?cb=" + Date.now(), {cache:"no-store"});
-      const data = await res.json();
+      const [resIndex, resLedger] = await Promise.all([
+        fetch(INDEX_URL + "?cb=" + Date.now(), {cache:"no-store"}),
+        fetch(LEDGER_URL + "?cb=" + Date.now(), {cache:"no-store"}).catch(()=>null)
+      ]);
+      const data = await resIndex.json();
+
+      let ledger = null;
+      try { if(resLedger && resLedger.ok) ledger = await resLedger.json(); } catch(e) { ledger = null; }
+      const ledgerItems = (ledger && ledger.items && typeof ledger.items === "object") ? ledger.items : {};
+
       const q = (document.getElementById("q").value||"").toLowerCase().trim();
       const cat = (document.getElementById("cat").value||"").toLowerCase().trim();
 
@@ -147,6 +206,7 @@
             <span>${(it.categories||[]).map(c=>"#"+esc(c)).join(" ")}</span>
             <span style="float:right">${esc((it.date||"").slice(0,10))}</span>
           </div>
+          ${statusHtml(it.url, ledgerItems)}
         </div>
       `).join("");
     } catch(e) {
@@ -189,6 +249,7 @@
     // issue link
     const issueTitle = encodeURIComponent("Submission: " + (payload.title || "(untitled)"));
     const issueBody = encodeURIComponent(
+      "NOTE: ONETOO submit is disabled (Mozart mode). This is a static feed + Issue/PR workflow.\n" +
       "Please review this submission and (if accepted) add it to /data/portal/index.json\n\n" +
       "```json\n" + json + "\n```\n"
     );
