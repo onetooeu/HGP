@@ -110,11 +110,16 @@
       </label>
     </div>
 
+    
     <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
       <button class="btn" id="makeJsonBtn" type="button">JSON</button>
       <a class="btn" id="downloadBtn" href="#" download="hgp-submission.json">Stiahnuť JSON</a>
       <a class="btn" id="issueBtn" href="#" target="_blank" rel="noopener">Otvoriť GitHub Issue</a>
+      <button class="btn" id="submitOnetooBtn" type="button" title="Experimentálne: priamy submit do ONETOO (bez tokenu, podpis + PoW)">Submit do ONETOO</button>
     </div>
+
+    <div id="onetooSubmitState" class="badge" style="margin-top:10px;display:inline-block">ONETOO submit: EXPERIMENTAL</div>
+
 
     <pre id="out" style="margin-top:12px;white-space:pre-wrap;background:#0b1020;color:#e6e6e6;border-radius:14px;padding:12px;max-height:260px;overflow:auto"></pre>
     <hr/>
@@ -288,5 +293,50 @@
 </div>
   </div>
 <script src="/assets/warez.js?v=20260110-portal-fix2"></script>
+
+<script src="/assets/onetoo-submit.js?v=20260114-direct-submit"></script>
+<script>
+(function(){
+  function ui(){
+    const el = document.getElementById("onetooSubmitState");
+    return {
+      setState: (st, msg)=>{
+        if(!el) return;
+        el.textContent = "ONETOO submit: " + st + (msg ? " · " + msg : "");
+      }
+    };
+  }
+
+  function buildPayloadFromForm(){
+    return {
+      type: "hgp.portal.submission",
+      version: "2.0",
+      date: new Date().toISOString(),
+      title: (document.getElementById("title").value || "").trim(),
+      url: (document.getElementById("url").value || "").trim(),
+      summary: (document.getElementById("summary").value || "").trim(),
+      categories: (document.getElementById("category").value || "").split(",").map(s=>s.trim()).filter(Boolean),
+      author: (document.getElementById("author").value || "").trim(),
+      contact: ((document.getElementById("contact").value || "").trim() || null),
+      license: ((document.getElementById("license").value || "").trim() || "CC BY 4.0"),
+      safety: { no_build_instructions: true, no_hv_schematics: true }
+    };
+  }
+
+  const btn = document.getElementById("submitOnetooBtn");
+  if(btn && window.HGPEduDirectSubmit){
+    btn.addEventListener("click", async ()=>{
+      const u = ui();
+      try{
+        u.setState("START", "Submitting…");
+        await window.HGPEduDirectSubmit.submitPayload(buildPayloadFromForm(), u);
+      }catch(e){
+        u.setState("ERR", String(e||""));
+      }
+    });
+  }
+})();
+</script>
+
 </body>
 </html>
