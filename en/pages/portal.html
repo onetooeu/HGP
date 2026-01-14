@@ -131,7 +131,7 @@
 (function(){
   const INDEX_URL = "/data/portal/index.json";
   const LEDGER_URL = "/portal/submissions.json";
-  const ISSUE_BASE = "https://github.com/onetooeu/HGP/issues/new";
+  const ISSUE_BASE = "https://github.com/onetooeu/HGP/issues/new?labels=portal-submission&template=portal-submission.yml";
 
   function nowISO(){ return new Date().toISOString(); }
   function esc(s){ return (s||"").replace(/[&<>"']/g, (c)=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c])); }
@@ -282,11 +282,18 @@
     // issue link
     const issueTitle = encodeURIComponent("Submission: " + (payload.title || "(untitled)"));
     const issueBody = encodeURIComponent(
-      "NOTE: ONETOO submit is disabled (Mozart mode). This is a static feed + Issue/PR workflow.\n" +
-      "Please review this submission and (if accepted) add it to /data/portal/index.json\n\n" +
+      "## Rules (Mozart mode / safety)\n" +
+      "- No build instructions (no step-by-step construction)\n" +
+      "- No HV schematics / parameters\n" +
+      "- Publish theory, methodology, results, and verifiable data\n\n" +
+      "## Request\n" +
+      "Please review this submission and (if OK) add it to `data/portal/index.json`.\n\n" +
       "```json\n" + json + "\n```\n"
     );
-    document.getElementById("issueBtn").href = ISSUE_BASE + "?title=" + issueTitle + "&body=" + issueBody;
+
+    document.getElementById("issueBtn").href = ISSUE_BASE + "&title=" + issueTitle + "&body=" + issueBody;
+
+      ISSUE_BASE + "&title=" + issueTitle + "&body=" + issueBody;
   }
 
   document.getElementById("makeJsonBtn").addEventListener("click", updateOutputs);
