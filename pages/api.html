@@ -36,10 +36,9 @@
     </div>
     <div class="hero">
 <h1>Automation</h1>
-<p>Generate a contribution bundle (JSON) for ONETOO maintainer import + integrity inventory.</p>
-<div class="code">python tools/generate_onetoo_submit_payload.py --base-url https://hgpedu.eu &gt; onetoo-contribution.json
+<p>Generate payload for ONETOO AI Search submit + integrity inventory.</p>
+<div class="code">python tools/generate_onetoo_submit_payload.py --base-url https://hgpedu.eu &gt; submit.json
 python tools/generate_sha256_manifest.py --root . --out .well-known/sha256.json</div>
-<p class="muted">Poznámka: ONETOO štandard 2026 je verejne read-only. Vygenerované JSON použi ako prílohu do ONETOO issue/PR; indexácia prebieha kurátorsky cez accepted-set.</p>
 </div>
     <div class="footer">Static-first, verifiable, archival-grade portal. No backend. Trust-first.</div>
   </div>

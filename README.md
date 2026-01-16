@@ -8,11 +8,6 @@ Create an Issue titled `[PORTAL] ...` using the template. Autopilot validates JS
 
 ## ONETOO Submit Autopilot
 
-After portal publishing, the repo can periodically sync a local ONETOO *status ledger* (read-only) using `tools/onetoo_submit.py` and the GitHub Action `onetoo-status-sync`.
+After portal publishing, entries can be automatically submitted to ONETOO AI Search using `tools/onetoo_submit.py` and the GitHub Action `ONETOO Submit Autopilot`.
 
 Docs: `/pages/onetoo-integration.html`
-
-## Docs
-
-- `docs/ONETOO_STANDARD_2026.md` — how HGPEdu integrates with ONETOO Standard 2026 (read-only public runtime)
-- `docs/MOZART_MODE.md` — final tuning checklist for a coherent trust-first portal

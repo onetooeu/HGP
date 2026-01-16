@@ -1,26 +1,24 @@
-name: onetoo-status-sync
+name: ONETOO Submit Autopilot
 
 on:
-  workflow_dispatch:
-  schedule:
-    - cron: "15 * * * *"
   push:
+    branches: [main]
     paths:
       - "data/portal/index.json"
       - "data/portal/entries.jsonl"
-      - "pages/portal.html"
-      - "tools/onetoo_status_sync.py"
-      - "tools/onetoo_submit.py"
-
-concurrency:
-  group: onetoo-status-sync
-  cancel-in-progress: true
+  schedule:
+    - cron: "17 */6 * * *"  # every 6h
+  workflow_dispatch:
 
 permissions:
   contents: write
 
+concurrency:
+  group: onetoo-submit
+  cancel-in-progress: false
+
 jobs:
-  sync:
+  submit:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -29,22 +27,19 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
+          python-version: '3.11'
 
-      - name: Sync ONETOO status ledger (read-only)
+      - name: Submit new portal entries to ONETOO
+        env:
+          ONETOO_TOKEN: ${{ secrets.ONETOO_TOKEN }}
+          ONETOO_SUBMIT_ENDPOINT: ${{ secrets.ONETOO_SUBMIT_ENDPOINT }}
         run: |
-          python tools/onetoo_status_sync.py \
-            --portal-index data/portal/index.json \
-            --state portal/submissions.json
+          python tools/onetoo_submit.py --portal-index data/portal/index.json
 
-      - name: Commit status ledger (if changed)
+      - name: Commit submission state
         run: |
-          if git diff --quiet; then
-            echo "No changes."
-            exit 0
-          fi
+          git config user.name "hgpedu-onetoo-submit"
+          git config user.email "actions@users.noreply.github.com"
           git add portal/submissions.json
-          git config user.name "hgpedu-onetoo-status-sync"
-          git config user.email "hgpedu-onetoo-status-sync@users.noreply.github.com"
-          git commit -m "chore: sync ONETOO status ledger (read-only)"
+          git commit -m "onetoo: update submission ledger" || echo "No changes"
           git push
