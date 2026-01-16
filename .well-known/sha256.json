@@ -1,8 +1,8 @@
 {
   "schema_version": "onetoo.integrity.sha256.v1",
-  "generated_utc": "2026-01-16T07:06:49Z",
+  "generated_utc": "2026-01-16T07:10:16Z",
   "root": "HGP_EDU_PORTAL_v4_WAREZ_PUNK_MOZART",
-  "count": 97,
+  "count": 96,
   "files": [
     {
       "path": ".gitignore",
@@ -41,8 +41,13 @@
     },
     {
       "path": ".well-known/sha256.json",
-      "sha256": "2a625143283a5fa594b1300f7b7de7442be754eb6fff189e50ee741df55adba3",
-      "bytes": 7919
+      "sha256": "acff7d622a034ab1a8349d674cf7b741cc86dbbf442a9823853711a3da9c80ef",
+      "bytes": 16109
+    },
+    {
+      "path": ".well-known/sha256.json.minisig",
+      "sha256": "2ff8699ea10126d1a67712615139edf5d3c74c1a7170c5f3a363fb1695ca2a8a",
+      "bytes": 322
     },
     {
       "path": ".well-known/tfws-v2.json",
@@ -240,11 +245,6 @@
       "bytes": 2469
     },
     {
-      "path": "HGP-20f2a6d.zip",
-      "sha256": "15d6e398930af3e45342f91fe897b858e6cc0e835e86337151ae82026dc95e62",
-      "bytes": 59119098
-    },
-    {
       "path": "index.html",
       "sha256": "14f38983f3b3c80ef13d33b4770b806d1d1aa9ef66817bc9cf3fd3183b8a17df",
       "bytes": 3694
@@ -253,11 +253,6 @@
       "path": "LICENSE",
       "sha256": "adc37366f403835c1470ab2df93d3837d4719372fc1ef8593d922e06f033f8b2",
       "bytes": 4
-    },
-    {
-      "path": "minisign.key",
-      "sha256": "bfdb355e132a9fe779f5b94c9bc248923066493067ebd4270a6b91c2aec7ed7c",
-      "bytes": 264
     },
     {
       "path": "minisign.pub",
