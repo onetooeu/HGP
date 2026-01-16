@@ -1,6 +1,6 @@
 {
   "schema_version": "onetoo.integrity.sha256.v1",
-  "generated_utc": "2026-01-16T07:10:16Z",
+  "generated_utc": "2026-01-16T07:36:08Z",
   "root": "HGP_EDU_PORTAL_v4_WAREZ_PUNK_MOZART",
   "count": 96,
   "files": [
@@ -41,12 +41,12 @@
     },
     {
       "path": ".well-known/sha256.json",
-      "sha256": "acff7d622a034ab1a8349d674cf7b741cc86dbbf442a9823853711a3da9c80ef",
-      "bytes": 16109
+      "sha256": "06a8d9aec5e92797fa01dced372851718ecabb69eaf0de4a61d23fadabe979ef",
+      "bytes": 15970
     },
     {
       "path": ".well-known/sha256.json.minisig",
-      "sha256": "2ff8699ea10126d1a67712615139edf5d3c74c1a7170c5f3a363fb1695ca2a8a",
+      "sha256": "a3a9881681df1a9596ca844d9e2c1c8bcf2a3b83cdc113984af388797d962d06",
       "bytes": 322
     },
     {
@@ -101,8 +101,8 @@
     },
     {
       "path": "data/portal/index.json",
-      "sha256": "224b4b94a10f3f69ebf34cf33002901cc0d434d9e05b5d8ff32f60f2ddccaf30",
-      "bytes": 440
+      "sha256": "2eb3c70479d8a1ec947e325c73b9ff56e0b2ddbfdfbb16fc6b25a84e8419dd2b",
+      "bytes": 501
     },
     {
       "path": "data/portal/schema.submission.json",
