@@ -25,21 +25,20 @@
     </div>
     <div class="nav">
       <a class="pill" href="/en/index.html">← Back</a>
-      <a class="pill" href="/pages/showroom.html">Showroom</a>
-      <a class="pill" href="/pages/tfws.html">TFWS v2</a>
-      <a class="pill" href="/pages/safety.html">Safety</a>
-      <a class="pill" href="/pages/research.html">Research</a>
-      <a class="pill" href="/pages/portal.html">Portal</a>
-      <a class="pill" href="/pages/downloads.html">Downloads</a>
-      <a class="pill" href="/pages/onetoo.html">ONETOO Map</a>
-      <a class="pill" href="/pages/api.html">Automation</a>
+      <a class="pill" href="/en/pages/showroom.html">Showroom</a>
+      <a class="pill" href="/en/pages/tfws.html">TFWS v2</a>
+      <a class="pill" href="/en/pages/safety.html">Safety</a>
+      <a class="pill" href="/en/pages/research.html">Research</a>
+      <a class="pill" href="/en/pages/portal.html">Portal</a>
+      <a class="pill" href="/en/pages/downloads.html">Downloads</a>
+      <a class="pill" href="/en/pages/onetoo.html">ONETOO Map</a>
+      <a class="pill" href="/en/pages/api.html">Automation</a>
     </div>
     <div class="hero">
 <h1>Automation</h1>
-<p>Generate a contribution bundle (JSON) for ONETOO maintainer import + integrity inventory.</p>
-<div class="code">python tools/generate_onetoo_submit_payload.py --base-url https://hgpedu.eu &gt; onetoo-contribution.json
+<p>Generate payload for ONETOO AI Search submit + integrity inventory.</p>
+<div class="code">python tools/generate_onetoo_submit_payload.py --base-url https://hgpedu.eu &gt; submit.json
 python tools/generate_sha256_manifest.py --root . --out .well-known/sha256.json</div>
-<p class="muted">Note: ONETOO Standard 2026 is read-only for the public. Use the generated JSON as an attachment for an ONETOO issue/PR; indexing happens via accepted-set curation.</p>
 </div>
     <div class="footer">Static-first, verifiable, archival-grade portal. No backend. Trust-first.</div>
   </div>

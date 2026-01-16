@@ -17,7 +17,7 @@
         </div>
       </div>
       <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end">
-        <a class="pill" href="/pages/portal.html">Portal</a>
+        <a class="pill" href="/en/pages/portal.html">Portal</a>
         <a class="pill" href="/index.html">Home</a>
         <a class="pill" href="https://www.onetoo.eu" target="_blank" rel="noopener">onetoo.eu</a>
       </div>
@@ -43,30 +43,19 @@
       <h1>Full integration (Portal Autopilot + ONETOO AI Search Autopilot)</h1>
       <p>
         This site is static, but it behaves like a living system: contributions arrive via GitHub Issues, are validated,
-        published to the portal feed, and then prepared for ONETOO indexing (curated accepted-set).
+        published to the portal feed, and then automatically submitted to ONETOO AI Search (global index).
       </p>
 
-        <div class="card">
-    <h3>Pipeline (no backend required)</h3>
-    <div class="code">Issue → validate JSON → publish portal feed → publish TFWS trust surface → notify ONETOO maintainers → indexed (accepted-set) → searchable</div>
-    <p class="muted">Goal: get your publication into ONETOO search in a way that is TFWS-verifiable, repeatable, and signature-auditable.</p>
-  </div>
-
-  <div class="card">
-    <h3>⚠️ ONETOO Standard 2026: public backend is read‑only</h3>
-    <p class="muted">
-      <b>search.onetoo.eu</b> currently exposes <b>GET‑only</b> endpoints (e.g. <code>/search/v1</code>) and does not expose
-      a public <code>POST /contrib/…/submit</code> endpoint. Contributions are curated on the ONETOO side (accepted-set),
-      while HGPEdu publishes transparent local audit artifacts (portal feed + integrity).
-    </p>
-    <div class="code">Test: https://search.onetoo.eu/search/v1?q=hgpedu&amp;limit=10</div>
-  </div>
+      <div class="card">
+        <h3>Autonomous pipeline</h3>
+        <div class="code">Issue → validate JSON → publish /portal/index.json → submit to search.onetoo.eu → track status → rebuild</div>
+      </div>
 
       <h2>Roadmap</h2>
       <ul>
         <li><b>Now:</b> Issue-driven publishing to <code>/portal/index.json</code> (no human step).</li>
-        <li><b>Next:</b> Automatic ONETOO status sync (no submit endpoint) and local submission ledger <code>/portal/submissions.json</code>.</li>
-        <li><b>Next:</b> Display ONETOO index status in the portal table (accepted / missing / error).</li>
+        <li><b>Next:</b> Automatic submit to ONETOO contrib API and local submission ledger <code>/portal/submissions.json</code>.</li>
+        <li><b>Next:</b> Display ONETOO acceptance status in the portal table (accepted / pending / rejected).</li>
         <li><b>Optional:</b> Signed payloads (Minisign) using GitHub Actions secrets for fully auditable provenance.</li>
       </ul>
 
