@@ -1,7 +1,7 @@
 name: "Portal submission (TFWS-style JSON)"
 description: "Submit a new record to the HGPEdu Portal feed (no backend; Issue/PR workflow)."
-title: "Submission: <title>"
-labels: ["portal-submission"]
+title: "[PORTAL] "
+labels: ["portal"]
 body:
   - type: markdown
     attributes:
