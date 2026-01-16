@@ -5,6 +5,3 @@ __pycache__/
 # Python
 __pycache__/
 *.pyc
-
-# local bundles
-new schemas.zip
