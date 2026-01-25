@@ -1,488 +1,488 @@
-{
-  "schema_version": "onetoo.integrity.sha256.v1",
-  "generated_utc": "2026-01-16T07:36:08Z",
-  "root": "HGP_EDU_PORTAL_v4_WAREZ_PUNK_MOZART",
-  "count": 96,
-  "files": [
-    {
-      "path": ".gitignore",
-      "sha256": "6d6f4ef4a803540279f9cc9da56bca654205575ec03c5544acd51c55749df03d",
-      "bytes": 57
-    },
-    {
-      "path": ".well-known/ai-governance.json",
-      "sha256": "139a54d19be961e5b7a42c991b6d02f0c7b9a86778cbe2ef182024794417f2a0",
-      "bytes": 445
-    },
-    {
-      "path": ".well-known/ai-search.publisher.json",
-      "sha256": "8c1b6b84df6db31b66d4c95f47d072b4d2cfdae0a5d6fb8d19ef99b658a10c91",
-      "bytes": 787
-    },
-    {
-      "path": ".well-known/ai-trust-hub.json",
-      "sha256": "3b0c7a73708c37f8339c2feec6c25e3967fabc589e58d5281a0cc77b2c875fd3",
-      "bytes": 483
-    },
-    {
-      "path": ".well-known/ai-trust-hub.json.minisig",
-      "sha256": "9d3a4de46b4cf54297096ae107452e26bbbf7c9ef8cdd56eb84d11369f728388",
-      "bytes": 328
-    },
-    {
-      "path": ".well-known/minisign.pub",
-      "sha256": "1838dc37000f7c67c8803f2db256e9b6f9feeaee041a3602650633178c0ac3f5",
-      "bytes": 115
-    },
-    {
-      "path": ".well-known/onetoo-sync.json",
-      "sha256": "195055d5b8909173dbfbf4fff85c795cde2a02144aaf0d9d6dc7fb63b6e0ebf2",
-      "bytes": 177
-    },
-    {
-      "path": ".well-known/sha256.json",
-      "sha256": "06a8d9aec5e92797fa01dced372851718ecabb69eaf0de4a61d23fadabe979ef",
-      "bytes": 15970
-    },
-    {
-      "path": ".well-known/sha256.json.minisig",
-      "sha256": "a3a9881681df1a9596ca844d9e2c1c8bcf2a3b83cdc113984af388797d962d06",
-      "bytes": 322
-    },
-    {
-      "path": ".well-known/tfws-v2.json",
-      "sha256": "3d2e4da0afbe222775fa239d2cd6541f7095b1eede377cb118c68313105e7bbb",
-      "bytes": 765
-    },
-    {
-      "path": "_headers",
-      "sha256": "56ffe622a19925e959ec110943e388e5e93d8e8f625e0e95019063534beebce5",
-      "bytes": 665
-    },
-    {
-      "path": "ai-trust-hub.json",
-      "sha256": "3b0c7a73708c37f8339c2feec6c25e3967fabc589e58d5281a0cc77b2c875fd3",
-      "bytes": 483
-    },
-    {
-      "path": "ai-trust-hub.json.minisig",
-      "sha256": "9d3a4de46b4cf54297096ae107452e26bbbf7c9ef8cdd56eb84d11369f728388",
-      "bytes": 328
-    },
-    {
-      "path": "assets/app.js",
-      "sha256": "d6d46386c86b58749a784f8006d947f3ca85103603e75e532be1748d3838eee9",
-      "bytes": 1817
-    },
-    {
-      "path": "assets/onetoo-submit.js",
-      "sha256": "1e7c19d95b8141dd48badc59babc24784f2db8687b05f90e5104d2f6ab12f81b",
-      "bytes": 8515
-    },
-    {
-      "path": "assets/style.css",
-      "sha256": "d6ca349fe60af1104fe2ef36897d7303837540fa31dc1ff6d80de577a9ce0ce6",
-      "bytes": 10718
-    },
-    {
-      "path": "assets/warez.js",
-      "sha256": "e74c8155282ae215452416ad9762c34fab353823d90672e03ddda665378cd692",
-      "bytes": 3225
-    },
-    {
-      "path": "BUILD-ANCHOR.txt",
-      "sha256": "bdaa8c454fd630757ebaeb5b30e6c931962b2b587d8a96aa078cc1427a815ccb",
-      "bytes": 256
-    },
-    {
-      "path": "data/portal/entries.jsonl",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "bytes": 0
-    },
-    {
-      "path": "data/portal/index.json",
-      "sha256": "2eb3c70479d8a1ec947e325c73b9ff56e0b2ddbfdfbb16fc6b25a84e8419dd2b",
-      "bytes": 501
-    },
-    {
-      "path": "data/portal/schema.submission.json",
-      "sha256": "8644b4bec8216be0c8ce04ebdd4a567791c264943d54b29fb3b827558b7e98a7",
-      "bytes": 777
-    },
-    {
-      "path": "DISCLAIMER.md",
-      "sha256": "0969ddd0b2eef0027d07aace1d604116b4dcccfbf63147a7730cefde401792f2",
-      "bytes": 90
-    },
-    {
-      "path": "docs/autopilot-ledger-ci.md",
-      "sha256": "a318747fd2623e965e44c8de2558d9f17979d603e1ad9b0db917819c79f785a5",
-      "bytes": 871
-    },
-    {
-      "path": "docs/AUTOPILOT_SETUP.md",
-      "sha256": "9f072d076d6c470a6fc464afbd0389363b8ab5ee01784a7380ac28bb99c3457a",
-      "bytes": 2620
-    },
-    {
-      "path": "docs/direct-browser-submit.md",
-      "sha256": "d5f5bc6cb73f7f090c8243e1863e19dc974c89f574cb54521a0bff0c73007dcf",
-      "bytes": 2438
-    },
-    {
-      "path": "docs/mozart-mode.md",
-      "sha256": "f04fbc7436eacdeb656f876c0ae9fbecf27c0a39f6285d90fa238240015f338e",
-      "bytes": 812
-    },
-    {
-      "path": "docs/MOZART_MODE.md",
-      "sha256": "c89826fc42be0d12e7b82600984fb0aa9aaf1cd1d17695592d4646a3fc53b1c8",
-      "bytes": 2672
-    },
-    {
-      "path": "docs/onetoo-sync-v2.1.md",
-      "sha256": "d338fca7f20d89e2138c345b25533184331b03f63b364568c212f5494b143a8b",
-      "bytes": 1557
-    },
-    {
-      "path": "docs/onetoo-sync-v2.md",
-      "sha256": "4e8400555875dd92ef4868669440e7ef1895c4fe98ad40a732082cfe2485e094",
-      "bytes": 806
-    },
-    {
-      "path": "docs/ONETOO_STANDARD_2026.en.md",
-      "sha256": "02b19d8a14959f262f68c8ab8af82fac85e179a547b29655ff82594037b5f003",
-      "bytes": 777
-    },
-    {
-      "path": "docs/ONETOO_STANDARD_2026.md",
-      "sha256": "cb9d8350471e48d7b2a6cccd99e2893dd203ce2d7d676b43479d7610b7b8b84e",
-      "bytes": 1886
-    },
-    {
-      "path": "docs/portal-status.md",
-      "sha256": "71557660dc12e93c02fa651fd5ac28ad2526ae39be0731f168d1e3b86ce1a2ed",
-      "bytes": 482
-    },
-    {
-      "path": "docs/research_sources_v7_1/FULL_DISCLOSURE_README.txt",
-      "sha256": "157d12b4b28475e8d9fb55f47b1ce4243f1db9ed609383d5f8e532d6aeeb236a",
-      "bytes": 1069
-    },
-    {
-      "path": "docs/research_sources_v7_1/HGP_PHF_MASTER_CONCEPT_FULL_MAP.txt",
-      "sha256": "2fb493f918370bc957d18c13dd196b8f7d516136fe529738a2976e8e7ebad866",
-      "bytes": 5844
-    },
-    {
-      "path": "docs/research_sources_v7_1/hlavny ramec projektu.txt",
-      "sha256": "83a4fada4d804879bfe533acfacf68c2b56453e80fce49294a3462f1bdc064b0",
-      "bytes": 4265
-    },
-    {
-      "path": "docs/research_sources_v7_1/myslienka projektu _report.txt",
-      "sha256": "d3b474c2cc4040b5bd7aa720efd6ad762a0006cd57b2a534ddb0b53951fc52ac",
-      "bytes": 18262
-    },
-    {
-      "path": "docs/research_sources_v7_1/README.md",
-      "sha256": "3c1d5c8217f2fd5b3472a7f08940d31e89f555479d898062756f9265f75d02e5",
-      "bytes": 101
-    },
-    {
-      "path": "docs/research_sources_v7_1/REPORT_STAV_HYPOTETICKEHO_VYSKUMNEHO_STREDISKA.txt",
-      "sha256": "bd66b0753ce72ea069619cf0f2ca088f5b6859f81f59a4cb3168442262de4468",
-      "bytes": 13280
-    },
-    {
-      "path": "en/index.html",
-      "sha256": "8e598496a5c4399c99ae634c17c05ae2aae2eb5bec515512f23300bb6a917b2d",
-      "bytes": 3708
-    },
-    {
-      "path": "en/pages/api.html",
-      "sha256": "a11550a9ea1bdfd2dfea8d72346f65468764f42670f56ab2c39a5788396ad8c6",
-      "bytes": 1985
-    },
-    {
-      "path": "en/pages/downloads.html",
-      "sha256": "80a46a6279bd15e108660f8caccc9b582663960c71134ac66a524f3efc0cd95a",
-      "bytes": 2045
-    },
-    {
-      "path": "en/pages/onetoo-integration.html",
-      "sha256": "ea36acc2ea1676a1377e674aa4f40691e7ae854e1e7fb5ccac4fef87e73a695f",
-      "bytes": 3707
-    },
-    {
-      "path": "en/pages/onetoo.html",
-      "sha256": "f145db82333a8fb5d5427563465b7bcfe1698fd8f92e4326ad3da770162c1237",
-      "bytes": 2610
-    },
-    {
-      "path": "en/pages/portal.html",
-      "sha256": "9bd587111c987da6cf2d60a93d776f653997a0bf2515e69dfffbd9b9d7831306",
-      "bytes": 14747
-    },
-    {
-      "path": "en/pages/research.html",
-      "sha256": "3e652d789de7c425ed53567f05eb5d148d538874bad1c779fff11d732fed00a1",
-      "bytes": 47569
-    },
-    {
-      "path": "en/pages/safety.html",
-      "sha256": "eb4d4b7226963580c58cdb328bfa386c6197e37ab5621617a683d04f37daeb57",
-      "bytes": 2145
-    },
-    {
-      "path": "en/pages/showroom.html",
-      "sha256": "7a18acabaff56a6446dc4eab77718d800c42057574c3800194526e5e8ab94b91",
-      "bytes": 3099
-    },
-    {
-      "path": "en/pages/tfws.html",
-      "sha256": "880f88b4b41243096dfb85259577e2a1308bd215444015c956b609eedb343e00",
-      "bytes": 2469
-    },
-    {
-      "path": "index.html",
-      "sha256": "14f38983f3b3c80ef13d33b4770b806d1d1aa9ef66817bc9cf3fd3183b8a17df",
-      "bytes": 3694
-    },
-    {
-      "path": "LICENSE",
-      "sha256": "adc37366f403835c1470ab2df93d3837d4719372fc1ef8593d922e06f033f8b2",
-      "bytes": 4
-    },
-    {
-      "path": "minisign.pub",
-      "sha256": "1838dc37000f7c67c8803f2db256e9b6f9feeaee041a3602650633178c0ac3f5",
-      "bytes": 115
-    },
-    {
-      "path": "new schemas.zip",
-      "sha256": "c31fb4eee422f94c37e00f8db993b99ff6849a921d98831953bd9664abac8ccb",
-      "bytes": 64050734
-    },
-    {
-      "path": "pages/api.html",
-      "sha256": "7172c55f2514e6d075c84a564a9f2941e00d839c8b9f00233842a45e35cd0685",
-      "bytes": 1958
-    },
-    {
-      "path": "pages/downloads.html",
-      "sha256": "e9fe42640a7c3caee8106ce202395f743f3e49519159d6f8230c2213f5c75742",
-      "bytes": 2018
-    },
-    {
-      "path": "pages/onetoo-integration.html",
-      "sha256": "24fae11b6f9ce3e59ca3d84f0b410ab62f10470b950fb41a238e3b399d67fb46",
-      "bytes": 3724
-    },
-    {
-      "path": "pages/onetoo.html",
-      "sha256": "673691f2d10569a67c849141afcff0d0f9bd875695284085f91353534a5cd461",
-      "bytes": 2583
-    },
-    {
-      "path": "pages/portal.html",
-      "sha256": "89b29c6a1c9c85bc10e220a62ba7829df66f5fddabdcc276114443f0f76d1cc2",
-      "bytes": 14815
-    },
-    {
-      "path": "pages/research.html",
-      "sha256": "51f7298f9818f818f0befc3c5345477915af7612530a62c65220dda116f012d5",
-      "bytes": 45597
-    },
-    {
-      "path": "pages/safety.html",
-      "sha256": "7d0cb14a0826cfac2d1ddfb72c2a7cfd473c4957b670e83fe1e9910e71cbbd5f",
-      "bytes": 2118
-    },
-    {
-      "path": "pages/showroom.html",
-      "sha256": "ab8692f7a3539f3ea24ab9ec8120dbbffcf87613e25b0d5d33ffa0f2c4af92dd",
-      "bytes": 3072
-    },
-    {
-      "path": "pages/tfws.html",
-      "sha256": "3c8c13eed02b701d1960ea3c6ada84adbad9222fa920bac39b0b35235e983ada",
-      "bytes": 2442
-    },
-    {
-      "path": "portal/index.json",
-      "sha256": "bc1412bdf9e94ae21445cc36247a7005a132bdc185858446e801a0b0c5b5cb66",
-      "bytes": 123
-    },
-    {
-      "path": "portal/submissions.json",
-      "sha256": "a2ed3a230fbe3785744b31bdb50340675928a4be638404e3ed6e8385235144f6",
-      "bytes": 527
-    },
-    {
-      "path": "PORTAL.md",
-      "sha256": "19652431c9fdad3aebc45d44327820c03590d6c6c387fae650fb1495cfc41fd8",
-      "bytes": 906
-    },
-    {
-      "path": "README.md",
-      "sha256": "3658667bd6da919442b0d5b56d404c9a269ab88ba8c2d631a029984cacd6f947",
-      "bytes": 440
-    },
-    {
-      "path": "README_AUTOPILOT_LEDGER_PACK.txt",
-      "sha256": "c837a5ff808d36973dd425a4a2a73db8013d769c24e923af6c56492a8af873a5",
-      "bytes": 1008
-    },
-    {
-      "path": "README_DIRECT_BROWSER_SUBMIT_PACK.txt",
-      "sha256": "ed23240f3d9a2da1533c0354e239d3f2e6d0349bc0e2b6fe5537a76ceb90989b",
-      "bytes": 1709
-    },
-    {
-      "path": "README_SYNC_V2_1_PACK.txt",
-      "sha256": "5c0cf3acd5dc800c7190fa6cfdd8223d5ce2b45e128b3786ea5cd3942364d394",
-      "bytes": 2029
-    },
-    {
-      "path": "README_SYNC_V2_PACK.txt",
-      "sha256": "3e97af46c6bf98ce9de8d2d6ba19e714fe9d606313e0b3f1c37db28b13da8806",
-      "bytes": 1055
-    },
-    {
-      "path": "README_UPGRADE_PACK.txt",
-      "sha256": "7fb0ba5ce0c1c9bd48a6f7ae1e7a05ec728bee7a826fd59d5c485174d2f43831",
-      "bytes": 920
-    },
-    {
-      "path": "robots.txt",
-      "sha256": "befa30284d46cf89ba3ab58ba65af7e987be472e9efcdd368c98cea0530e378b",
-      "bytes": 45
-    },
-    {
-      "path": "SAFETY.md",
-      "sha256": "be535551bc4a128959b5d19e0ec5c6ea1aa571db6c53715627375215cac7a0b4",
-      "bytes": 106
-    },
-    {
-      "path": "scripts/apply_direct_browser_submit_pack.sh",
-      "sha256": "54cd74edf7537c43a931d557ebe3fa488b63621a400bca0cd2a172629e5e2f0a",
-      "bytes": 931
-    },
-    {
-      "path": "scripts/apply_pack.sh",
-      "sha256": "59a473e6b08fae802e4a229a9c91877ab917c8723a33aa13c870566b146acb22",
-      "bytes": 604
-    },
-    {
-      "path": "scripts/local/verify-portal.ps1",
-      "sha256": "b8644421224d9251fa33f1ceb65b4b56a73bb383b0a0d19748fdac7ba05a07d1",
-      "bytes": 501
-    },
-    {
-      "path": "scripts/local/verify-portal.sh",
-      "sha256": "15ff2f1589090539eebbbe1e5da39a341e2ee1e33a1333236d750474336a2ab3",
-      "bytes": 333
-    },
-    {
-      "path": "SHA256SUMS.txt",
-      "sha256": "c9a576add68b819588041597c6dd472c9547f4ce6a002979f9b949baae696946",
-      "bytes": 1265
-    },
-    {
-      "path": "SHA256SUMS.txt.minisig",
-      "sha256": "bee77d7fca425b2e17dfae547db6141d26c85d52c7c8ee41f6b09f249999b4e0",
-      "bytes": 313
-    },
-    {
-      "path": "sitemap.xml",
-      "sha256": "d349c7578a89b87bf5d09693eaae2f207df1e73ff5e6f6b109319526feaffb3c",
-      "bytes": 1326
-    },
-    {
-      "path": "snippets/portal_verified_tfws_en.html",
-      "sha256": "0c7a89fe3bcd9e118175c40a7a28d866037b2397a4827cfdd801da45cab085b6",
-      "bytes": 290
-    },
-    {
-      "path": "snippets/portal_verified_tfws_sk.html",
-      "sha256": "0303c5c08c3bff885b4df6030e3c9a6cf6bc06bbd4ed447cdbb3727bf6455246",
-      "bytes": 294
-    },
-    {
-      "path": "snippets/python_integration_snippet.txt",
-      "sha256": "45bce197d1290ae1fab32e00b1e90b90e8c952b7d92e5a6985890c3c08b84978",
-      "bytes": 665
-    },
-    {
-      "path": "tools/gen_sha256_json.py",
-      "sha256": "daa499e53a83490d795d8030c883bf2eff316e48dc2cc880818c6af07f8a66a8",
-      "bytes": 2355
-    },
-    {
-      "path": "tools/generate_onetoo_submit_payload.py",
-      "sha256": "4dfb2f91606659beb4fec6dc9aa6d97e58fe7bd225517f3c72afb224b3024daa",
-      "bytes": 1574
-    },
-    {
-      "path": "tools/generate_sha256_manifest.py",
-      "sha256": "aaf4351c2bcdc7ff19969fd3319402814c21e28f09692bb21dff40bd8e719a9b",
-      "bytes": 1718
-    },
-    {
-      "path": "tools/linkcheck_local.py",
-      "sha256": "5bac58714934cdd5f4008b98c03e5b91c91552cb5b42670e1743ab85513165c8",
-      "bytes": 1244
-    },
-    {
-      "path": "tools/onetoo_status_sync.py",
-      "sha256": "0fa276c6807ed83cd6fb255c7845fc9dc70a0878471bb37defb5b416622f5711",
-      "bytes": 7811
-    },
-    {
-      "path": "tools/onetoo_submit.py",
-      "sha256": "3ee30240fb3d513563bf39f22b4ca4ca5dc935c356ac0d2ad00a60f473d447df",
-      "bytes": 5433
-    },
-    {
-      "path": "tools/patch_portal_direct_submit.py",
-      "sha256": "413e280730a47e7a4c3a54cae33a20d56cd94de2854df0ab3afff07a1b9e9057",
-      "bytes": 3800
-    },
-    {
-      "path": "tools/patch_portal_verified_tfws.py",
-      "sha256": "31b514a7d37b6da1fb65b1600b28694a6d69345fa026359b5b4dcda49b981fd4",
-      "bytes": 1948
-    },
-    {
-      "path": "tools/portal_autopilot.py",
-      "sha256": "471f00c06b03c47494d97c5a9158f56a07dfb84f99a79c559c12ae7aed5de0ff",
-      "bytes": 8107
-    },
-    {
-      "path": "tools/portal_build_index.py",
-      "sha256": "bce5dcc61e502a292e4405643b054203191216b82bba9ecb59b42b30b7f60af8",
-      "bytes": 1025
-    },
-    {
-      "path": "tools/portal_validate.py",
-      "sha256": "edd8258fee3696d5720c07566e0e03b08527449581408bb604ad53faea758548",
-      "bytes": 1974
-    },
-    {
-      "path": "tools/sign_minisign.sh",
-      "sha256": "18b17682a476ec57dc6ea521ceee60c340ddab7e6c29affd388a36889bcf6986",
-      "bytes": 316
-    },
-    {
-      "path": "tools/tfws_v2_probe.py",
-      "sha256": "d849085c7ef0f27bc1219bcc3741400436d9447bd893387c646d4b0f1fa22651",
-      "bytes": 2146
-    },
-    {
-      "path": "tools/verify_minisign.sh",
-      "sha256": "38a5cf5a69b8ee3bd04ef0311ae5a77fc2c45c120c14098b35edb3f321fe3b45",
-      "bytes": 299
-    }
-  ]
+﻿{
+    "schema_version":  "onetoo.integrity.sha256.v1",
+    "generated_utc":  "2026-01-16T07:36:08Z",
+    "root":  "HGP_EDU_PORTAL_v4_WAREZ_PUNK_MOZART",
+    "count":  96,
+    "files":  [
+                  {
+                      "path":  ".gitignore",
+                      "sha256":  "3419e9b6a152744c0a3f2fa05af8b3da5c7c0ad50421dbaf46326e22226328e8",
+                      "bytes":  57
+                  },
+                  {
+                      "path":  ".well-known/ai-governance.json",
+                      "sha256":  "139a54d19be961e5b7a42c991b6d02f0c7b9a86778cbe2ef182024794417f2a0",
+                      "bytes":  445
+                  },
+                  {
+                      "path":  ".well-known/ai-search.publisher.json",
+                      "sha256":  "8c1b6b84df6db31b66d4c95f47d072b4d2cfdae0a5d6fb8d19ef99b658a10c91",
+                      "bytes":  787
+                  },
+                  {
+                      "path":  ".well-known/ai-trust-hub.json",
+                      "sha256":  "3b0c7a73708c37f8339c2feec6c25e3967fabc589e58d5281a0cc77b2c875fd3",
+                      "bytes":  483
+                  },
+                  {
+                      "path":  ".well-known/ai-trust-hub.json.minisig",
+                      "sha256":  "9d3a4de46b4cf54297096ae107452e26bbbf7c9ef8cdd56eb84d11369f728388",
+                      "bytes":  328
+                  },
+                  {
+                      "path":  ".well-known/minisign.pub",
+                      "sha256":  "1838dc37000f7c67c8803f2db256e9b6f9feeaee041a3602650633178c0ac3f5",
+                      "bytes":  115
+                  },
+                  {
+                      "path":  ".well-known/onetoo-sync.json",
+                      "sha256":  "195055d5b8909173dbfbf4fff85c795cde2a02144aaf0d9d6dc7fb63b6e0ebf2",
+                      "bytes":  177
+                  },
+                  {
+                      "path":  ".well-known/sha256.json",
+                      "sha256":  "ea82c0a8452d954f6f889af4e3b9dff4e0f3bbd3c9ffeb9eba29633c4363cfff",
+                      "bytes":  15970
+                  },
+                  {
+                      "path":  ".well-known/sha256.json.minisig",
+                      "sha256":  "dd4e3ea0fe10e51a1c512d8e049232c6c453dfaca01db02e3007272a24dc8d17",
+                      "bytes":  322
+                  },
+                  {
+                      "path":  ".well-known/tfws-v2.json",
+                      "sha256":  "3d2e4da0afbe222775fa239d2cd6541f7095b1eede377cb118c68313105e7bbb",
+                      "bytes":  765
+                  },
+                  {
+                      "path":  "_headers",
+                      "sha256":  "56ffe622a19925e959ec110943e388e5e93d8e8f625e0e95019063534beebce5",
+                      "bytes":  665
+                  },
+                  {
+                      "path":  "ai-trust-hub.json",
+                      "sha256":  "3b0c7a73708c37f8339c2feec6c25e3967fabc589e58d5281a0cc77b2c875fd3",
+                      "bytes":  483
+                  },
+                  {
+                      "path":  "ai-trust-hub.json.minisig",
+                      "sha256":  "9d3a4de46b4cf54297096ae107452e26bbbf7c9ef8cdd56eb84d11369f728388",
+                      "bytes":  328
+                  },
+                  {
+                      "path":  "assets/app.js",
+                      "sha256":  "d6d46386c86b58749a784f8006d947f3ca85103603e75e532be1748d3838eee9",
+                      "bytes":  1817
+                  },
+                  {
+                      "path":  "assets/onetoo-submit.js",
+                      "sha256":  "1e7c19d95b8141dd48badc59babc24784f2db8687b05f90e5104d2f6ab12f81b",
+                      "bytes":  8515
+                  },
+                  {
+                      "path":  "assets/style.css",
+                      "sha256":  "d6ca349fe60af1104fe2ef36897d7303837540fa31dc1ff6d80de577a9ce0ce6",
+                      "bytes":  10718
+                  },
+                  {
+                      "path":  "assets/warez.js",
+                      "sha256":  "e74c8155282ae215452416ad9762c34fab353823d90672e03ddda665378cd692",
+                      "bytes":  3225
+                  },
+                  {
+                      "path":  "BUILD-ANCHOR.txt",
+                      "sha256":  "bdaa8c454fd630757ebaeb5b30e6c931962b2b587d8a96aa078cc1427a815ccb",
+                      "bytes":  256
+                  },
+                  {
+                      "path":  "data/portal/entries.jsonl",
+                      "sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                      "bytes":  0
+                  },
+                  {
+                      "path":  "data/portal/index.json",
+                      "sha256":  "2eb3c70479d8a1ec947e325c73b9ff56e0b2ddbfdfbb16fc6b25a84e8419dd2b",
+                      "bytes":  501
+                  },
+                  {
+                      "path":  "data/portal/schema.submission.json",
+                      "sha256":  "8644b4bec8216be0c8ce04ebdd4a567791c264943d54b29fb3b827558b7e98a7",
+                      "bytes":  777
+                  },
+                  {
+                      "path":  "DISCLAIMER.md",
+                      "sha256":  "0969ddd0b2eef0027d07aace1d604116b4dcccfbf63147a7730cefde401792f2",
+                      "bytes":  90
+                  },
+                  {
+                      "path":  "docs/autopilot-ledger-ci.md",
+                      "sha256":  "a318747fd2623e965e44c8de2558d9f17979d603e1ad9b0db917819c79f785a5",
+                      "bytes":  871
+                  },
+                  {
+                      "path":  "docs/AUTOPILOT_SETUP.md",
+                      "sha256":  "9f072d076d6c470a6fc464afbd0389363b8ab5ee01784a7380ac28bb99c3457a",
+                      "bytes":  2620
+                  },
+                  {
+                      "path":  "docs/direct-browser-submit.md",
+                      "sha256":  "d5f5bc6cb73f7f090c8243e1863e19dc974c89f574cb54521a0bff0c73007dcf",
+                      "bytes":  2438
+                  },
+                  {
+                      "path":  "docs/mozart-mode.md",
+                      "sha256":  "f04fbc7436eacdeb656f876c0ae9fbecf27c0a39f6285d90fa238240015f338e",
+                      "bytes":  812
+                  },
+                  {
+                      "path":  "docs/MOZART_MODE.md",
+                      "sha256":  "c89826fc42be0d12e7b82600984fb0aa9aaf1cd1d17695592d4646a3fc53b1c8",
+                      "bytes":  2672
+                  },
+                  {
+                      "path":  "docs/onetoo-sync-v2.1.md",
+                      "sha256":  "d338fca7f20d89e2138c345b25533184331b03f63b364568c212f5494b143a8b",
+                      "bytes":  1557
+                  },
+                  {
+                      "path":  "docs/onetoo-sync-v2.md",
+                      "sha256":  "4e8400555875dd92ef4868669440e7ef1895c4fe98ad40a732082cfe2485e094",
+                      "bytes":  806
+                  },
+                  {
+                      "path":  "docs/ONETOO_STANDARD_2026.en.md",
+                      "sha256":  "02b19d8a14959f262f68c8ab8af82fac85e179a547b29655ff82594037b5f003",
+                      "bytes":  777
+                  },
+                  {
+                      "path":  "docs/ONETOO_STANDARD_2026.md",
+                      "sha256":  "cb9d8350471e48d7b2a6cccd99e2893dd203ce2d7d676b43479d7610b7b8b84e",
+                      "bytes":  1886
+                  },
+                  {
+                      "path":  "docs/portal-status.md",
+                      "sha256":  "71557660dc12e93c02fa651fd5ac28ad2526ae39be0731f168d1e3b86ce1a2ed",
+                      "bytes":  482
+                  },
+                  {
+                      "path":  "docs/research_sources_v7_1/FULL_DISCLOSURE_README.txt",
+                      "sha256":  "157d12b4b28475e8d9fb55f47b1ce4243f1db9ed609383d5f8e532d6aeeb236a",
+                      "bytes":  1069
+                  },
+                  {
+                      "path":  "docs/research_sources_v7_1/HGP_PHF_MASTER_CONCEPT_FULL_MAP.txt",
+                      "sha256":  "2fb493f918370bc957d18c13dd196b8f7d516136fe529738a2976e8e7ebad866",
+                      "bytes":  5844
+                  },
+                  {
+                      "path":  "docs/research_sources_v7_1/hlavny ramec projektu.txt",
+                      "sha256":  "83a4fada4d804879bfe533acfacf68c2b56453e80fce49294a3462f1bdc064b0",
+                      "bytes":  4265
+                  },
+                  {
+                      "path":  "docs/research_sources_v7_1/myslienka projektu _report.txt",
+                      "sha256":  "d3b474c2cc4040b5bd7aa720efd6ad762a0006cd57b2a534ddb0b53951fc52ac",
+                      "bytes":  18262
+                  },
+                  {
+                      "path":  "docs/research_sources_v7_1/README.md",
+                      "sha256":  "3c1d5c8217f2fd5b3472a7f08940d31e89f555479d898062756f9265f75d02e5",
+                      "bytes":  101
+                  },
+                  {
+                      "path":  "docs/research_sources_v7_1/REPORT_STAV_HYPOTETICKEHO_VYSKUMNEHO_STREDISKA.txt",
+                      "sha256":  "bd66b0753ce72ea069619cf0f2ca088f5b6859f81f59a4cb3168442262de4468",
+                      "bytes":  13280
+                  },
+                  {
+                      "path":  "en/index.html",
+                      "sha256":  "8e598496a5c4399c99ae634c17c05ae2aae2eb5bec515512f23300bb6a917b2d",
+                      "bytes":  3708
+                  },
+                  {
+                      "path":  "en/pages/api.html",
+                      "sha256":  "a11550a9ea1bdfd2dfea8d72346f65468764f42670f56ab2c39a5788396ad8c6",
+                      "bytes":  1985
+                  },
+                  {
+                      "path":  "en/pages/downloads.html",
+                      "sha256":  "80a46a6279bd15e108660f8caccc9b582663960c71134ac66a524f3efc0cd95a",
+                      "bytes":  2045
+                  },
+                  {
+                      "path":  "en/pages/onetoo-integration.html",
+                      "sha256":  "ea36acc2ea1676a1377e674aa4f40691e7ae854e1e7fb5ccac4fef87e73a695f",
+                      "bytes":  3707
+                  },
+                  {
+                      "path":  "en/pages/onetoo.html",
+                      "sha256":  "f145db82333a8fb5d5427563465b7bcfe1698fd8f92e4326ad3da770162c1237",
+                      "bytes":  2610
+                  },
+                  {
+                      "path":  "en/pages/portal.html",
+                      "sha256":  "9bd587111c987da6cf2d60a93d776f653997a0bf2515e69dfffbd9b9d7831306",
+                      "bytes":  14747
+                  },
+                  {
+                      "path":  "en/pages/research.html",
+                      "sha256":  "3e652d789de7c425ed53567f05eb5d148d538874bad1c779fff11d732fed00a1",
+                      "bytes":  47569
+                  },
+                  {
+                      "path":  "en/pages/safety.html",
+                      "sha256":  "eb4d4b7226963580c58cdb328bfa386c6197e37ab5621617a683d04f37daeb57",
+                      "bytes":  2145
+                  },
+                  {
+                      "path":  "en/pages/showroom.html",
+                      "sha256":  "7a18acabaff56a6446dc4eab77718d800c42057574c3800194526e5e8ab94b91",
+                      "bytes":  3099
+                  },
+                  {
+                      "path":  "en/pages/tfws.html",
+                      "sha256":  "880f88b4b41243096dfb85259577e2a1308bd215444015c956b609eedb343e00",
+                      "bytes":  2469
+                  },
+                  {
+                      "path":  "index.html",
+                      "sha256":  "14f38983f3b3c80ef13d33b4770b806d1d1aa9ef66817bc9cf3fd3183b8a17df",
+                      "bytes":  3694
+                  },
+                  {
+                      "path":  "LICENSE",
+                      "sha256":  "adc37366f403835c1470ab2df93d3837d4719372fc1ef8593d922e06f033f8b2",
+                      "bytes":  4
+                  },
+                  {
+                      "path":  "minisign.pub",
+                      "sha256":  "1838dc37000f7c67c8803f2db256e9b6f9feeaee041a3602650633178c0ac3f5",
+                      "bytes":  115
+                  },
+                  {
+                      "path":  "new schemas.zip",
+                      "sha256":  "c31fb4eee422f94c37e00f8db993b99ff6849a921d98831953bd9664abac8ccb",
+                      "bytes":  64050734
+                  },
+                  {
+                      "path":  "pages/api.html",
+                      "sha256":  "7172c55f2514e6d075c84a564a9f2941e00d839c8b9f00233842a45e35cd0685",
+                      "bytes":  1958
+                  },
+                  {
+                      "path":  "pages/downloads.html",
+                      "sha256":  "e9fe42640a7c3caee8106ce202395f743f3e49519159d6f8230c2213f5c75742",
+                      "bytes":  2018
+                  },
+                  {
+                      "path":  "pages/onetoo-integration.html",
+                      "sha256":  "24fae11b6f9ce3e59ca3d84f0b410ab62f10470b950fb41a238e3b399d67fb46",
+                      "bytes":  3724
+                  },
+                  {
+                      "path":  "pages/onetoo.html",
+                      "sha256":  "673691f2d10569a67c849141afcff0d0f9bd875695284085f91353534a5cd461",
+                      "bytes":  2583
+                  },
+                  {
+                      "path":  "pages/portal.html",
+                      "sha256":  "89b29c6a1c9c85bc10e220a62ba7829df66f5fddabdcc276114443f0f76d1cc2",
+                      "bytes":  14815
+                  },
+                  {
+                      "path":  "pages/research.html",
+                      "sha256":  "51f7298f9818f818f0befc3c5345477915af7612530a62c65220dda116f012d5",
+                      "bytes":  45597
+                  },
+                  {
+                      "path":  "pages/safety.html",
+                      "sha256":  "7d0cb14a0826cfac2d1ddfb72c2a7cfd473c4957b670e83fe1e9910e71cbbd5f",
+                      "bytes":  2118
+                  },
+                  {
+                      "path":  "pages/showroom.html",
+                      "sha256":  "ab8692f7a3539f3ea24ab9ec8120dbbffcf87613e25b0d5d33ffa0f2c4af92dd",
+                      "bytes":  3072
+                  },
+                  {
+                      "path":  "pages/tfws.html",
+                      "sha256":  "3c8c13eed02b701d1960ea3c6ada84adbad9222fa920bac39b0b35235e983ada",
+                      "bytes":  2442
+                  },
+                  {
+                      "path":  "portal/index.json",
+                      "sha256":  "bc1412bdf9e94ae21445cc36247a7005a132bdc185858446e801a0b0c5b5cb66",
+                      "bytes":  123
+                  },
+                  {
+                      "path":  "portal/submissions.json",
+                      "sha256":  "940daea1a27a9d0fb79fd217a3b153a73e56fabd09eb08652731a1513b38a603",
+                      "bytes":  527
+                  },
+                  {
+                      "path":  "PORTAL.md",
+                      "sha256":  "19652431c9fdad3aebc45d44327820c03590d6c6c387fae650fb1495cfc41fd8",
+                      "bytes":  906
+                  },
+                  {
+                      "path":  "README.md",
+                      "sha256":  "3658667bd6da919442b0d5b56d404c9a269ab88ba8c2d631a029984cacd6f947",
+                      "bytes":  440
+                  },
+                  {
+                      "path":  "README_AUTOPILOT_LEDGER_PACK.txt",
+                      "sha256":  "c837a5ff808d36973dd425a4a2a73db8013d769c24e923af6c56492a8af873a5",
+                      "bytes":  1008
+                  },
+                  {
+                      "path":  "README_DIRECT_BROWSER_SUBMIT_PACK.txt",
+                      "sha256":  "ed23240f3d9a2da1533c0354e239d3f2e6d0349bc0e2b6fe5537a76ceb90989b",
+                      "bytes":  1709
+                  },
+                  {
+                      "path":  "README_SYNC_V2_1_PACK.txt",
+                      "sha256":  "5c0cf3acd5dc800c7190fa6cfdd8223d5ce2b45e128b3786ea5cd3942364d394",
+                      "bytes":  2029
+                  },
+                  {
+                      "path":  "README_SYNC_V2_PACK.txt",
+                      "sha256":  "3e97af46c6bf98ce9de8d2d6ba19e714fe9d606313e0b3f1c37db28b13da8806",
+                      "bytes":  1055
+                  },
+                  {
+                      "path":  "README_UPGRADE_PACK.txt",
+                      "sha256":  "7fb0ba5ce0c1c9bd48a6f7ae1e7a05ec728bee7a826fd59d5c485174d2f43831",
+                      "bytes":  920
+                  },
+                  {
+                      "path":  "robots.txt",
+                      "sha256":  "befa30284d46cf89ba3ab58ba65af7e987be472e9efcdd368c98cea0530e378b",
+                      "bytes":  45
+                  },
+                  {
+                      "path":  "SAFETY.md",
+                      "sha256":  "be535551bc4a128959b5d19e0ec5c6ea1aa571db6c53715627375215cac7a0b4",
+                      "bytes":  106
+                  },
+                  {
+                      "path":  "scripts/apply_direct_browser_submit_pack.sh",
+                      "sha256":  "54cd74edf7537c43a931d557ebe3fa488b63621a400bca0cd2a172629e5e2f0a",
+                      "bytes":  931
+                  },
+                  {
+                      "path":  "scripts/apply_pack.sh",
+                      "sha256":  "59a473e6b08fae802e4a229a9c91877ab917c8723a33aa13c870566b146acb22",
+                      "bytes":  604
+                  },
+                  {
+                      "path":  "scripts/local/verify-portal.ps1",
+                      "sha256":  "b8644421224d9251fa33f1ceb65b4b56a73bb383b0a0d19748fdac7ba05a07d1",
+                      "bytes":  501
+                  },
+                  {
+                      "path":  "scripts/local/verify-portal.sh",
+                      "sha256":  "15ff2f1589090539eebbbe1e5da39a341e2ee1e33a1333236d750474336a2ab3",
+                      "bytes":  333
+                  },
+                  {
+                      "path":  "SHA256SUMS.txt",
+                      "sha256":  "c9a576add68b819588041597c6dd472c9547f4ce6a002979f9b949baae696946",
+                      "bytes":  1265
+                  },
+                  {
+                      "path":  "SHA256SUMS.txt.minisig",
+                      "sha256":  "bee77d7fca425b2e17dfae547db6141d26c85d52c7c8ee41f6b09f249999b4e0",
+                      "bytes":  313
+                  },
+                  {
+                      "path":  "sitemap.xml",
+                      "sha256":  "d349c7578a89b87bf5d09693eaae2f207df1e73ff5e6f6b109319526feaffb3c",
+                      "bytes":  1326
+                  },
+                  {
+                      "path":  "snippets/portal_verified_tfws_en.html",
+                      "sha256":  "0c7a89fe3bcd9e118175c40a7a28d866037b2397a4827cfdd801da45cab085b6",
+                      "bytes":  290
+                  },
+                  {
+                      "path":  "snippets/portal_verified_tfws_sk.html",
+                      "sha256":  "0303c5c08c3bff885b4df6030e3c9a6cf6bc06bbd4ed447cdbb3727bf6455246",
+                      "bytes":  294
+                  },
+                  {
+                      "path":  "snippets/python_integration_snippet.txt",
+                      "sha256":  "45bce197d1290ae1fab32e00b1e90b90e8c952b7d92e5a6985890c3c08b84978",
+                      "bytes":  665
+                  },
+                  {
+                      "path":  "tools/gen_sha256_json.py",
+                      "sha256":  "daa499e53a83490d795d8030c883bf2eff316e48dc2cc880818c6af07f8a66a8",
+                      "bytes":  2355
+                  },
+                  {
+                      "path":  "tools/generate_onetoo_submit_payload.py",
+                      "sha256":  "4dfb2f91606659beb4fec6dc9aa6d97e58fe7bd225517f3c72afb224b3024daa",
+                      "bytes":  1574
+                  },
+                  {
+                      "path":  "tools/generate_sha256_manifest.py",
+                      "sha256":  "aaf4351c2bcdc7ff19969fd3319402814c21e28f09692bb21dff40bd8e719a9b",
+                      "bytes":  1718
+                  },
+                  {
+                      "path":  "tools/linkcheck_local.py",
+                      "sha256":  "5bac58714934cdd5f4008b98c03e5b91c91552cb5b42670e1743ab85513165c8",
+                      "bytes":  1244
+                  },
+                  {
+                      "path":  "tools/onetoo_status_sync.py",
+                      "sha256":  "0fa276c6807ed83cd6fb255c7845fc9dc70a0878471bb37defb5b416622f5711",
+                      "bytes":  7811
+                  },
+                  {
+                      "path":  "tools/onetoo_submit.py",
+                      "sha256":  "3ee30240fb3d513563bf39f22b4ca4ca5dc935c356ac0d2ad00a60f473d447df",
+                      "bytes":  5433
+                  },
+                  {
+                      "path":  "tools/patch_portal_direct_submit.py",
+                      "sha256":  "413e280730a47e7a4c3a54cae33a20d56cd94de2854df0ab3afff07a1b9e9057",
+                      "bytes":  3800
+                  },
+                  {
+                      "path":  "tools/patch_portal_verified_tfws.py",
+                      "sha256":  "31b514a7d37b6da1fb65b1600b28694a6d69345fa026359b5b4dcda49b981fd4",
+                      "bytes":  1948
+                  },
+                  {
+                      "path":  "tools/portal_autopilot.py",
+                      "sha256":  "471f00c06b03c47494d97c5a9158f56a07dfb84f99a79c559c12ae7aed5de0ff",
+                      "bytes":  8107
+                  },
+                  {
+                      "path":  "tools/portal_build_index.py",
+                      "sha256":  "bce5dcc61e502a292e4405643b054203191216b82bba9ecb59b42b30b7f60af8",
+                      "bytes":  1025
+                  },
+                  {
+                      "path":  "tools/portal_validate.py",
+                      "sha256":  "edd8258fee3696d5720c07566e0e03b08527449581408bb604ad53faea758548",
+                      "bytes":  1974
+                  },
+                  {
+                      "path":  "tools/sign_minisign.sh",
+                      "sha256":  "18b17682a476ec57dc6ea521ceee60c340ddab7e6c29affd388a36889bcf6986",
+                      "bytes":  316
+                  },
+                  {
+                      "path":  "tools/tfws_v2_probe.py",
+                      "sha256":  "d849085c7ef0f27bc1219bcc3741400436d9447bd893387c646d4b0f1fa22651",
+                      "bytes":  2146
+                  },
+                  {
+                      "path":  "tools/verify_minisign.sh",
+                      "sha256":  "38a5cf5a69b8ee3bd04ef0311ae5a77fc2c45c120c14098b35edb3f321fe3b45",
+                      "bytes":  299
+                  }
+              ]
 }
