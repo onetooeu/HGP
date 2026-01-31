@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="sk">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Trust & Verify (SK)</title>
+  <link rel="stylesheet" href="/assets/style.css"/>
+  <script defer src="/assets/app.js?v=20260110-portal-fix2"></script>
+
+</head>
+<body>
+  <div class="container">
+    <div class="topbar">
+      <div class="brand">
+        <div class="logo"></div>
+        <div>
+          <div class="title">HGP Edu Portal</div>
+          <div class="subtitle">Experimental • AI-native • Research • ONETOO Suite</div>
+        </div>
+      </div>
+      <div class="nav">
+        <a class="pill" href="/index.html">← Back</a>
+        <a class="pill" href="/pages/showroom.html">Showroom</a>
+        <a class="pill" href="/pages/tfws.html">TFWS v2</a>
+        <a class="pill" href="/pages/safety.html">Safety</a>
+        <a class="pill" href="/pages/research.html">Research</a>
+        <a class="pill" href="/pages/portal.html">Portal</a>
+        <a class="pill" href="/pages/ams.html">AMS ✨</a>
+        <a class="pill" href="/pages/downloads.html">Downloads</a>
+        <a class="pill" href="/pages/onetoo.html">ONETOO Map</a>
+        <a class="pill" href="/pages/api.html">Automation</a>
+      <a class="pill" href="/pages/onetoo-hub.html">ONETOO Hub</a>
+      <a class="pill" href="/pages/onetoo-search.html">Search</a>
+      <a class="pill" href="/pages/trust-verify.html">Trust & Verify</a>
+      <a class="pill" href="/pages/federation.html">Federation</a>
+      <a class="pill" href="/pages/status.html">Status</a>
+      <a class="pill" href="/pages/agents.html">Agents</a>
+      <a class="pill" href="/pages/specs.html">Specs</a>
+      <a class="pill" href="/pages/ai-handbook.html">AI Handbook</a>
+
+        <a class="pill" href="/pages/onetoo-hub.html">ONETOO Hub</a>
+        <a class="pill" href="/pages/onetoo-search.html">Search</a>
+        <a class="pill" href="/pages/trust-verify.html">Trust & Verify</a>
+        <a class="pill" href="/pages/federation.html">Federation</a>
+        <a class="pill" href="/pages/status.html">Status</a>
+        <a class="pill" href="/pages/agents.html">Agents</a>
+        <a class="pill" href="/pages/specs.html">Specs</a>
+        <a class="pill" href="/pages/ai-handbook.html">AI Handbook</a>
+      </div>
+    </div>
+
+    <div class="warez-marquee">
+      <div class="track">
+        <span id="warez-slogan">ONETOO · HGP · TFWS</span>
+        &nbsp;::&nbsp; BUILD <span class="badge">2026-01-31</span>
+        &nbsp;::&nbsp; TRUST-FIRST · SIGNED · REPRODUCIBLE
+      </div>
+    </div>
+
+    <div class="card">
+      <h1 style="margin:0 0 8px 0">Trust & Verify (SK)</h1>
+      
+<p class="muted">
+Táto stránka je <b>verifikačné centrum</b>. Cieľ: aby človek aj AI agent vedeli nezávisle overiť,
+že HGPeDU a jeho ONETOO integrácie sú <b>nezmenené</b> a <b>kryptograficky konzistentné</b>.
+</p>
+
+<h2>1) Čo je podpisované</h2>
+<ul>
+  <li><code>/.well-known/sha256.json</code> — manifest (hashy súborov)</li>
+  <li><code>/.well-known/sha256.json.minisig</code> — minisign podpis manifestu</li>
+  <li><code>/.well-known/minisign.pub</code> — verejný kľúč pre overenie</li>
+</ul>
+
+<h2>2) Offline overenie (copy/paste)</h2>
+<pre><code>rm -f minisign.pub sha256.json sha256.json.minisig
+
+curl -sS https://hgpedu.eu/.well-known/minisign.pub -o minisign.pub
+curl -sS https://hgpedu.eu/.well-known/sha256.json -o sha256.json
+curl -sS https://hgpedu.eu/.well-known/sha256.json.minisig -o sha256.json.minisig
+
+minisign -V -p minisign.pub -m sha256.json -x sha256.json.minisig
+</code></pre>
+
+<h2>3) Čo presne znamená “Trust‑First”</h2>
+<p>
+V klasickom webe sa “dôvera” často prenáša cez tretie strany (CA, central registry).
+V Trust‑First modeli je dôvera explicitná:
+</p>
+<ul>
+  <li>doména publikuje strojovo čitateľné manifesty (napr. <code>ai-trust-hub.json</code>)</li>
+  <li>manifesty sú kryptograficky podpísané</li>
+  <li>agent si sám vyberá, komu dôveruje (allowlist) — a môže to auditovať</li>
+</ul>
+
+<h2>4) AI-safe pravidlá pri práci s externými uzlami</h2>
+<ul>
+  <li><b>Never trust HTML alone</b>: agent si má vždy ťahať aj manifest + podpis.</li>
+  <li><b>Prefer deterministic APIs</b>: NDJSON / JSON endpoints pred “scrapingom”.</li>
+  <li><b>Log everything</b>: request-id, timestamp, hash payloadu, výsledok overenia podpisu.</li>
+  <li><b>Fail closed</b>: ak podpis nesedí → považuj obsah za nedôveryhodný.</li>
+</ul>
+
+<h2>5) Prepojenie na ONETOO Trust Root</h2>
+<p>
+ONETOO root uzol typicky publikuje vlastné <code>.well-known</code> manifesty.
+Tu sú rýchle odkazy:
+</p>
+<ul>
+  <li><a href="https://www.onetoo.eu/.well-known/ai-trust-hub.json" target="_blank" rel="noopener">www.onetoo.eu/.well-known/ai-trust-hub.json</a></li>
+  <li><a href="https://www.onetoo.eu/.well-known/minisign.pub" target="_blank" rel="noopener">www.onetoo.eu/.well-known/minisign.pub</a></li>
+</ul>
+<p class="muted">
+Poznámka: ak niektorý endpoint nie je publikovaný, je to OK — znamená to, že uzol je “partial” alebo ešte v migrácii.
+</p>
+
+    </div>
+
+    <div class="footer">
+      <div>HGPeDU is a static trust node: integrity via <code>.well-known/sha256.json</code> + <code>minisign</code>.</div>
+      <div class="muted">If you modified anything, regenerate and re-sign the manifest before deployment.</div>
+    </div>
+  </div>
+</body>
+</html>

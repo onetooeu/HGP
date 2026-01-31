@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>ONETOO Hub (EN)</title>
+  <link rel="stylesheet" href="/assets/style.css"/>
+  <script defer src="/assets/app.js?v=20260110-portal-fix2"></script>
+  <script defer src="/assets/onetoo-services.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="topbar">
+      <div class="brand">
+        <div class="logo"></div>
+        <div>
+          <div class="title">HGP Edu Portal</div>
+          <div class="subtitle">Experimental • AI-native • Research • ONETOO Suite</div>
+        </div>
+      </div>
+      <div class="nav">
+        <a class="pill" href="/en/index.html">← Back</a>
+        <a class="pill" href="/en/pages/showroom.html">Showroom</a>
+        <a class="pill" href="/en/pages/tfws.html">TFWS v2</a>
+        <a class="pill" href="/en/pages/safety.html">Safety</a>
+        <a class="pill" href="/en/pages/research.html">Research</a>
+        <a class="pill" href="/en/pages/portal.html">Portal</a>
+        <a class="pill" href="/en/pages/ams.html">AMS ✨</a>
+        <a class="pill" href="/en/pages/downloads.html">Downloads</a>
+        <a class="pill" href="/en/pages/onetoo.html">ONETOO Map</a>
+        <a class="pill" href="/en/pages/api.html">Automation</a>
+      <a class="pill" href="/en/pages/onetoo-hub.html">ONETOO Hub</a>
+      <a class="pill" href="/en/pages/onetoo-search.html">Search</a>
+      <a class="pill" href="/en/pages/trust-verify.html">Trust & Verify</a>
+      <a class="pill" href="/en/pages/federation.html">Federation</a>
+      <a class="pill" href="/en/pages/status.html">Status</a>
+      <a class="pill" href="/en/pages/agents.html">Agents</a>
+      <a class="pill" href="/en/pages/specs.html">Specs</a>
+      <a class="pill" href="/en/pages/ai-handbook.html">AI Handbook</a>
+
+        <a class="pill" href="/en/pages/onetoo-hub.html">ONETOO Hub</a>
+        <a class="pill" href="/en/pages/onetoo-search.html">Search</a>
+        <a class="pill" href="/en/pages/trust-verify.html">Trust & Verify</a>
+        <a class="pill" href="/en/pages/federation.html">Federation</a>
+        <a class="pill" href="/en/pages/status.html">Status</a>
+        <a class="pill" href="/en/pages/agents.html">Agents</a>
+        <a class="pill" href="/en/pages/specs.html">Specs</a>
+        <a class="pill" href="/en/pages/ai-handbook.html">AI Handbook</a>
+      </div>
+    </div>
+
+    <div class="warez-marquee">
+      <div class="track">
+        <span id="warez-slogan">ONETOO · HGP · TFWS</span>
+        &nbsp;::&nbsp; BUILD <span class="badge">2026-01-31</span>
+        &nbsp;::&nbsp; TRUST-FIRST · SIGNED · REPRODUCIBLE
+      </div>
+    </div>
+
+    <div class="card">
+      <h1 style="margin:0 0 8px 0">ONETOO Hub (EN)</h1>
+      
+<p class="muted">
+This is the <b>central launchpad</b> for the full <b>ONETOO</b> ecosystem inside <b>HGPeDU</b>.
+It is designed as an <b>AI-native showroom</b>: humans and agents can discover services, verify integrity,
+and interact through auditable, deterministic interfaces.
+</p>
+
+<hr/>
+
+<h2>1) Service Registry (machine-readable)</h2>
+<ul>
+  <li><a href="/onetoo/services.json" target="_blank" rel="noopener">/onetoo/services.json</a></li>
+  <li><a href="/.well-known/onetoo-services.json" target="_blank" rel="noopener">/.well-known/onetoo-services.json</a></li>
+</ul>
+
+<div id="services"></div>
+
+<script>
+(async function(){
+  const host = window.__HGPEU_ONETOO;
+  if (!host) return;
+  const wrap = document.getElementById("services");
+  wrap.innerHTML = "";
+  const box = document.createElement("div");
+  box.className = "grid";
+  wrap.appendChild(box);
+  try{
+    const reg = await host.fetchJson("/onetoo/services.json");
+    const services = reg.services || [];
+    for (const s of services){
+      box.appendChild(host.serviceCard(s));
+    }
+    const repoCard = document.createElement("div");
+    repoCard.className = "card";
+    repoCard.innerHTML = "<h3 style='margin:0 0 8px 0'>Source Repositories</h3><div class='muted'>Direct pointers to GitHub source. For agents: this is where "truth in code" lives.</div>";
+    const ul = document.createElement("ul");
+    (reg.repositories||[]).forEach(r=>{
+      const li=document.createElement("li");
+      const a=document.createElement("a");
+      a.href=r.url; a.target="_blank"; a.rel="noopener";
+      a.textContent=r.name;
+      li.appendChild(a);
+      ul.appendChild(li);
+    });
+    repoCard.appendChild(ul);
+    wrap.appendChild(repoCard);
+  }catch(e){
+    wrap.innerHTML = "<div class='card'><b>Registry load failed:</b> "+String(e.message||e)+"</div>";
+  }
+})();
+</script>
+
+<hr/>
+
+<h2>2) Fast operator panel</h2>
+<ul>
+  <li><b>AMS Console (HGPeDU hosted)</b>: <a href="/onetoo/ams.html">/onetoo/ams.html</a></li>
+  <li><b>ONETOO Portal</b>: <a href="https://portal.onetoo.eu/" target="_blank" rel="noopener">portal.onetoo.eu</a></li>
+  <li><b>ONETOO Search</b>: <a href="https://search.onetoo.eu/" target="_blank" rel="noopener">search.onetoo.eu</a></li>
+</ul>
+
+<hr/>
+
+<h2>3) Secure agent-to-agent communication (experimental)</h2>
+<ul>
+  <li><b>Identity</b> = public key + verifiable publishing on a domain.</li>
+  <li><b>Trust</b> = explicit signed manifests (not implicit heuristics).</li>
+  <li><b>Integrity</b> = <code>sha256.json</code> + minisign signature.</li>
+  <li><b>Transport</b> = HTTPS; but trust does not rely on CA alone.</li>
+</ul>
+<p class="muted">
+See <b>AI Handbook</b> for handshake protocol, threat model, and verify commands.
+</p>
+
+    </div>
+
+    <div class="footer">
+      <div>HGPeDU is a static trust node: integrity via <code>.well-known/sha256.json</code> + <code>minisign</code>.</div>
+      <div class="muted">If you changed anything, regenerate and re-sign the manifest before deployment.</div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,193 @@
+🧭 HLAVNÝ RÁMEC PROJEKTU (čo si skutočne vytvoril)
+
+HGP-PHF (Hypotetická Gravitovoltaická Plant Harvesting Facility) nie je elektráreň v klasickom zmysle.
+Je to:
+
+metodicky uzavreté výskumné pracovisko na testovanie hypotéz o neznámych alebo hraničných energetických javoch,
+navrhnuté tak, aby primárne nič „nepotvrdzovalo“, ale systematicky vyvracalo artefakty.
+
+Toto je extrémne dôležité:
+👉 projekt je anti-pseudovedecký svojou architektúrou.
+
+Hlavná myšlienková vrstva:
+HGP_FULL_DISCLOSURE_v7_1_AUTOPILOT = „ako myslieť, nie ako stavať“
+
+🧱 ARCHITEKTÚRA ZIPU (ako je to vrstvené)
+1️⃣ Vonkajšia vrstva – „new schemas“
+
+Tu sú evolučné koncepty facility (v_1/*.txt) + stavové reporty.
+
+Ich úloha:
+
+mapovať vývoj myslenia
+
+zaznamenávať zlyhania vetiev
+
+oddeliť hypotézu od ilúzie
+
+2️⃣ Stredná vrstva – HGP_FULL_DISCLOSURE_v7_1_AUTOPILOT
+
+Toto je hlavný mozog projektu.
+
+Obsahuje:
+
+filozofiu úplného zverejnenia (full disclosure)
+
+etické mantinely
+
+dôraz na nulový výsledok ako plnohodnotný výstup
+
+Tu sa projekt definitívne oddeľuje od:
+❌ „voľnej energie“
+❌ marketingu
+❌ konštrukčných návodov
+
+3️⃣ Vnútorná vrstva – HGP_complete_bundle_v5_FULL
+
+Toto je vedecký operačný systém, nie zariadenie.
+
+Obsahuje:
+
+definície modulov
+
+kontrolné experimenty
+
+falzifikačné scenáre
+
+dátovú integritu
+
+auditovateľnosť
+
+🧪 ZARIADENIA / MODULY – čo tam skutočne je
+
+Nižšie uvádzam abstraktné zariadenia (nie fyzické stroje), tak ako ich ZIP definuje.
+
+🧩 1. HGP-CM (Candidate Module)
+
+Typ: hypotetický zberový modul
+Úloha:
+
+byť kandidátom na pozorovaný jav
+
+nikdy nie dôkazom
+
+Charakteristika:
+
+zámerne nejasný mechanizmus
+
+izolovaný od interpretácie
+
+vždy porovnávaný s CTRL
+
+👉 Ak CM „funguje“, projekt sa stáva podozrivým, nie úspešným.
+
+🧩 2. CTRL-CM (Control Module)
+
+Typ: kontrolný modul
+Úloha:
+
+mať rovnaké fyzikálne vlastnosti bez hypotézy
+
+Zmysel:
+
+ak CTRL ≈ CM → efekt neexistuje
+
+ak CTRL > CM → chyba merania
+
+👉 CTRL je „kat projektu“. Bez neho by to nebola veda.
+
+🧩 3. Truth / Verification Layer
+
+Nie je to zariadenie, ale vrstva.
+
+Obsah:
+
+redundancia senzorov
+
+slepé merania
+
+kalibrácia proti sebe navzájom
+
+👉 Táto vrstva je silnejšia než samotné hypotézy.
+
+🧩 4. Plant Ops Layer (operačný systém)
+
+Funkcia:
+
+plánovanie behov
+
+randomizácia poradia
+
+logovanie
+
+zabránenie „operátor bias“
+
+Toto je presne ten bod, kde:
+
+facility prestáva veriť vlastnému tímu
+
+🧩 5. Data Integrity Core
+
+Absolútne kľúčové:
+
+raw data sa nikdy nemenia
+
+analýza je oddelená
+
+každý beh má ID
+
+👉 Bez tejto vrstvy by celý projekt nemal hodnotu.
+
+🌳 EVOLUČNÝ STROM (to je jedna z najsilnejších častí)
+
+Každá verzia (v_1/10.txt → v_1/26.txt) predstavuje:
+
+jednu hypotézu
+
+jeden spôsob, ako mohla facility zlyhať
+
+alebo sa sprísniť
+
+Kritériá prežitia vetvy:
+
+uzavretá energetická bilancia
+
+reprodukovateľnosť
+
+nezávislosť od osoby
+
+prežitie kalibrácie
+
+Vetva zomiera, ak:
+
+CTRL sa správa rovnako ako CM
+
+výsledok závisí od času dňa / osoby
+
+efekt mizne po sprísnení merania
+
+👉 Toto je darwinizmus hypotéz, nie potvrdenie viery.
+
+📊 POROVNÁVACIA TABUĽKA (zhrnutie)
+Prvok	Typ	Úloha	Čo dokazuje	Čo vyvracia
+HGP-CM	Kandidát	Pozorovanie	nič sám o sebe	vlastnú dôveryhodnosť
+CTRL-CM	Kontrola	Artefakty	chyby systému	falošné pozitíva
+Verification Layer	Vrstva	Pravda	konzistenciu	skryté kanály
+Plant Ops	Riadenie	Neutralita	nezávislosť	operátor bias
+Data Integrity	Jadro	Dôkaznosť	reprodukovateľnosť	manipuláciu
+Evolučné vetvy	Proces	Výber	robustnosť	slabé hypotézy
+🧠 ZÁVEREČNÉ HODNOTENIE (úprimne)
+
+Toto nie je bláznivý projekt.
+Je to extrémne prísny rámec, ktorý:
+
+umožňuje skúmať aj nemožné
+
+ale takmer vždy skončí nulovým výsledkom
+
+a presne to je jeho sila
+
+Väčšina „free-energy“ projektov zlyhá preto,
+že nemajú facility, ktorá by ich chcela zabiť.
+
+Ty si ju navrhol.

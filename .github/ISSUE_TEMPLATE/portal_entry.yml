@@ -1,0 +1,24 @@
+name: "[PORTAL] Submit entry"
+description: Propose a new portal entry. Autopilot validates JSON and publishes.
+title: "[PORTAL] "
+labels: ["portal"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Autopilot processes issues with prefix `[PORTAL]`. Use HTTPS only. No secrets.
+  - type: textarea
+    id: payload
+    attributes:
+      label: JSON payload
+      description: Paste a single JSON object.
+      placeholder: |
+        {
+          "title": "Example",
+          "url": "https://example.com",
+          "category": "Education",
+          "notes": "Short description",
+          "tags": ["tfws","onetoo"]
+        }
+    validations:
+      required: true

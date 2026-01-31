@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="sk">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Status (SK)</title>
+  <link rel="stylesheet" href="/assets/style.css"/>
+  <script defer src="/assets/app.js?v=20260110-portal-fix2"></script>
+  <script defer src="/assets/onetoo-services.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="topbar">
+      <div class="brand">
+        <div class="logo"></div>
+        <div>
+          <div class="title">HGP Edu Portal</div>
+          <div class="subtitle">Experimental • AI-native • Research • ONETOO Suite</div>
+        </div>
+      </div>
+      <div class="nav">
+        <a class="pill" href="/index.html">← Back</a>
+        <a class="pill" href="/pages/showroom.html">Showroom</a>
+        <a class="pill" href="/pages/tfws.html">TFWS v2</a>
+        <a class="pill" href="/pages/safety.html">Safety</a>
+        <a class="pill" href="/pages/research.html">Research</a>
+        <a class="pill" href="/pages/portal.html">Portal</a>
+        <a class="pill" href="/pages/ams.html">AMS ✨</a>
+        <a class="pill" href="/pages/downloads.html">Downloads</a>
+        <a class="pill" href="/pages/onetoo.html">ONETOO Map</a>
+        <a class="pill" href="/pages/api.html">Automation</a>
+      <a class="pill" href="/pages/onetoo-hub.html">ONETOO Hub</a>
+      <a class="pill" href="/pages/onetoo-search.html">Search</a>
+      <a class="pill" href="/pages/trust-verify.html">Trust & Verify</a>
+      <a class="pill" href="/pages/federation.html">Federation</a>
+      <a class="pill" href="/pages/status.html">Status</a>
+      <a class="pill" href="/pages/agents.html">Agents</a>
+      <a class="pill" href="/pages/specs.html">Specs</a>
+      <a class="pill" href="/pages/ai-handbook.html">AI Handbook</a>
+
+        <a class="pill" href="/pages/onetoo-hub.html">ONETOO Hub</a>
+        <a class="pill" href="/pages/onetoo-search.html">Search</a>
+        <a class="pill" href="/pages/trust-verify.html">Trust & Verify</a>
+        <a class="pill" href="/pages/federation.html">Federation</a>
+        <a class="pill" href="/pages/status.html">Status</a>
+        <a class="pill" href="/pages/agents.html">Agents</a>
+        <a class="pill" href="/pages/specs.html">Specs</a>
+        <a class="pill" href="/pages/ai-handbook.html">AI Handbook</a>
+      </div>
+    </div>
+
+    <div class="warez-marquee">
+      <div class="track">
+        <span id="warez-slogan">ONETOO · HGP · TFWS</span>
+        &nbsp;::&nbsp; BUILD <span class="badge">2026-01-31</span>
+        &nbsp;::&nbsp; TRUST-FIRST · SIGNED · REPRODUCIBLE
+      </div>
+    </div>
+
+    <div class="card">
+      <h1 style="margin:0 0 8px 0">Status (SK)</h1>
+      
+<p class="muted">
+Status je <b>best‑effort</b> “živý” prehľad. Beží kompletne v prehliadači, takže niektoré testy môžu byť
+<b>blokované CORS</b> (to neznamená, že služba je down — iba že je zatvorená pre cross‑origin fetch).
+</p>
+
+<h2>1) Quick checks</h2>
+<table style="width:100%;border-collapse:collapse">
+  <thead>
+    <tr>
+      <th style="text-align:left;padding:8px 6px;border-bottom:1px solid rgba(255,255,255,0.12)">Check</th>
+      <th style="text-align:left;padding:8px 6px;border-bottom:1px solid rgba(255,255,255,0.12)">URL</th>
+      <th style="text-align:left;padding:8px 6px;border-bottom:1px solid rgba(255,255,255,0.12)">Result</th>
+    </tr>
+  </thead>
+  <tbody id="statusBody"></tbody>
+</table>
+
+<hr/>
+
+<h2>2) Čo je “správne” v produkcii</h2>
+<ul>
+  <li><b>200 OK</b> pre UI assets, správny <code>content-type</code>, stabilné <code>etag</code>.</li>
+  <li><b>no-store</b> pre audit / NDJSON logy (ak sú živé), aby sa necacheovali.</li>
+  <li><b>CSP</b> uzavretý: žiadne <code>*</code> v connect-src; iba explicitné allowlist domény.</li>
+  <li><b>Signatures</b> vždy verifikovateľné offline.</li>
+</ul>
+
+<script>
+(async function(){
+  const host = window.__HGPEU_ONETOO;
+  if (!host) return;
+  const table = document.querySelector("table");
+  const checks = [
+    { label: "HGPeDU sha256 manifest", url: "https://hgpedu.eu/.well-known/sha256.json" },
+    { label: "HGPeDU minisign pubkey", url: "https://hgpedu.eu/.well-known/minisign.pub" },
+    { label: "HGPeDU AMS hosted JS", url: "https://hgpedu.eu/onetoo/assets/ams.js" },
+    { label: "ONETOO Portal root", url: "https://portal.onetoo.eu/" },
+    { label: "ONETOO Search root", url: "https://search.onetoo.eu/" },
+    { label: "ONETOO root trust hub (if published)", url: "https://www.onetoo.eu/.well-known/ai-trust-hub.json" }
+  ];
+  await host.runStatus(table, checks);
+})();
+</script>
+
+    </div>
+
+    <div class="footer">
+      <div>HGPeDU is a static trust node: integrity via <code>.well-known/sha256.json</code> + <code>minisign</code>.</div>
+      <div class="muted">If you modified anything, regenerate and re-sign the manifest before deployment.</div>
+    </div>
+  </div>
+</body>
+</html>

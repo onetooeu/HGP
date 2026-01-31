@@ -1,0 +1,18 @@
+RESIGN REQUIRED
+
+This build changed signed assets (new ONETOO Suite pages, service registry, CSP updates).
+You MUST re-generate and re-sign the sha256 manifest before deployment.
+
+1) Re-generate sha256.json
+   python tools/gen_sha256_json.py
+
+2) Point minisign to your secret key (example on Windows Git Bash)
+   export MINISIGN_SECRET="/c/Users/TV/.minisign-hgpedu/minisign.key"
+
+3) Sign (creates .well-known/sha256.json.minisig)
+   bash tools/sign_minisign.sh
+
+4) Verify
+   minisign -V -p .well-known/minisign.pub -m .well-known/sha256.json -x .well-known/sha256.json.minisig
+
+If verification is OK, commit and push.

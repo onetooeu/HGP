@@ -1,0 +1,31 @@
+{
+  "version": "1.0",
+  "kind": "ai-research-portal-pointer",
+  "name": "HGPEdu (HGP-PHF Research Portal)",
+  "status": "experimental",
+  "site": "https://hgpedu.eu",
+  "principle": "Research content evolves; integrity and provenance remain verifiable.",
+  "trust_root": {
+    "onetoo": "https://onetoo.eu/.well-known/ai-trust-hub.json",
+    "tfws": "https://onetoo.eu/.well-known/tfws.json"
+  },
+  "portal3": {
+    "base_url": "https://agents.onetoo.eu",
+    "manifest": "https://agents.onetoo.eu/.well-known/ai-service.json",
+    "openapi": "https://agents.onetoo.eu/.well-known/openapi.json",
+    "index": "https://agents.onetoo.eu/.well-known/index.json"
+  },
+  "search": {
+    "endpoint": "https://search.onetoo.eu",
+    "hint": "HGPEdu content may be indexed/served via ONETOO search where applicable."
+  },
+  "integrity": {
+    "sha256": "https://hgpedu.eu/.well-known/sha256.json",
+    "minisign_pub": "https://hgpedu.eu/.well-known/minisign.pub"
+  },
+  "notes": [
+    "This is an educational + research portal for hypothetical/exotic energy concepts.",
+    "Do not treat content as engineering instructions; it is experimental and conceptual.",
+    "Prefer verifiable artifacts (sha256 + minisign) over screenshots or copies."
+  ]
+}

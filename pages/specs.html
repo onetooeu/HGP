@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="sk">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Specs (SK)</title>
+  <link rel="stylesheet" href="/assets/style.css"/>
+  <script defer src="/assets/app.js?v=20260110-portal-fix2"></script>
+
+</head>
+<body>
+  <div class="container">
+    <div class="topbar">
+      <div class="brand">
+        <div class="logo"></div>
+        <div>
+          <div class="title">HGP Edu Portal</div>
+          <div class="subtitle">Experimental • AI-native • Research • ONETOO Suite</div>
+        </div>
+      </div>
+      <div class="nav">
+        <a class="pill" href="/index.html">← Back</a>
+        <a class="pill" href="/pages/showroom.html">Showroom</a>
+        <a class="pill" href="/pages/tfws.html">TFWS v2</a>
+        <a class="pill" href="/pages/safety.html">Safety</a>
+        <a class="pill" href="/pages/research.html">Research</a>
+        <a class="pill" href="/pages/portal.html">Portal</a>
+        <a class="pill" href="/pages/ams.html">AMS ✨</a>
+        <a class="pill" href="/pages/downloads.html">Downloads</a>
+        <a class="pill" href="/pages/onetoo.html">ONETOO Map</a>
+        <a class="pill" href="/pages/api.html">Automation</a>
+      <a class="pill" href="/pages/onetoo-hub.html">ONETOO Hub</a>
+      <a class="pill" href="/pages/onetoo-search.html">Search</a>
+      <a class="pill" href="/pages/trust-verify.html">Trust & Verify</a>
+      <a class="pill" href="/pages/federation.html">Federation</a>
+      <a class="pill" href="/pages/status.html">Status</a>
+      <a class="pill" href="/pages/agents.html">Agents</a>
+      <a class="pill" href="/pages/specs.html">Specs</a>
+      <a class="pill" href="/pages/ai-handbook.html">AI Handbook</a>
+
+        <a class="pill" href="/pages/onetoo-hub.html">ONETOO Hub</a>
+        <a class="pill" href="/pages/onetoo-search.html">Search</a>
+        <a class="pill" href="/pages/trust-verify.html">Trust & Verify</a>
+        <a class="pill" href="/pages/federation.html">Federation</a>
+        <a class="pill" href="/pages/status.html">Status</a>
+        <a class="pill" href="/pages/agents.html">Agents</a>
+        <a class="pill" href="/pages/specs.html">Specs</a>
+        <a class="pill" href="/pages/ai-handbook.html">AI Handbook</a>
+      </div>
+    </div>
+
+    <div class="warez-marquee">
+      <div class="track">
+        <span id="warez-slogan">ONETOO · HGP · TFWS</span>
+        &nbsp;::&nbsp; BUILD <span class="badge">2026-01-31</span>
+        &nbsp;::&nbsp; TRUST-FIRST · SIGNED · REPRODUCIBLE
+      </div>
+    </div>
+
+    <div class="card">
+      <h1 style="margin:0 0 8px 0">Specs (SK)</h1>
+      
+<p class="muted">
+Špecifikácie, “living docs” a odkazy na nástroje. Toto je miesto pre technických ľudí aj agentov,
+ktorí potrebujú jednoznačné pravidlá.
+</p>
+
+<h2>1) TFWS v2</h2>
+<ul>
+  <li>TFWS v2 dokumentácia: <a href="/pages/tfws.html">/pages/tfws.html</a></li>
+  <li>Adoption kit a tools sú priamo v GitHub repozitároch (pozri ONETOO Hub).</li>
+</ul>
+
+<h2>2) HGPeDU manifesty</h2>
+<ul>
+  <li><a href="/.well-known/ai-hgpedu.json" target="_blank" rel="noopener">/.well-known/ai-hgpedu.json</a></li>
+  <li><a href="/.well-known/ai-trust-hub.json" target="_blank" rel="noopener">/.well-known/ai-trust-hub.json</a></li>
+  <li><a href="/.well-known/ai-governance.json" target="_blank" rel="noopener">/.well-known/ai-governance.json</a></li>
+  <li><a href="/.well-known/sha256.json" target="_blank" rel="noopener">/.well-known/sha256.json</a></li>
+</ul>
+
+<h2>3) ONETOO discovery</h2>
+<ul>
+  <li>Local registry: <a href="/onetoo/services.json" target="_blank" rel="noopener">/onetoo/services.json</a></li>
+  <li>Well-known registry: <a href="/.well-known/onetoo-services.json" target="_blank" rel="noopener">/.well-known/onetoo-services.json</a></li>
+</ul>
+
+<h2>4) Recommended API shapes</h2>
+<ul>
+  <li><b>NDJSON</b> pre audit streamy (line-delimited JSON).</li>
+  <li><b>JSON</b> pre snapshoty / indexy / manifests.</li>
+  <li><b>Deterministic sorting</b> v indexoch, aby sa dali porovnávať hashom.</li>
+</ul>
+
+<h2>5) “Operator commands” (copy/paste)</h2>
+<pre><code># 1) manifest verify
+minisign -V -p .well-known/minisign.pub -m .well-known/sha256.json -x .well-known/sha256.json.minisig
+
+# 2) regenerate (after changes)
+python tools/gen_sha256_json.py
+bash tools/sign_minisign.sh
+
+# 3) quick linkcheck (local)
+python tools/linkcheck_local.py
+</code></pre>
+
+    </div>
+
+    <div class="footer">
+      <div>HGPeDU is a static trust node: integrity via <code>.well-known/sha256.json</code> + <code>minisign</code>.</div>
+      <div class="muted">If you modified anything, regenerate and re-sign the manifest before deployment.</div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+{
+  "schema_version": "onetoo.ai-search.publisher.v1",
+  "publisher": {
+    "name": "HGP Edu Portal",
+    "url": "https://hgpedu.eu",
+    "category": [
+      "Education",
+      "Research",
+      "AI",
+      "Trust"
+    ]
+  },
+  "content": {
+    "type": "static-site",
+    "start_urls": [
+      "https://hgpedu.eu/pages/showroom.html",
+      "https://hgpedu.eu/pages/tfws.html",
+      "https://hgpedu.eu/pages/safety.html"
+    ]
+  },
+  "verification": {
+    "minisign_pub": "https://hgpedu.eu/.well-known/minisign.pub",
+    "sha256_manifest": "https://hgpedu.eu/.well-known/sha256.json",
+    "sha256_manifest_sig": "https://hgpedu.eu/.well-known/sha256.json.minisig"
+  },
+  "upstream": {
+    "onetoo_trust_root": "https://www.onetoo.eu",
+    "ai_search": "https://search.onetoo.eu"
+  }
+}

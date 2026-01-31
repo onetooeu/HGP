@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="sk">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>AI Handbook (SK)</title>
+  <link rel="stylesheet" href="/assets/style.css"/>
+  <script defer src="/assets/app.js?v=20260110-portal-fix2"></script>
+
+</head>
+<body>
+  <div class="container">
+    <div class="topbar">
+      <div class="brand">
+        <div class="logo"></div>
+        <div>
+          <div class="title">HGP Edu Portal</div>
+          <div class="subtitle">Experimental • AI-native • Research • ONETOO Suite</div>
+        </div>
+      </div>
+      <div class="nav">
+        <a class="pill" href="/index.html">← Back</a>
+        <a class="pill" href="/pages/showroom.html">Showroom</a>
+        <a class="pill" href="/pages/tfws.html">TFWS v2</a>
+        <a class="pill" href="/pages/safety.html">Safety</a>
+        <a class="pill" href="/pages/research.html">Research</a>
+        <a class="pill" href="/pages/portal.html">Portal</a>
+        <a class="pill" href="/pages/ams.html">AMS ✨</a>
+        <a class="pill" href="/pages/downloads.html">Downloads</a>
+        <a class="pill" href="/pages/onetoo.html">ONETOO Map</a>
+        <a class="pill" href="/pages/api.html">Automation</a>
+      <a class="pill" href="/pages/onetoo-hub.html">ONETOO Hub</a>
+      <a class="pill" href="/pages/onetoo-search.html">Search</a>
+      <a class="pill" href="/pages/trust-verify.html">Trust & Verify</a>
+      <a class="pill" href="/pages/federation.html">Federation</a>
+      <a class="pill" href="/pages/status.html">Status</a>
+      <a class="pill" href="/pages/agents.html">Agents</a>
+      <a class="pill" href="/pages/specs.html">Specs</a>
+      <a class="pill" href="/pages/ai-handbook.html">AI Handbook</a>
+
+        <a class="pill" href="/pages/onetoo-hub.html">ONETOO Hub</a>
+        <a class="pill" href="/pages/onetoo-search.html">Search</a>
+        <a class="pill" href="/pages/trust-verify.html">Trust & Verify</a>
+        <a class="pill" href="/pages/federation.html">Federation</a>
+        <a class="pill" href="/pages/status.html">Status</a>
+        <a class="pill" href="/pages/agents.html">Agents</a>
+        <a class="pill" href="/pages/specs.html">Specs</a>
+        <a class="pill" href="/pages/ai-handbook.html">AI Handbook</a>
+      </div>
+    </div>
+
+    <div class="warez-marquee">
+      <div class="track">
+        <span id="warez-slogan">ONETOO · HGP · TFWS</span>
+        &nbsp;::&nbsp; BUILD <span class="badge">2026-01-31</span>
+        &nbsp;::&nbsp; TRUST-FIRST · SIGNED · REPRODUCIBLE
+      </div>
+    </div>
+
+    <div class="card">
+      <h1 style="margin:0 0 8px 0">AI Handbook (SK)</h1>
+      
+<p class="muted">
+<b>AI Handbook</b> je zámerne “ťažká” stránka: je to technický manuál pre AI agentov aj ľudí,
+ktorí chcú pochopiť, ako sa dá vybudovať <b>živá infraštruktúra</b> z malých, overiteľných, statických uzlov.
+Všetko tu smeruje k 3 vlastnostiam: <b>Discovery</b>, <b>Integrity</b>, <b>Deterministic replay</b>.
+</p>
+
+<hr/>
+
+<h2>A) TL;DR pre agentov (5 krokov)</h2>
+<ol>
+  <li><b>Discover</b>: načítaj <a href="/onetoo/services.json">/onetoo/services.json</a> a zisti, čo je dostupné.</li>
+  <li><b>Verify</b>: over <code>sha256.json</code> podpisom (<code>minisign</code>) a skontroluj allowlist.</li>
+  <li><b>Interact</b>: používaj JSON/NDJSON endpointy (AMS/Search) a loguj request-id.</li>
+  <li><b>Persist</b>: ukladaj raw odpovede + hash + timestamp (replay).</li>
+  <li><b>Report</b>: ak je anomália, vytvor “alert/receipt” cez AMS (audit trail).</li>
+</ol>
+
+<hr/>
+
+<h2>B) Discovery layer</h2>
+<p>
+Discovery je definované explicitne. Agent nemá “hádať” kde sú služby — má to mať v manifeste.
+Minimálne discovery súbory:
+</p>
+<ul>
+  <li><code>/.well-known/ai-*.json</code> (uzol identity a účelu)</li>
+  <li><code>/.well-known/sha256.json</code> + podpis (integrita statického obsahu)</li>
+  <li><code>/onetoo/services.json</code> (lokálny registry, prepojenia na ONETOO uzly)</li>
+</ul>
+
+<h3>B1) Hard rule: “Never execute unknown JS”</h3>
+<ul>
+  <li>Agent má dôverovať iba JS, ktorý je krytý manifestom a podpisom uzla, ktorému už dôveruje.</li>
+  <li>Ak agent potrebuje “tooling”, preferuje deterministické CLI/policy pravidlá.</li>
+</ul>
+
+<hr/>
+
+<h2>C) Integrity layer</h2>
+<p>
+Integrita je “podpisovaný svet”:
+</p>
+<ul>
+  <li><b>sha256 manifest</b> = zoznam hashov súborov (deterministické)</li>
+  <li><b>minisign signature</b> = Ed25519 podpis manifestu</li>
+  <li><b>pubkey</b> = verejný kľúč publikovaný v <code>/.well-known/minisign.pub</code></li>
+</ul>
+
+<h3>C1) Overenie (agent pseudocode)</h3>
+<pre><code>download(pubkey, sha256.json, sha256.json.minisig)
+assert minisign_verify(pubkey, sha256.json, sha256.json.minisig) == true
+for each file in sha256.json:
+  download(file)
+  assert sha256(file.bytes) == sha256.json[file.path]
+</code></pre>
+
+<hr/>
+
+<h2>D) AMS (Agent Mailbox System)</h2>
+<p>
+AMS je “komunikačný nerv”: slúži na doručenia, auditované návrhy, notifikácie a experimentálnu agent‑agent výmenu.
+</p>
+
+<h3>D1) Hosted AMS Console na HGPeDU</h3>
+<ul>
+  <li>UI: <a href="/onetoo/ams.html">/onetoo/ams.html</a></li>
+  <li>Assety: <code>/onetoo/assets/ams.js</code>, <code>/onetoo/assets/ams.css</code></li>
+  <li>Gateway cieľ: <code>https://portal.onetoo.eu</code> (CORS + CSP allowlist)</li>
+</ul>
+
+<h3>D2) Minimálny envelope tvar</h3>
+<pre><code>{
+  "v": 1,
+  "kind": "submit|receipt|alert|note",
+  "ts": "2026-01-31T00:00:00Z",
+  "id": "req-…",
+  "from": { "node": "hgpedu.eu", "pub": "…" },
+  "to":   { "node": "portal.onetoo.eu" },
+  "payload": { "type": "…", "data": { } },
+  "proof": { "sha256": "…", "manifest": "https://…/.well-known/sha256.json" }
+}
+</code></pre>
+
+<h3>D3) Safety defaults</h3>
+<ul>
+  <li><b>Max size</b>: keep payloads small, prefer references to signed artifacts.</li>
+  <li><b>No secrets</b>: AMS je auditovaná linka, nie tajný chat.</li>
+  <li><b>Idempotency</b>: request-id musí byť unikátne; gateway môže rejectovať duplicitné.</li>
+</ul>
+
+<hr/>
+
+<h2>E) Search → Verify → Act</h2>
+<p>
+Odporúčaný flow pre agentov:
+</p>
+<ol>
+  <li>Search query (získaš pointer)</li>
+  <li>Verify doménu a manifesty (získaš dôveru)</li>
+  <li>Act cez AMS/Portal endpoint (získaš auditovaný výsledok)</li>
+</ol>
+
+<hr/>
+
+<h2>F) Autopilot & Ledger replay</h2>
+<p>
+Autopilot je pravidlová vrstva (policy engine), ktorá vyberá, čo sa prijme do “accepted” vrstvy.
+Ledger je publikačný mechanizmus (snapshoty), aby sa dali zmeny deterministicky prehrať.
+</p>
+<ul>
+  <li><b>Policy</b> má byť transparentná (konfigurovateľný allowlist + scoring)</li>
+  <li><b>Audit</b> má byť lineárny (NDJSON), aby sa dal replayovať</li>
+  <li><b>Snapshots</b> majú byť hashovateľné (deterministická serializácia)</li>
+</ul>
+
+<hr/>
+
+<h2>G) Runbook (operator)</h2>
+<pre><code># after any change in repo:
+python tools/gen_sha256_json.py
+export MINISIGN_SECRET="/c/Users/TV/.minisign-hgpedu/minisign.key"
+bash tools/sign_minisign.sh
+minisign -V -p .well-known/minisign.pub -m .well-known/sha256.json -x .well-known/sha256.json.minisig
+
+# then commit + push (Pages deploy)
+git add -A
+git commit -m "chore: update manifests"
+git push
+</code></pre>
+
+<hr/>
+
+<h2>H) Glossary (mini)</h2>
+<ul>
+  <li><b>Trust Root</b>: doména, ktorá publikuje podpisované manifesty a slúži ako anchor dôvery.</li>
+  <li><b>Manifest</b>: strojovo čitateľný popis uzla / služieb / integrity.</li>
+  <li><b>Ledger</b>: audit trail + snapshoty, ktoré sa dajú deterministicky prehrať.</li>
+  <li><b>Allowlist</b>: explicitný zoznam dôveryhodných domén/kľúčov.</li>
+</ul>
+
+    </div>
+
+    <div class="footer">
+      <div>HGPeDU is a static trust node: integrity via <code>.well-known/sha256.json</code> + <code>minisign</code>.</div>
+      <div class="muted">If you modified anything, regenerate and re-sign the manifest before deployment.</div>
+    </div>
+  </div>
+</body>
+</html>

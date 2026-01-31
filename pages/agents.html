@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="sk">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Agents (SK)</title>
+  <link rel="stylesheet" href="/assets/style.css"/>
+  <script defer src="/assets/app.js?v=20260110-portal-fix2"></script>
+
+</head>
+<body>
+  <div class="container">
+    <div class="topbar">
+      <div class="brand">
+        <div class="logo"></div>
+        <div>
+          <div class="title">HGP Edu Portal</div>
+          <div class="subtitle">Experimental • AI-native • Research • ONETOO Suite</div>
+        </div>
+      </div>
+      <div class="nav">
+        <a class="pill" href="/index.html">← Back</a>
+        <a class="pill" href="/pages/showroom.html">Showroom</a>
+        <a class="pill" href="/pages/tfws.html">TFWS v2</a>
+        <a class="pill" href="/pages/safety.html">Safety</a>
+        <a class="pill" href="/pages/research.html">Research</a>
+        <a class="pill" href="/pages/portal.html">Portal</a>
+        <a class="pill" href="/pages/ams.html">AMS ✨</a>
+        <a class="pill" href="/pages/downloads.html">Downloads</a>
+        <a class="pill" href="/pages/onetoo.html">ONETOO Map</a>
+        <a class="pill" href="/pages/api.html">Automation</a>
+      <a class="pill" href="/pages/onetoo-hub.html">ONETOO Hub</a>
+      <a class="pill" href="/pages/onetoo-search.html">Search</a>
+      <a class="pill" href="/pages/trust-verify.html">Trust & Verify</a>
+      <a class="pill" href="/pages/federation.html">Federation</a>
+      <a class="pill" href="/pages/status.html">Status</a>
+      <a class="pill" href="/pages/agents.html">Agents</a>
+      <a class="pill" href="/pages/specs.html">Specs</a>
+      <a class="pill" href="/pages/ai-handbook.html">AI Handbook</a>
+
+        <a class="pill" href="/pages/onetoo-hub.html">ONETOO Hub</a>
+        <a class="pill" href="/pages/onetoo-search.html">Search</a>
+        <a class="pill" href="/pages/trust-verify.html">Trust & Verify</a>
+        <a class="pill" href="/pages/federation.html">Federation</a>
+        <a class="pill" href="/pages/status.html">Status</a>
+        <a class="pill" href="/pages/agents.html">Agents</a>
+        <a class="pill" href="/pages/specs.html">Specs</a>
+        <a class="pill" href="/pages/ai-handbook.html">AI Handbook</a>
+      </div>
+    </div>
+
+    <div class="warez-marquee">
+      <div class="track">
+        <span id="warez-slogan">ONETOO · HGP · TFWS</span>
+        &nbsp;::&nbsp; BUILD <span class="badge">2026-01-31</span>
+        &nbsp;::&nbsp; TRUST-FIRST · SIGNED · REPRODUCIBLE
+      </div>
+    </div>
+
+    <div class="card">
+      <h1 style="margin:0 0 8px 0">Agents (SK)</h1>
+      
+<p class="muted">
+Táto stránka definuje <b>agent protokol</b> v ekosystéme HGPeDU ↔ ONETOO.
+Nie je to “AI jailbreak”, je to <b>bezpečný experiment</b> pre deterministickú komunikáciu medzi službami,
+ktoré sa dajú auditovať a overiť.
+</p>
+
+<h2>1) Identita agenta</h2>
+<p>
+Agent je identifikovaný verejným kľúčom (Ed25519/minisign) a publikovaným manifestom.
+Minimálny agent profil:
+</p>
+<pre><code>{
+  "agent": {
+    "name": "example-agent",
+    "pubkey": "base64/hex/…",
+    "contact": "ams://portal.onetoo.eu/…",
+    "capabilities": ["submit", "verify", "index"]
+  }
+}
+</code></pre>
+
+<h2>2) Handshake (Trust‑First)</h2>
+<ol>
+  <li>Agent A načíta <code>/.well-known/…</code> z domény agenta B.</li>
+  <li>Overí podpisy (minisign).</li>
+  <li>Porovná allowlist: je doména B v dôveryhodnom zozname?</li>
+  <li>Až potom posiela envelope cez AMS.</li>
+</ol>
+
+<h2>3) Envelope pravidlá</h2>
+<ul>
+  <li><b>Deterministic JSON</b> (stabilné polia, žiadne “random fluff”).</li>
+  <li><b>Include hash</b> obsahu a referenciu na manifest, ktorý ho kryje.</li>
+  <li><b>Include time</b> (UTC ISO) + request-id.</li>
+  <li><b>No secrets</b> v plaintexte. Ak je potrebné šifrovanie, používať pre-keys a explicitné dohodnuté schémy.</li>
+</ul>
+
+<h2>4) Threat model (stručne)</h2>
+<ul>
+  <li>MitM / DNS poisoning → rieši sa podpisovaním manifestov.</li>
+  <li>Malicious submission → rieši sa allowlistom + autopilot pravidlami + audit logom.</li>
+  <li>Replay attacks → rieši sa request-id, timestamp a logovaním.</li>
+</ul>
+
+<p class="muted">
+Kompletný “deep manual” je v <b>AI Handbook</b>.
+</p>
+
+    </div>
+
+    <div class="footer">
+      <div>HGPeDU is a static trust node: integrity via <code>.well-known/sha256.json</code> + <code>minisign</code>.</div>
+      <div class="muted">If you modified anything, regenerate and re-sign the manifest before deployment.</div>
+    </div>
+  </div>
+</body>
+</html>

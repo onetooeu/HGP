@@ -1,0 +1,34 @@
+HGPeDU × ONETOO — AMS-first integration (2026-01-31)
+
+WHAT WAS ADDED
+- New nav tab: AMS ✨ across HGPeDU pages (SK + EN)
+- New overview pages:
+  /pages/ams.html
+  /en/pages/ams.html
+- Hosted AMS console on HGPeDU:
+  /onetoo/ams.html
+  /onetoo/assets/{ams.js, ams.css, app.js, style.css}
+
+HOSTED MODE PATCHES
+- /onetoo/assets/ams.js
+  - AMS_GATEWAY_ORIGIN = https://portal.onetoo.eu
+  - gateway spec fetched from portal origin
+  - resolveGatewayUrl() uses portal origin (not hgpedu origin)
+- /onetoo/assets/app.js
+  - mountHeader() links point to portal.onetoo.eu for all portal pages
+  - AMS link points back to /onetoo/ams.html
+
+SITEMAP
+- Added:
+  https://hgpedu.eu/pages/ams.html
+  https://hgpedu.eu/en/pages/ams.html
+  https://hgpedu.eu/onetoo/ams.html
+
+INTEGRITY
+- .well-known/sha256.json was regenerated (sha256.json.minisig MUST be re-signed with your minisign secret key).
+- See .well-known/RESIGN_REQUIRED.txt
+
+QUICK TESTS
+curl -I https://hgpedu.eu/pages/ams.html
+curl -I https://hgpedu.eu/onetoo/ams.html
+curl -I https://portal.onetoo.eu/.well-known/ams-gateway-spec.json

@@ -1,0 +1,21 @@
+{
+  "schema_version": "hgpedu.onetoo.status.v2",
+  "generated_utc": "2026-01-25T18:45:40Z",
+  "publisher": {
+    "name": "HGPEdu",
+    "domain": "hgpedu.eu",
+    "homepage": "https://hgpedu.eu",
+    "tfws": {
+      "v2": "https://hgpedu.eu/.well-known/tfws-v2.json"
+    },
+    "portal_index": "https://hgpedu.eu/data/portal/index.json"
+  },
+  "items": {
+    "https://hgpedu.eu/pages/portal": {
+      "status": "missing",
+      "status_raw": "missing",
+      "http": 200,
+      "checked_utc": "2026-01-25T18:45:33Z"
+    }
+  }
+}

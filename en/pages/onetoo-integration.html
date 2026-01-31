@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>ONETOO Integration</title>
+  <link rel="stylesheet" href="/assets/style.css"/>
+</head>
+<body>
+  <div class="container">
+    <div class="topbar">
+      <div class="brand">
+        <div class="logo"></div>
+        <div>
+          <div style="font-weight:800;letter-spacing:.2px">HGPEdu ↔ ONETOO</div>
+          <div class="badge">Full integration · autonomous organism</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end">
+        <a class="pill" href="/en/pages/portal.html">Portal</a>
+      <a class="pill" href="/en/pages/ams.html">AMS ✨</a>
+        <a class="pill" href="/index.html">Home</a>
+        <a class="pill" href="https://www.onetoo.eu" target="_blank" rel="noopener">onetoo.eu</a>
+      </div>
+    </div>
+
+    
+    <div class="warez-marquee">
+      <div class="track">
+        <span id="warez-slogan">WELCOME</span>
+        &nbsp;::&nbsp; VISITS <span id="warez-counter">000000</span>
+        &nbsp;::&nbsp; <span style="color:var(--neonM);text-shadow:var(--glowM)">HGPeDU</span>
+        &nbsp;::&nbsp; <span style="color:var(--neonC);text-shadow:var(--glowC)">TFWS v2</span>
+        &nbsp;::&nbsp; <span style="color:var(--neonG);text-shadow:var(--glowG)">ONETOO</span>
+        &nbsp;::&nbsp; AUTOPILOT ONLINE
+      </div>
+    </div>
+
+    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:flex-end;margin:0 0 10px;">
+      <button class="btn" id="btn-safe-toggle">SAFE MODE: OFF</button>
+      <span class="badge">Tip: Safe Mode disables CRT + neon</span>
+    </div>
+<div class="hero">
+      <h1>Full integration (Portal Autopilot + ONETOO AI Search Autopilot)</h1>
+      <p>
+        This site is static, but it behaves like a living system: contributions arrive via GitHub Issues, are validated,
+        published to the portal feed, and then automatically submitted to ONETOO AI Search (global index).
+      </p>
+
+      <div class="card">
+        <h3>Autonomous pipeline</h3>
+        <div class="code">Issue → validate JSON → publish /portal/index.json → submit to search.onetoo.eu → track status → rebuild</div>
+      </div>
+
+      <h2>Roadmap</h2>
+      <ul>
+        <li><b>Now:</b> Issue-driven publishing to <code>/portal/index.json</code> (no human step).</li>
+        <li><b>Next:</b> Automatic submit to ONETOO contrib API and local submission ledger <code>/portal/submissions.json</code>.</li>
+        <li><b>Next:</b> Display ONETOO acceptance status in the portal table (accepted / pending / rejected).</li>
+        <li><b>Optional:</b> Signed payloads (Minisign) using GitHub Actions secrets for fully auditable provenance.</li>
+      </ul>
+
+      <h2>Where the data lives</h2>
+      <ul>
+        <li>Portal feed: <a href="/portal/index.json">/portal/index.json</a></li>
+        <li>Submission store: <a href="/portal/submissions.json">/portal/submissions.json</a></li>
+      </ul>
+
+      <h2>How users contribute</h2>
+      <ol>
+        <li>Open a GitHub Issue titled <code>[PORTAL] ...</code></li>
+        <li>Paste one JSON object (template is provided)</li>
+        <li>Autopilot does the rest</li>
+      </ol>
+
+      <div class="card">
+        <h3>Important</h3>
+        <p>
+          ONETOO submission requires an API token. Store it as a GitHub Actions secret (e.g. <code>ONETOO_TOKEN</code>).
+          This keeps the pipeline autonomous while protecting credentials.
+        </p>
+      </div>
+    </div>
+
+    <div class="footer">Static-first · Audit-ready · TFWS v2 compatible</div>
+  </div>
+<script src="/assets/warez.js?v=20260110-portal-fix2"></script>
+</body>
+</html>

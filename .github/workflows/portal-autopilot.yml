@@ -1,0 +1,80 @@
+name: Portal Autopilot
+
+on:
+  issues:
+    types: [opened, edited, reopened]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: portal-autopilot
+  cancel-in-progress: false
+
+jobs:
+  autopilot:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch' || (github.event.issue && startsWith(github.event.issue.title, '[PORTAL]'))
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run autopilot (validate + publish)
+        env:
+          BODY: ${{ github.event.issue.body }}
+        run: |
+          python tools/portal_autopilot.py --issue ${{ github.event.issue.number }}
+
+      - name: Update TFWS sha256 manifest
+        run: |
+          python tools/gen_sha256_json.py --include data/portal/index.json --include data/portal/entries.jsonl
+
+      - name: Optional minisign (if secret key provided)
+        env:
+          MINISIGN_SECRET_KEY: ${{ secrets.MINISIGN_SECRET_KEY }}
+          MINISIGN_PASSPHRASE: ${{ secrets.MINISIGN_PASSPHRASE }}
+        run: |
+          set -e
+          if [ -z "${MINISIGN_SECRET_KEY}" ]; then
+            echo "No MINISIGN_SECRET_KEY secret configured; skipping signature."
+            exit 0
+          fi
+          sudo apt-get update -y
+          sudo apt-get install -y minisign
+          echo "${MINISIGN_SECRET_KEY}" > minisign.key
+          minisign -S -s minisign.key -m .well-known/sha256.json -x .well-known/sha256.json.minisig -P "${MINISIGN_PASSPHRASE}"
+          rm -f minisign.key
+
+      - name: Commit changes
+        run: |
+          git config user.name "hgpedu-portal-autopilot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/portal/index.json data/portal/entries.jsonl data/portal/decisions .well-known/sha256.json .well-known/sha256.json.minisig
+          git commit -m "portal: autopublish entry from issue #${{ github.event.issue.number }}" || echo "No changes"
+          git push
+
+      - name: Comment + close
+        if: ${{ github.event.issue.number }}
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issue_number = context.payload.issue.number;
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number,
+              body: "✅ Portal autopilot: processed submission. If accepted, it is now in `data/portal/index.json` and will appear on `/pages/portal.html` after Pages rebuild."
+            });
+            await github.rest.issues.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number,
+              state: "closed"
+            });

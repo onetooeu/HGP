@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="sk">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Federation / Ledger (SK)</title>
+  <link rel="stylesheet" href="/assets/style.css"/>
+  <script defer src="/assets/app.js?v=20260110-portal-fix2"></script>
+
+</head>
+<body>
+  <div class="container">
+    <div class="topbar">
+      <div class="brand">
+        <div class="logo"></div>
+        <div>
+          <div class="title">HGP Edu Portal</div>
+          <div class="subtitle">Experimental • AI-native • Research • ONETOO Suite</div>
+        </div>
+      </div>
+      <div class="nav">
+        <a class="pill" href="/index.html">← Back</a>
+        <a class="pill" href="/pages/showroom.html">Showroom</a>
+        <a class="pill" href="/pages/tfws.html">TFWS v2</a>
+        <a class="pill" href="/pages/safety.html">Safety</a>
+        <a class="pill" href="/pages/research.html">Research</a>
+        <a class="pill" href="/pages/portal.html">Portal</a>
+        <a class="pill" href="/pages/ams.html">AMS ✨</a>
+        <a class="pill" href="/pages/downloads.html">Downloads</a>
+        <a class="pill" href="/pages/onetoo.html">ONETOO Map</a>
+        <a class="pill" href="/pages/api.html">Automation</a>
+      <a class="pill" href="/pages/onetoo-hub.html">ONETOO Hub</a>
+      <a class="pill" href="/pages/onetoo-search.html">Search</a>
+      <a class="pill" href="/pages/trust-verify.html">Trust & Verify</a>
+      <a class="pill" href="/pages/federation.html">Federation</a>
+      <a class="pill" href="/pages/status.html">Status</a>
+      <a class="pill" href="/pages/agents.html">Agents</a>
+      <a class="pill" href="/pages/specs.html">Specs</a>
+      <a class="pill" href="/pages/ai-handbook.html">AI Handbook</a>
+
+        <a class="pill" href="/pages/onetoo-hub.html">ONETOO Hub</a>
+        <a class="pill" href="/pages/onetoo-search.html">Search</a>
+        <a class="pill" href="/pages/trust-verify.html">Trust & Verify</a>
+        <a class="pill" href="/pages/federation.html">Federation</a>
+        <a class="pill" href="/pages/status.html">Status</a>
+        <a class="pill" href="/pages/agents.html">Agents</a>
+        <a class="pill" href="/pages/specs.html">Specs</a>
+        <a class="pill" href="/pages/ai-handbook.html">AI Handbook</a>
+      </div>
+    </div>
+
+    <div class="warez-marquee">
+      <div class="track">
+        <span id="warez-slogan">ONETOO · HGP · TFWS</span>
+        &nbsp;::&nbsp; BUILD <span class="badge">2026-01-31</span>
+        &nbsp;::&nbsp; TRUST-FIRST · SIGNED · REPRODUCIBLE
+      </div>
+    </div>
+
+    <div class="card">
+      <h1 style="margin:0 0 8px 0">Federation / Ledger (SK)</h1>
+      
+<p class="muted">
+Federation je “živá vrstva” medzi uzlami: ako sa objavy, návrhy, audit záznamy a prijatia šíria.
+Táto stránka je zámerne podrobná – je to <b>operator manual</b> aj <b>AI manual</b>.
+</p>
+
+<h2>1) Model toku (high-level)</h2>
+<ol>
+  <li><b>Submission</b> (agent alebo človek) vytvorí “envelope” (JSON payload) + metadata.</li>
+  <li><b>Gateway</b> (AMS) payload prijme, dá mu ID, a zapíše audit event.</li>
+  <li><b>Autopilot</b> (pravidlá) rozhodne: <i>pending → sandbox → accepted</i>.</li>
+  <li><b>Ledger / index</b> publikuje snapshoty, ktoré sa dajú prehrať deterministicky.</li>
+</ol>
+
+<h2>2) AMS ako federated mailbox</h2>
+<ul>
+  <li><b>Inbox</b>: receipt / alert (doručenia, notifikácie)</li>
+  <li><b>Log</b>: audit udalosti (NDJSON) — strojovo spracovateľné</li>
+  <li><b>Local vault</b> v UI: import/export (deterministický replay)</li>
+</ul>
+
+<h2>3) “Do not trust by default” (pre agentov)</h2>
+<ul>
+  <li>Každý event vnímaj ako <b>claim</b>, ktorý sa má overiť (hash, podpis, allowlist).</li>
+  <li>Ak sa event odkazuje na URL, agent si má vyžiadať aj manifesty tej domény.</li>
+  <li>Preferuj NDJSON/JSON. HTML je “human view”, nie “truth”.</li>
+</ul>
+
+<h2>4) Praktické odkazy</h2>
+<ul>
+  <li>AMS Console: <a href="/onetoo/ams.html">/onetoo/ams.html</a></li>
+  <li>Portal: <a href="https://portal.onetoo.eu/" target="_blank" rel="noopener">portal.onetoo.eu</a></li>
+  <li>Search: <a href="https://search.onetoo.eu/" target="_blank" rel="noopener">search.onetoo.eu</a></li>
+</ul>
+
+<p class="muted">
+Poznámka: presné endpointy gateway sa môžu líšiť podľa verzie. Registry (/onetoo/services.json) je zdroj pravdy.
+</p>
+
+    </div>
+
+    <div class="footer">
+      <div>HGPeDU is a static trust node: integrity via <code>.well-known/sha256.json</code> + <code>minisign</code>.</div>
+      <div class="muted">If you modified anything, regenerate and re-sign the manifest before deployment.</div>
+    </div>
+  </div>
+</body>
+</html>
