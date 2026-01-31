@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="sk">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>TFWS v2 (SK)</title>
+  <link rel="stylesheet" href="/assets/style.css"/>
+  <script defer src="/assets/app.js?v=20260110-portal-fix2"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="topbar">
+      <div class="brand">
+        <div class="logo"></div>
+        <div>
+          <div style="font-weight:800;letter-spacing:.2px">HGP Edu Portal</div>
+          <div class="badge">TFWS v2 · ONETOO Showcase · Static Trust Node</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end">
+        <a class="pill" href="/index.html">SK</a>
+        <a class="pill" href="/en/index.html">EN</a>
+        <a class="pill" href="https://www.onetoo.eu" target="_blank" rel="noopener">onetoo.eu</a>
+      </div>
+    </div>
+    <div class="nav">
+      <a class="pill" href="/index.html">← Back</a>
+      <a class="pill" href="/pages/showroom.html">Showroom</a>
+      <a class="pill" href="/pages/tfws.html">TFWS v2</a>
+      <a class="pill" href="/pages/safety.html">Safety</a>
+      <a class="pill" href="/pages/research.html">Research</a>
+      <a class="pill" href="/pages/portal.html">Portal</a>
+      <a class="pill" href="/pages/ams.html">AMS ✨</a>
+      <a class="pill" href="/pages/downloads.html">Downloads</a>
+      <a class="pill" href="/pages/onetoo.html">ONETOO Map</a>
+      <a class="pill" href="/pages/api.html">Automation</a>
+    </div>
+    <div class="hero">
+<h1>TFWS v2</h1>
+<p>Publishing flow + manifesty pre verifikovateľný statický uzol.</p>
+<div class="code">python tools/generate_sha256_manifest.py --root . --out .well-known/sha256.json
+minisign -G -p .well-known/minisign.pub -s minisign.key
+MINISIGN_SECRET=./minisign.key bash tools/sign_minisign.sh
+bash tools/verify_minisign.sh</div>
+<ul>
+  <li><a href="/.well-known/tfws-v2.json">/.well-known/tfws-v2.json</a></li>
+  <li><a href="/.well-known/ai-trust-hub.json">/.well-known/ai-trust-hub.json</a></li>
+  <li><a href="/.well-known/ai-search.publisher.json">/.well-known/ai-search.publisher.json</a></li>
+  <li><a href="/.well-known/ai-governance.json">/.well-known/ai-governance.json</a></li>
+  <li><a href="/.well-known/sha256.json">/.well-known/sha256.json</a></li>
+</ul>
+</div>
+    <div class="footer">Static-first, verifiable, archival-grade portal. No backend. Trust-first.</div>
+  </div>
+</body>
+</html>

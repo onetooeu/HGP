@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="sk">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Showroom (SK)</title>
+  <link rel="stylesheet" href="/assets/style.css"/>
+  <script defer src="/assets/app.js?v=20260110-portal-fix2"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="topbar">
+      <div class="brand">
+        <div class="logo"></div>
+        <div>
+          <div style="font-weight:800;letter-spacing:.2px">HGP Edu Portal</div>
+          <div class="badge">TFWS v2 · ONETOO Showcase · Static Trust Node</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end">
+        <a class="pill" href="/index.html">SK</a>
+        <a class="pill" href="/en/index.html">EN</a>
+        <a class="pill" href="https://www.onetoo.eu" target="_blank" rel="noopener">onetoo.eu</a>
+      </div>
+    </div>
+    <div class="nav">
+      <a class="pill" href="/index.html">← Back</a>
+      <a class="pill" href="/pages/showroom.html">Showroom</a>
+      <a class="pill" href="/pages/tfws.html">TFWS v2</a>
+      <a class="pill" href="/pages/safety.html">Safety</a>
+      <a class="pill" href="/pages/research.html">Research</a>
+      <a class="pill" href="/pages/portal.html">Portal</a>
+      <a class="pill" href="/pages/ams.html">AMS ✨</a>
+      <a class="pill" href="/pages/downloads.html">Downloads</a>
+      <a class="pill" href="/pages/onetoo.html">ONETOO Map</a>
+      <a class="pill" href="/pages/api.html">Automation</a>
+    </div>
+    
+    <div class="warez-marquee">
+      <div class="track">
+        <span id="warez-slogan">WELCOME</span>
+        &nbsp;::&nbsp; VISITS <span id="warez-counter">000000</span>
+        &nbsp;::&nbsp; <span style="color:var(--neonM);text-shadow:var(--glowM)">HGPeDU</span>
+        &nbsp;::&nbsp; <span style="color:var(--neonC);text-shadow:var(--glowC)">TFWS v2</span>
+        &nbsp;::&nbsp; <span style="color:var(--neonG);text-shadow:var(--glowG)">ONETOO</span>
+        &nbsp;::&nbsp; AUTOPILOT ONLINE
+      </div>
+    </div>
+
+    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:flex-end;margin:0 0 10px;">
+      <button class="btn" id="btn-safe-toggle">SAFE MODE: OFF</button>
+      <span class="badge">Tip: Safe Mode disables CRT + neon</span>
+    </div>
+<div class="hero">
+<h1>ONETOO Showroom</h1>
+<p>Live kontrola TFWS/ONETOO trust surface na tvojej doméne.</p>
+<button class="btn" onclick="HGP.runTrustInspector(window.location.origin)">Run Trust Inspector (replace canonical after deploy)</button>
+<table class="table" style="margin-top:12px">
+<thead><tr><th>Name</th><th>URL</th><th>Status</th><th>Detail</th></tr></thead>
+<tbody id="trust-table-body"></tbody>
+</table>
+<hr/>
+<div class="code">curl -s https://hgpedu.eu/.well-known/ai-trust-hub.json | head
+curl -s https://hgpedu.eu/.well-known/sha256.json | head</div>
+</div>
+    <div class="footer">Static-first, verifiable, archival-grade portal. No backend. Trust-first.</div>
+  </div>
+<script src="/assets/warez.js?v=20260110-portal-fix2"></script>
+</body>
+</html>

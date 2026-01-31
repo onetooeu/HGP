@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="sk">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Portal (SK)</title>
+  <link rel="stylesheet" href="/assets/style.css"/>
+  <script defer src="/assets/app.js?v=20260110-portal-fix2"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="topbar">
+      <div class="brand">
+        <div class="logo"></div>
+        <div>
+          <div style="font-weight:800;letter-spacing:.2px">HGP Edu Portal</div>
+          <div class="badge">TFWS v2 · ONETOO Showcase · Static Trust Node</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end">
+        <a class="pill" href="/index.html">SK</a>
+        <a class="pill" href="/en/index.html">EN</a>
+        <a class="pill" href="https://www.onetoo.eu" target="_blank" rel="noopener">onetoo.eu</a>
+      </div>
+    </div>
+    <div class="nav">
+      <a class="pill" href="/index.html">← Back</a>
+      <a class="pill" href="/pages/showroom.html">Showroom</a>
+      <a class="pill" href="/pages/tfws.html">TFWS v2</a>
+      <a class="pill" href="/pages/safety.html">Safety</a>
+      <a class="pill" href="/pages/research.html">Research</a>
+      <a class="pill" href="/pages/portal.html">Portal</a>
+      <a class="pill" href="/pages/ams.html">AMS ✨</a>
+      <a class="pill" href="/pages/downloads.html">Downloads</a>
+      <a class="pill" href="/pages/onetoo.html">ONETOO Map</a>
+      <a class="pill" href="/pages/api.html">Automation</a>
+    </div>
+
+    <div class="warez-marquee">
+      <div class="track">
+        <span id="warez-slogan">WELCOME</span>
+        &nbsp;::&nbsp; VISITS <span id="warez-counter">000000</span>
+        &nbsp;::&nbsp; <span style="color:var(--neonM);text-shadow:var(--glowM)">HGPeDU</span>
+        &nbsp;::&nbsp; <span style="color:var(--neonC);text-shadow:var(--glowC)">TFWS v2</span>
+        &nbsp;::&nbsp; <span style="color:var(--neonG);text-shadow:var(--glowG)">ONETOO</span>
+        &nbsp;::&nbsp; AUTOPILOT ONLINE
+      </div>
+    </div>
+
+    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:flex-end;margin:0 0 10px;">
+      <button class="btn" id="btn-safe-toggle">SAFE MODE: OFF</button>
+      <span class="badge">Tip: Safe Mode disables CRT + neon</span>
+    </div>
+
+<div class="hero">
+  <h1>HGP Portal 2.0</h1>
+  <p>Minimalistický „bazos“ štýl: prehľad príspevkov + jednoduché vloženie záznamu. Bez backendu: príspevky sa posielajú cez GitHub Issue/PR vo formáte TFWS-štýl JSON.</p>
+</div>
+
+<div class="card" style="border:1px solid #eee; border-radius:14px; padding:12px; margin:12px 0; background:#fffbe6">
+  <div style="font-weight:800; margin-bottom:6px">ONETOO submit: vypnuté (Mozart mode)</div>
+  <div style="color:#444; line-height:1.35">Tento portál <b>neposiela</b> záznamy do ONETOO cez žiadny submit endpoint (momentálne neexistuje). Funguje ako <b>statický feed</b> + <b>GitHub Issue/PR</b>. ONETOO stav sa zobrazuje iba cez <b>read-only status sync</b> (lokálny ledger <code>/portal/submissions.json</code>).</div>
+</div>
+
+<div class="grid">
+  <div class="card">
+    <h3>Najnovšie záznamy</h3>
+
+    <div style="margin:6px 0 10px;font-size:13px;color:#666">
+      Status:
+      <span style="padding:2px 6px;border-radius:999px;background:#e6f0ff;border:1px solid #eee">VERIFIED_TFWS</span>
+      <span style="padding:2px 6px;border-radius:999px;background:#e6f7ea;border:1px solid #eee">VERIFIED</span>
+      <span style="padding:2px 6px;border-radius:999px;background:#fff4e5;border:1px solid #eee">MISSING</span>
+      <span style="padding:2px 6px;border-radius:999px;background:#ffecec;border:1px solid #eee">ERROR</span>
+      <span style="padding:2px 6px;border-radius:999px;background:#f3f3f3;border:1px solid #eee">PLANNED</span>
+    </div>
+
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0">
+      <input id="q" type="text" placeholder="Hľadať..." style="flex:1;min-width:220px"/>
+      <input id="cat" type="text" placeholder="Kategória..." style="min-width:180px"/>
+      <button class="btn" id="refreshBtn" type="button">↻</button>
+    </div>
+    <div id="feed" class="kv" style="grid-template-columns: 1fr; gap:10px"></div>
+    <p style="margin-top:10px;color:#666;font-size:14px">Poznámka: nepridávaj nebezpečné návody na stavbu, vysokonapäťové schémy alebo parametre. Publikuj teóriu, metodiku merania, výsledky a overiteľné dáta.</p>
+  </div>
+
+  <div class="card">
+    <h3>Vložiť záznam</h3>
+    <p style="margin-top:-6px;color:#666">TFWS-style JSON → Issue/PR. Minimal fields, všetko editovateľné.</p>
+    <div class="kv" style="grid-template-columns: 1fr; gap:10px">
+      <label>Názov<br/>
+        <input id="title" type="text" placeholder=""/>
+      </label>
+      <label>URL<br/>
+        <input id="url" type="text" placeholder=""/>
+      </label>
+      <label>Popis (krátko)<br/>
+        <textarea id="summary" rows="3" placeholder=""></textarea>
+      </label>
+      <label>Kategórie (CSV)<br/>
+        <input id="category" type="text" placeholder=""/>
+      </label>
+      <label>Autor / nick<br/>
+        <input id="author" type="text" placeholder=""/>
+      </label>
+      <label>Kontakt (voliteľné)<br/>
+        <input id="contact" type="text" placeholder=""/>
+      </label>
+      <label>Licencia (napr. CC BY 4.0)<br/>
+        <input id="license" type="text" placeholder=""/>
+      </label>
+    </div>
+
+    
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
+      <button class="btn" id="makeJsonBtn" type="button">JSON</button>
+      <a class="btn" id="downloadBtn" href="#" download="hgp-submission.json">Stiahnuť JSON</a>
+      <a class="btn" id="issueBtn" href="#" target="_blank" rel="noopener">Otvoriť GitHub Issue</a>
+      <button class="btn" id="submitOnetooBtn" type="button" title="Experimentálne: priamy submit do ONETOO (bez tokenu, podpis + PoW)">Submit do ONETOO</button>
+    </div>
+
+    <div id="onetooSubmitState" class="badge" style="margin-top:10px;display:inline-block">ONETOO submit: EXPERIMENTAL</div>
+
+
+    <pre id="out" style="margin-top:12px;white-space:pre-wrap;background:#0b1020;color:#e6e6e6;border-radius:14px;padding:12px;max-height:260px;overflow:auto"></pre>
+    <hr/>
+    <h3>Ako to funguje</h3>
+    <ol style="margin:0;padding-left:18px">
+      <li>Vyplň formulár → vygeneruje sa JSON payload.</li>
+      <li>Klikni „Otvoriť GitHub Issue“ (predvyplní sa text) alebo sprav PR do priečinka <code>/data/portal/submissions/</code>.</li>
+      <li>Kurátori (alebo neskôr autopilot) záznam skontrolujú a pridajú do indexu.</li>
+      <li>Feed sa aktualizuje automaticky po merge (statický web).</li>
+    </ol>
+
+  </div>
+</div>
+
+<script>
+(function(){
+  const INDEX_URL = "/data/portal/index.json";
+  const LEDGER_URL = "/portal/submissions.json";
+  const ISSUE_BASE = "https://github.com/onetooeu/HGP/issues/new?labels=portal&template=portal-submission.yml";
+
+  function nowISO(){ return new Date().toISOString(); }
+  function esc(s){ return (s||"").replace(/[&<>\"']/g, (c)=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c])); }
+
+  function normUrl(u){
+    u = (u||"").trim();
+    if(u.endsWith("/") && u !== "https://") u = u.slice(0,-1);
+    return u;
+  }
+  function eqUrl(a,b){
+    a = normUrl(a); b = normUrl(b);
+    if(a === b) return true;
+    return a.replace("https://www.","https://") === b.replace("https://www.","https://");
+  }
+  function ledgerRecordFor(url, ledgerItems){
+    const u = normUrl(url||"");
+    if(!u) return null;
+    if(ledgerItems && ledgerItems[u]) return ledgerItems[u];
+    if(ledgerItems){
+      for(const k in ledgerItems){
+        if(eqUrl(k,u)) return ledgerItems[k];
+      }
+    }
+    return null;
+  }
+
+  function statusHtml(url, ledgerItems){
+    const rec = ledgerRecordFor(url, ledgerItems);
+    let st = (rec && rec.status) ? String(rec.status) : "planned";
+    const checked = (rec && rec.checked_utc) ? String(rec.checked_utc) : "";
+
+    // Back-compat: old ledgers may still say "accepted"
+    if(st === "accepted") st = "verified";
+
+    const colors = {
+      verified_tfws: "#e6f0ff",
+      verified: "#e6f7ea",
+      accepted: "#e6f7ea",
+      missing:  "#fff4e5",
+      error:    "#ffecec",
+      planned:  "#f3f3f3"
+    };
+
+    const label = st.toUpperCase();
+    const bg = colors[st] || colors.planned;
+    const checkedShort = checked ? checked.slice(0,19).replace("T"," ") + "Z" : "";
+
+    return `
+      <div style="margin-top:6px;display:flex;align-items:center;gap:8px;">
+        <span style="padding:2px 8px;border-radius:999px;background:${bg};font-size:11.5px;border:1px solid #eee;color:#333;letter-spacing:.3px;">
+          ${esc(label)}
+        </span>
+        ${checkedShort ? `<span style="font-size:11px;color:#888">checked ${esc(checkedShort)}</span>` : ""}
+      </div>
+    `;
+  }
+
+  function issueUrl(base, title, body){
+    const sep = base.includes("?") ? "&" : "?";
+    return base + sep + "title=" + title + "&body=" + body;
+  }
+
+  async function loadFeed(){
+    const feedEl = document.getElementById("feed");
+    feedEl.innerHTML = "<div>Loading…</div>";
+    try {
+      const [resIndex, resLedger] = await Promise.all([
+        fetch(INDEX_URL + "?cb=" + Date.now(), {cache:"no-store"}),
+        fetch(LEDGER_URL + "?cb=" + Date.now(), {cache:"no-store"}).catch(()=>null)
+      ]);
+      const data = await resIndex.json();
+
+      let ledger = null;
+      try { if(resLedger && resLedger.ok) ledger = await resLedger.json(); } catch(e) { ledger = null; }
+      const ledgerItems = (ledger && ledger.items && typeof ledger.items === "object") ? ledger.items : {};
+
+      const q = (document.getElementById("q").value||"").toLowerCase().trim();
+      const cat = (document.getElementById("cat").value||"").toLowerCase().trim();
+
+      const items = (data.items||[]).filter(it=>{
+        const hay = ((it.title||"") + " " + (it.summary||"") + " " + (it.url||"") + " " + (it.categories||[]).join(" ")).toLowerCase();
+        if(q && !hay.includes(q)) return false;
+        if(cat && !(it.categories||[]).join(" ").toLowerCase().includes(cat)) return false;
+        return true;
+      });
+
+      if(!items.length) {
+        feedEl.innerHTML = "<div style='color:#666'>No records yet.</div>";
+        return;
+      }
+
+      feedEl.innerHTML = items.slice(0, 40).map(it=>`
+        <div style="border:1px solid #eee;border-radius:14px;padding:10px">
+          <div style="font-weight:800;margin-bottom:4px"><a href="${esc(it.url)}" target="_blank" rel="noopener">${esc(it.title)}</a></div>
+          <div style="color:#444">${esc(it.summary||"")}</div>
+          <div style="margin-top:6px;color:#666;font-size:13px">
+            <span>${(it.categories||[]).map(c=>"#"+esc(c)).join(" ")}</span>
+            <span style="float:right">${esc((it.date||"").slice(0,10))}</span>
+          </div>
+          ${statusHtml(it.url, ledgerItems)}
+        </div>
+      `).join("");
+    } catch(e) {
+      feedEl.innerHTML = "<div style='color:#b00'>Failed to load feed.</div>";
+    }
+  }
+
+  function buildPayload(){
+    return {
+      type: "hgp.portal.submission",
+      version: "2.0",
+      date: nowISO(),
+      title: document.getElementById("title").value.trim(),
+      url: document.getElementById("url").value.trim(),
+      summary: document.getElementById("summary").value.trim(),
+      categories: (document.getElementById("category").value||"").split(",").map(s=>s.trim()).filter(Boolean),
+      author: document.getElementById("author").value.trim(),
+      contact: document.getElementById("contact").value.trim() || null,
+      license: document.getElementById("license").value.trim() || "CC BY 4.0",
+      safety: {
+        no_build_instructions: true,
+        no_hv_schematics: true
+      }
+    };
+  }
+
+  function updateOutputs(){
+    const payload = buildPayload();
+    const out = document.getElementById("out");
+    const json = JSON.stringify(payload, null, 2);
+    out.textContent = json;
+
+    const blob = new Blob([json], {type:"application/json"});
+    const url = URL.createObjectURL(blob);
+    document.getElementById("downloadBtn").href = url;
+
+    const issueTitle = encodeURIComponent("[PORTAL] " + (payload.title || "(untitled)"));
+    const issueBody = encodeURIComponent("## Pravidlá (Mozart mode / safety)\n- Žiadne návody na stavbu (žiadny step-by-step)\n- Žiadne HV schémy / parametre\n- Publikuj teóriu, metodiku, výsledky a overiteľné dáta\n\n## Žiadosť\nProsím skontrolovať tento submission a (ak je OK) pridať do `data/portal/index.json`.\n\n" + "```json\n" + json + "\n```\n");
+    document.getElementById("issueBtn").href = issueUrl(ISSUE_BASE, issueTitle, issueBody);
+  }
+
+  document.getElementById("makeJsonBtn").addEventListener("click", updateOutputs);
+  document.getElementById("refreshBtn").addEventListener("click", loadFeed);
+  document.getElementById("q").addEventListener("input", ()=>{ clearTimeout(window.__t); window.__t=setTimeout(loadFeed, 150); });
+  document.getElementById("cat").addEventListener("input", ()=>{ clearTimeout(window.__t); window.__t=setTimeout(loadFeed, 150); });
+
+  loadFeed();
+  updateOutputs();
+})();
+</script>
+
+</div>
+  </div>
+<script src="/assets/warez.js?v=20260110-portal-fix2"></script>
+
+<script src="/assets/onetoo-submit.js?v=20260114-direct-submit"></script>
+<script>
+(function(){
+  function ui(){
+    const el = document.getElementById("onetooSubmitState");
+    return {
+      setState: (st, msg)=>{
+        if(!el) return;
+        el.textContent = "ONETOO submit: " + st + (msg ? " · " + msg : "");
+      }
+    };
+  }
+
+  function buildPayloadFromForm(){
+    return {
+      type: "hgp.portal.submission",
+      version: "2.0",
+      date: new Date().toISOString(),
+      title: (document.getElementById("title").value || "").trim(),
+      url: (document.getElementById("url").value || "").trim(),
+      summary: (document.getElementById("summary").value || "").trim(),
+      categories: (document.getElementById("category").value || "").split(",").map(s=>s.trim()).filter(Boolean),
+      author: (document.getElementById("author").value || "").trim(),
+      contact: ((document.getElementById("contact").value || "").trim() || null),
+      license: ((document.getElementById("license").value || "").trim() || "CC BY 4.0"),
+      safety: { no_build_instructions: true, no_hv_schematics: true }
+    };
+  }
+
+  const btn = document.getElementById("submitOnetooBtn");
+  if(btn && window.HGPEduDirectSubmit){
+    btn.addEventListener("click", async ()=>{
+      const u = ui();
+      try{
+        u.setState("START", "Submitting…");
+        await window.HGPEduDirectSubmit.submitPayload(buildPayloadFromForm(), u);
+      }catch(e){
+        u.setState("ERR", String(e||""));
+      }
+    });
+  }
+})();
+</script>
+
+</body>
+</html>

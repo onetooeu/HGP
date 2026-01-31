@@ -1,0 +1,8 @@
+TFWS BUILD ANCHOR
+Project: HGP
+Bundle: HGP_complete_bundle_v5_2.zip.001..006
+Docs: kompletny technicky navod 1..6.txt
+Imported by: local push
+Date: 2026-01-10
+Integrity: SHA256SUMS.txt (git-tracked)
+Notes: Raw artifacts committed as-is (no transformation)

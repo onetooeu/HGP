@@ -1,0 +1,38 @@
+name: hgpedu-onetoo-ledger-sync
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Every 6 hours (minute 17). Adjust if you want.
+    - cron: "17 */6 * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: hgpedu-onetoo-ledger-sync
+  cancel-in-progress: true
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run ledger sync (GET-only)
+        run: |
+          python --version
+          rm -f portal/submissions.json
+          python tools/onetoo_status_sync.py --limit 500 --sleep 0.25
+
+      - name: Commit & push if changed
+        run: bash .github/scripts/commit-if-changed.sh

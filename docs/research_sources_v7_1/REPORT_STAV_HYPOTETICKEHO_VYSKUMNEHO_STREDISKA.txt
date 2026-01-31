@@ -1,0 +1,198 @@
+==============================================================================
+HYPOTETICKÉ VÝSKUMNÉ STREDISKO – STAVOVÝ REPORT & EKOSYSTÉMOVÁ BIBLIA
+GENEROVANÉ: 2026-01-13 13:21:23
+POZNÁMKA: hypotetický/konceptuálny rámec; bez výrobných postupov a schém.
+==============================================================================
+
+1) VSTUPNÝ KORPUS (čo bolo spracované)
+------------------------------------------------------------------------------
+- Textové zdroje (užívateľ): 34 súborov (kompletny technicky navod 1–9 + 1–28, 10–19, atď.)
+- ZIP balík: HGP_FULL_DISCLOSURE_v7_1_AUTOPILOT.zip
+  - obsahuje FULL_DISCLOSURE_README.txt/.pdf + HGP_complete_bundle_v5_FULL.zip (vnorený výskumný balík)
+
+2) EXECUTIVE SUMMARY (stav ekosystému)
+------------------------------------------------------------------------------
+Tvoj ekosystém je už navrhnutý ako "živý organizmus" v tom zmysle, že:
+- má jadro hypotéz (axiomatika) + falzifikačné brány (G0–G5/G6 logika)
+- má meraciu disciplínu (noise/EMI, kalibrácia, kontrolné behy, metadáta)
+- má bezpečnostné hranice (čo je dovolené robiť a čo nie)
+- má dátovú infra vrstvu (bundle/replay) a analytické nástroje (štatistika, confounders)
+
+Najsilnejšia časť: metodika proti sebaklamu (gates, kontrola, šumové modely).
+Najväčšia potreba na dotiahnutie do "funkčného výskumného zariadenia":
+- prepojiť všetky experimentálne uzly cez jednotný interlock + jednotný experiment bundle + orchestrátor behov.
+
+3) VÝSKUMNÝ SMER (čo vlastne skúmate)
+------------------------------------------------------------------------------
+Kombinovaný smer je 2-vetvový:
+A) "Exotická" hypotetická vetva: gravito-/info-/optimalizačné interpretácie (gravity as optimization),
+   hľadanie merateľných anomálií v extrémnych podmienkach (HV/vákuum, nelinearity, materiály, plazma).
+B) "Ukotvená" vetva: kvantová termodynamika, šumové limity, fluktuačné teorémy, metrológia,
+   prísna štatistika a reprodukovateľnosť (aby A-vetva bola vedecky obhájiteľná).
+
+Pravidlo: tvrdenie bez prechodu cez falzifikačné brány sa neberie ako výsledok.
+
+4) INVENTÁR PRÍSTROJOV – jadrové experimentálne uzly
+------------------------------------------------------------------------------
+Nižšie je inventár ako 'pre vedca' aj 'pre laika'.
+Pozn.: pomenovania vychádzajú z tvojich materiálov a ich vrstvenia.
+
+### HGP (Hypotetický Gravitovoltaický Panel) – v7/v5 research pack
+- Pre vedca: HV + vákuový experimentálny stôl s vrstvením IEK/guard/meranie/riadenie. Cieľ: merateľné anomálie nad šumom; dôraz na falzifikáciu (G0–G5), confounders, energetickú bilanciu, replay dát.
+- Pre laika: veľká experimentálna zostava s vysokým napätím vo vákuu, kde sa sleduje, či sa deje niečo iné než bežný šum – všetko sa meria a overuje kontrolnými testami.
+
+### KTHK (Kvantový termodynamický konvertor)
+- Pre vedca: kvantovo-termodynamické experimenty (fluktuácie, otvorené systémy, mK režimy), referenčná vetva pre kalibráciu a zmysluplnú interpretáciu. Slúži ako etalón metodiky a šumu.
+- Pre laika: extrémne citlivé nízkoteplotné merania, ktoré skúmajú správanie energie a informácie v kvantovom režime.
+
+### KTME (Kvantový termodynamický emitor)
+- Pre vedca: kvantovo-informačný uzol (emisia/koherencia, stabilita, spektrálna čistota), veľký dôraz na dáta, reguláciu, bezpečnosť a publikovateľnosť. Prepája fyziku s IT vrstvou (bundle/replay).
+- Pre laika: presný kvantový „vysielač“/emitor, ktorý generuje veľmi čisté signály a skúma ich stabilitu.
+
+### PRK (Plazmový rezonantný konvertor)
+- Pre vedca: plazmové režimy + rezonancia s EM poľami; diagnostika spektra, nelinearity; výborný stres-test pre EMI/DAQ a prechody do chaotického správania.
+- Pre laika: zariadenie s kontrolovanou plazmou, kde sa skúma rezonancia a meranie energie v plazme.
+
+### NKTRK (Nestabilný kvázikryštálový termoakustický rezonátorový konvertor) – HPHT
+- Pre vedca: materiálový extrém (kvázikryštály, fonóny/topologické efekty) pod vysokým tlakom/teplotou. Vedecky hodnotné aj pri nulových výsledkoch; vyžaduje najtvrdšiu bezpečnosť a metrológiu.
+- Pre laika: extrémne tlakovo-teplotné testy exotických materiálov, či nevykazujú zvláštne vibračné/tepelné správanie.
+
+5) PODPORNÉ UZLY – aby ekosystém fungoval ako organizmus
+------------------------------------------------------------------------------
+- SIS / Safety Core (interlocky, E-STOP, safe state): Zabezpečí, že HV/RF/HPHT/Cryo nemôžu bežať mimo povolených stavov. Oddelený od hlavného riadenia; fail-safe.
+- Metrology Core (čas, etalóny, kalibrácie, šumové profily): Jednotná časová referencia a kalibračná kniha. Bez toho sa nedá robiť porovnateľná veda.
+- EMI/EMC & Shield Node (ticho + kontrolovaná injekcia rušenia): Rozlíši artefakty od efektov. Injekčné testy sú povinná falzifikačná metóda.
+- Noise Observatory (vibrácie/teplota/magnetika/EMI kontinuálne): Laboratórne 'počasie' – dáva quality score pre okná merania; umožňuje korelovať anomálie s prostredím.
+- Vacuum Plant (čistota, leak audit, stabilita): Stabilné vákuum pre HGP/PRK; kontrola outgassing a opakovateľnosti.
+- Cryo Plant (stabilné nízke teploty + bezpečnosť): Podpora KTHK/KTME; sleduje vibrácie a bezpečnostné parametre.
+- RF Lab Node (spektrum, koherencia, fázový šum): Podpora PRK/KTME; udržiava merateľnosť a znižuje 'RF ilúzie'.
+- HV Test Cell Node (oddelená HV zóna + logovanie energetiky): Podpora HGP; umožní energetické účtovníctvo a bezpečné režimy.
+- HPHT Center Node (containment, ramp protokoly, toxikológia): Podpora NKTRK; oddelený režim s prísnym logovaním a bezpečnosťou.
+- Materials Characterization Node (pravda o vzorke): Udrží kontrolu nad tým, čo je materiál; vzorka má ID, históriu, kvalitatívny profil.
+- DAQ + Data Vault + Replay Engine: Experiment Bundle: raw+meta+config+derived+integrity. Umožňuje audit a reprodukciu analýzy.
+- Experiment Orchestrator (plán behov, randomizácia, blind testy): Bráni biasu; vynucuje test/control a minimálne kontrolné behy.
+- Simulation/HPC Node (digitálne dvojčatá, syntetické dáta, citlivosti): Podpora návrhu experimentov: predikcie + detekčné limity + test pipeline bez halucinácií.
+- Power Integrity Node (oddelené domény, meranie vstupu/strát): Základ pre energetické tvrdenia; sleduje návratové cesty, harmonické a straty.
+- Governance & Ethics Node (pravidlá, incident response, publikačný režim): Určuje čo sa publikuje, ako sa pracuje s rizikom a ako sa udrží dlhodobý program.
+
+6) PREPOJENIE (živý organizmus – dátové a riadiace väzby)
+------------------------------------------------------------------------------
+Najjednoduchší model prepojenia (topológia):
+A) Bezpečnostná chrbtica: SIS <- všetky uzly (stav) a -> všetky uzly (permit/shutdown).
+B) Metrologická chrbtica: Metrology -> DAQ/Orchestrator/uzly (čas, kalibrácie, noise budget).
+C) Dátová chrbtica: uzly -> DAQ -> Data Vault -> Replay/Analýza -> Reporty.
+D) Experimentálna chrbtica: Orchestrator -> uzly (run plan) + -> Data Vault (metadata).
+E) Rušenie/prostredie: Noise Observatory + EMI Node -> Orchestrator (kedy spustiť) + -> Bundle (context).
+F) Simulačná chrbtica: Simulation Node -> Orchestrator (predikcie) + -> Analýza (porovnanie).
+
+Týmto vznikne spätnoväzbový cyklus: meraj -> ulož -> vyhodnoť -> uprav protokol -> meraj.
+
+7) FALZIFIKAČNÝ RÁMEC (G0–G5) – čo je v korpuse
+------------------------------------------------------------------------------
+Z výskumného balíka (packs/v2/docs/03_FALSIFICATION_GATES.md) je prítomný staged gate systém.
+Kľúčová idea: žiadne tvrdenie sa neberie bez prechodu bránami od sanity merania po kontrolované testy.
+Výber (skrátene):
+- **G0: Instrument sanity** — calibration traceability; no saturation; full metadata.
+- **G1: Null equivalence** — device-absent vs device-present indistinguishable under blinding.
+- **G2: Polarity & topology** — polarity flips, wiring swaps, ground topology changes do not explain effect.
+- **G3: Environment controls** — temperature/humidity/EMI/vibration are measured and regressed out.
+- **G4: Replication** — independent repeat, same protocol, comparable statistics.
+- **G5: Energy accounting (optional later)** — strict accounting, control loads, known-source exclusion.
+
+8) ČO SOM 'NASIMULOVAL' V PROSTREDÍ (len z dodaných dát)
+------------------------------------------------------------------------------
+Spustil som iba bezpečné, už pripravené demonštračné dátové výstupy z tvojho balíka v5/v7.
+Nešlo o fyzickú simuláciu zariadení, ale o 'analytické sanity-checks' a metodické demá.
+
+8.1 Allan deviation demo (packs/v2/out/allan_deviation_demo.csv)
+- počet bodov: 35
+- tau rozsah (samples): 1.0 .. 1584.0
+- ADEV (white) rozsah: 0.0456 .. 1.01
+- ADEV (pink+drift) rozsah: 0.0612 .. 1.01
+Interpretácia: ukazuje rozdiel medzi bielym šumom a ružovým šumom s driftom; použiteľné ako šablóna na kvalitu merania.
+
+8.2 Confound regression demo summary (packs/v2/out/confound_summary.json)
+- naivný rozdiel priemerov (bez korekcie confounderu): 0.306
+- rozdiel po odstránení confounderu (reziduálne): 0.016
+Interpretácia: demonštruje, ako teplota (confounder) vie vytvoriť falošný 'efekt', ktorý po regresii prakticky zmizne.
+
+8.3 Landauer bound data (packs/v2/out/landauer_bound_data.csv)
+- počet bodov: 1800 ; stĺpce: temperature_K, bit_rate_bits_per_s, Pmin_W
+Interpretácia: slúži ako referenčný dataset pre informačno-termodynamické porovnania v rámci hypotéz (bez tvrdenia o 'free energy').
+
+8.4 MC spurious effects scenarios (packs/v2/out/mc_spurious_effects_scenarios.csv)
+- počet scenárov: 15000 ; príklady stĺpcov: scenario, effect
+Interpretácia: knižnica scenárov falošných efektov na tréning falzifikácie a dizajnu kontrol.
+
+9) HODNOTENIE STAVU (maturity) – čo už je hotové vs čo je bottleneck
+------------------------------------------------------------------------------
+HOTOVÉ / SILNÉ:
+- metodika: axiomy + gates + measurement handbook + štatistický toolkit + safety/ethics hranice (v balíku v5/v7)
+- existujú pripravené demo dáta a skripty na sanity-checks a na detekciu confounders
+- existuje dokumentačný ekosystém (templates, reference map)
+
+BOTTLE-NECKY (aby to bolo 'živé' v praxi):
+- jednotné rozhranie medzi uzlami (stavový automat + event log + experiment bundle) – musí byť vynútené orchestrátorom
+- prepojenie bezpečnosti (SIS) s fyzickými uzlami a s dátami (aby každý shutdown bol zároveň dátový event)
+- discipline: každý experiment musí mať povinné kontrolné behy + EMI injekčné testy + noise window
+- energetické účtovníctvo: power integrity vrstva ako nezávislý auditor vstupu/strát
+
+10) PRAKTICKÝ 'PROGRAM' – ako skúmať smer bez sebaklamu (bez návodov)
+------------------------------------------------------------------------------
+Odporúčaný poriadok (z metodiky v balíku + z architektúry ekosystému):
+1) Najprv metrológia + noise observatory: získať baseline šumové profily.
+2) Potom 'tiché' kontrolné experimenty (dummy režimy) s kompletným bundle/replay.
+3) Až potom postupné zvyšovanie zložitosti (RF, plazma, kryo, HPHT) – vždy s rovnakými bránami.
+4) Každé nové tvrdenie musí prežiť: EMI injekciu + blind test/control + confound regression.
+5) Publikovateľné sú aj nulové výsledky – ak sú čisté a auditovateľné.
+
+11) PRÍLOHA – inventár balíka HGP v7/v5 (stručne)
+------------------------------------------------------------------------------
+FULL DISCLOSURE README (v7) – hlavný účel: zverejniť rámec, metodiku, risk boundaries, dátové balíky.
+Vnorený balík v5 obsahuje (výber):
+- packs/v2/docs/* (Axioms, Gates, Measurement Handbook, Stats Toolkit, Safety/Ethics, Templates, Reference Map)
+- packs/v2/out/* (Allan deviation demo, confound regression demo summary, Landauer bound data, MC spurious effects scenarios)
+- packs/v2/scripts/run_all.py (analysis runner)
+- docs/* (DERIVATIONS_AND_SANITY_CHECKS.md, MODEL_ZOO.md, GLOSSARY_AND_NOTATION.md)
+- packs/v2/*.pdf and packs/v3/*.pdf (original/extended/research pack PDFs)
+
+12) PRÍLOHA – zoznam vstupných súborov (len názvy)
+------------------------------------------------------------------------------
+- 1.txt
+- 10.txt
+- 11.txt
+- 12.txt
+- 13.txt
+- 14.txt
+- 15.txt
+- 16.txt
+- 17.txt
+- 18.txt
+- 19.txt
+- 2.txt
+- 20.txt
+- 21.txt
+- 22.txt
+- 23.txt
+- 24.txt
+- 25.txt
+- 26.txt
+- 27.txt
+- 28.txt
+- 3.txt
+- 4.txt
+- 5.txt
+- 6.txt
+- kompletny technicky navod 1.txt
+- kompletny technicky navod 2.txt
+- kompletny technicky navod 3.txt
+- kompletny technicky navod 4.txt
+- kompletny technicky navod 5.txt
+- kompletny technicky navod 6.txt
+- kompletny technicky navod 7.txt
+- kompletny technicky navod 8.txt
+- kompletny technicky navod 9.txt
+
+==============================================================================
+KONIEC REPORTU
+==============================================================================

@@ -1,0 +1,164 @@
+HGP‑PHF — HYPOTHETICAL GRAVITOVOLTAIC PLANT HARVESTING FACILITY
+KOMPLETNÁ KONCEPTUÁLNA MAPA VÝSKUMU (TXT / NOTEPAD)
+Dátum: 2026-01-13
+Stav: čisto vedecký koncept, metodika a mapa postupu (bez konštrukčných plánov)
+
+======================================================================
+ZÁKLADNÁ FORMULÁCIA (ZÁMER)
+======================================================================
+Tento dokument definuje KONCEPT vedeckého pracoviska typu „plant harvesting facility“,
+ktoré má za cieľ systematicky, kontrolovane a reprodukovateľne skúmať,
+či je možné vyrábať alebo získavať energiu pomocou HGP
+(Hypotetický Gravitovoltaický Panel) a jeho evolučných variantov.
+
+Dokument NEOBSAHUJE návody na stavbu zariadení.
+Obsahuje mapu výskumu, merania, falzifikácie, bezpečnosti a dátovej integrity,
+aby tím vedel AKO postupovať vedecky, nie AKO niečo mechanicky zostrojiť.
+
+======================================================================
+1) MAPA VÝSKUMU (RESEARCH MAP)
+======================================================================
+Úlohou facility nie je „produkovať energiu“, ale:
+- skúmať hypotézy,
+- vylučovať artefakty,
+- budovať dôkaz alebo nulový výsledok.
+
+MAPA POSTUPU:
+1. Definuj hypotézu (čo tvrdíme, že skúmame).
+2. Definuj nulovú hypotézu (čo očakávame, že sa stane).
+3. Navrhni meranie tak, aby nulová hypotéza mala prednosť.
+4. Až potom testuj alternatívy.
+
+ZÁSADA:
+Ak výsledok nejde zopakovať → nepovažuje sa za platný.
+Ak ho nemožno falzifikovať → nepovažuje sa za vedecký.
+
+======================================================================
+2) MAPA FACILITY (ARCHITEKTÚRA)
+======================================================================
+Facility je rozdelená na vrstvy:
+
+2.1 ZBEROVÁ VRSTVA (COLLECTOR LAYER)
+- Kolektory (CM): kandidáti HGP efektu.
+- Kontrolné moduly (CTRL): fyzikálne podobné, ale bez skúmanej hypotézy.
+ÚLOHA: generovať dáta, nie tvrdenia.
+
+2.2 OVEROVACIA VRSTVA (TRUTH / VERIFICATION LAYER)
+- Meranie všetkých energetických tokov.
+- Redundancia a kalibrácia.
+- Eliminácia skrytých kanálov.
+
+2.3 OPERAČNÁ VRSTVA (PLANT OPS)
+- Plánovanie behov.
+- Randomizácia.
+- Auditovateľný log.
+- Bezpečnostné interlocky.
+
+======================================================================
+3) MAPA MERANIA (MEASUREMENT MAP)
+======================================================================
+Každý experiment MUSÍ mať:
+- jasne definovanú hranicu merania,
+- presne pomenované vstupy a výstupy,
+- známe úložiská energie,
+- odhad environmentálnych výmen.
+
+ZÁKLADNÁ ENERGETICKÁ ROVNICA:
+R = Eout − Ein − ΔEstored − Eenv
+
+Pokyny:
+- Meraj viac, než si myslíš, že treba.
+- Ak niečo nemeriaš, musíš to horným odhadom ohraničiť.
+- Každý senzor má drift → sleduj ho.
+
+======================================================================
+4) MAPA FALZIFIKÁCIE (ANTI‑ARTEFAKT)
+======================================================================
+Primárnym cieľom nie je nájsť efekt,
+ale dokázať, že NEVZNIKÁ artefakt.
+
+Postup:
+1. Otestuj merací systém bez HGP.
+2. Otestuj kontrolné moduly.
+3. Vymieňaj pozície modulov.
+4. Zvyšuj prísnosť merania.
+5. Sleduj koreláciu s prostredím.
+
+Ak „efekt“ zmizne → bol artefakt.
+Ak sa presunie s modulom → pokračuj v kontrole.
+Ak sa presunie s prostredím → environmentálny vplyv.
+
+======================================================================
+5) EVOLUČNÝ STROM ROZHODOVANIA
+======================================================================
+Každá verzia facility je jedna vetva evolúcie.
+
+KRITÉRIÁ PREŽITIA VETVY:
+- uzavretá energetická bilancia,
+- nízka miera falošných pozitív,
+- reprodukovateľnosť,
+- auditovateľnosť.
+
+VETVA ZLYHÁ, AK:
+- CTRL produkuje rovnaký výsledok ako CM,
+- výsledok závisí od operátora,
+- výsledok zmizne po kalibrácii.
+
+======================================================================
+6) MAPA BEZPEČNOSTI (SAFETY MAP)
+======================================================================
+Facility MUSÍ byť:
+- podriadená bezpečnostnému plánu laboratória,
+- vybavená interlockmi,
+- riadená školeným personálom.
+
+ZÁSADA:
+Aj hypotetický výskum používa reálne energie.
+Bezpečnosť má prednosť pred výskumom.
+
+======================================================================
+7) MAPA DÁTOVEJ INTEGRITY
+======================================================================
+Každý beh:
+- má unikátne ID,
+- má zaznamenanú konfiguráciu,
+- má nemenný záznam.
+
+DÁTA:
+- raw dáta sa nikdy neupravujú,
+- analýza je reprodukovateľná,
+- zmeny sa verzujú.
+
+Bez integrity dát neexistuje výsledok.
+
+======================================================================
+8) MAPA ETIKY A KOMUNIKÁCIE
+======================================================================
+- Pre‑registruj hypotézy.
+- Publikuj aj nulové výsledky.
+- Nezveličuj.
+- Oddel výskum od tvrdení o aplikácii.
+
+======================================================================
+9) AKO TENTO DOKUMENT POUŽIŤ
+======================================================================
+Použi ho ako:
+- základný rámec pre návrh laboratória,
+- metodickú mapu pre výskumný tím,
+- kontrolný zoznam vedeckej integrity.
+
+Nepoužívaj ho ako:
+- návod na stavbu zariadenia,
+- marketingový materiál,
+- dôkaz funkčnosti HGP.
+
+======================================================================
+10) ZÁVEREČNÉ PRAVIDLO
+======================================================================
+Ak výsledok:
+- nejde zopakovať → neexistuje.
+- nejde vysvetliť → ešte nie je pochopený.
+- nejde zmerať → nie je vedecký.
+
+Toto je dokument o tom,
+AKO myslieť, merať a rozhodovať.

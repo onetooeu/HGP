@@ -1,0 +1,24 @@
+{
+  "schema_version": "tfws.v2",
+  "profile": "publisher-site",
+  "site": {
+    "name": "HGP Edu Portal",
+    "canonical_url": "https://hgpedu.eu",
+    "languages": [
+      "sk",
+      "en"
+    ]
+  },
+  "manifests": {
+    "ai_trust_hub": "https://hgpedu.eu/.well-known/ai-trust-hub.json",
+    "ai_governance": "https://hgpedu.eu/.well-known/ai-governance.json",
+    "ai_search_publisher": "https://hgpedu.eu/.well-known/ai-search.publisher.json",
+    "integrity_sha256": "https://hgpedu.eu/.well-known/sha256.json",
+    "integrity_sig": "https://hgpedu.eu/.well-known/sha256.json.minisig",
+    "minisign_pub": "https://hgpedu.eu/.well-known/minisign.pub"
+  },
+  "upstream": {
+    "onetoo": "https://www.onetoo.eu",
+    "ai_search": "https://search.onetoo.eu"
+  }
+}
