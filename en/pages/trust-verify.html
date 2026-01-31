@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Trust & Verify (EN)</title>
+  <link rel="stylesheet" href="/assets/style.css"/>
+  <script defer src="/assets/app.js?v=20260110-portal-fix2"></script>
+
+</head>
+<body>
+  <div class="container">
+    <div class="topbar">
+      <div class="brand">
+        <div class="logo"></div>
+        <div>
+          <div class="title">HGP Edu Portal</div>
+          <div class="subtitle">Experimental • AI-native • Research • ONETOO Suite</div>
+        </div>
+      </div>
+      <div class="nav">
+        <a class="pill" href="/en/index.html">← Back</a>
+        <a class="pill" href="/en/pages/showroom.html">Showroom</a>
+        <a class="pill" href="/en/pages/tfws.html">TFWS v2</a>
+        <a class="pill" href="/en/pages/safety.html">Safety</a>
+        <a class="pill" href="/en/pages/research.html">Research</a>
+        <a class="pill" href="/en/pages/portal.html">Portal</a>
+        <a class="pill" href="/en/pages/ams.html">AMS ✨</a>
+        <a class="pill" href="/en/pages/downloads.html">Downloads</a>
+        <a class="pill" href="/en/pages/onetoo.html">ONETOO Map</a>
+        <a class="pill" href="/en/pages/api.html">Automation</a>
+      <a class="pill" href="/en/pages/onetoo-hub.html">ONETOO Hub</a>
+      <a class="pill" href="/en/pages/onetoo-search.html">Search</a>
+      <a class="pill" href="/en/pages/trust-verify.html">Trust & Verify</a>
+      <a class="pill" href="/en/pages/federation.html">Federation</a>
+      <a class="pill" href="/en/pages/status.html">Status</a>
+      <a class="pill" href="/en/pages/agents.html">Agents</a>
+      <a class="pill" href="/en/pages/specs.html">Specs</a>
+      <a class="pill" href="/en/pages/ai-handbook.html">AI Handbook</a>
+
+        <a class="pill" href="/en/pages/onetoo-hub.html">ONETOO Hub</a>
+        <a class="pill" href="/en/pages/onetoo-search.html">Search</a>
+        <a class="pill" href="/en/pages/trust-verify.html">Trust & Verify</a>
+        <a class="pill" href="/en/pages/federation.html">Federation</a>
+        <a class="pill" href="/en/pages/status.html">Status</a>
+        <a class="pill" href="/en/pages/agents.html">Agents</a>
+        <a class="pill" href="/en/pages/specs.html">Specs</a>
+        <a class="pill" href="/en/pages/ai-handbook.html">AI Handbook</a>
+      </div>
+    </div>
+
+    <div class="warez-marquee">
+      <div class="track">
+        <span id="warez-slogan">ONETOO · HGP · TFWS</span>
+        &nbsp;::&nbsp; BUILD <span class="badge">2026-01-31</span>
+        &nbsp;::&nbsp; TRUST-FIRST · SIGNED · REPRODUCIBLE
+      </div>
+    </div>
+
+    <div class="card">
+      <h1 style="margin:0 0 8px 0">Trust & Verify (EN)</h1>
+      
+<p class="muted">
+This page is the <b>verification center</b>. Goal: allow humans and agents to independently confirm that
+HGPeDU and its ONETOO integrations are <b>unaltered</b> and <b>cryptographically consistent</b>.
+</p>
+
+<h2>1) What is signed</h2>
+<ul>
+  <li><code>/.well-known/sha256.json</code> — file hash manifest</li>
+  <li><code>/.well-known/sha256.json.minisig</code> — minisign signature</li>
+  <li><code>/.well-known/minisign.pub</code> — public key</li>
+</ul>
+
+<h2>2) Offline verification (copy/paste)</h2>
+<pre><code>rm -f minisign.pub sha256.json sha256.json.minisig
+
+curl -sS https://hgpedu.eu/.well-known/minisign.pub -o minisign.pub
+curl -sS https://hgpedu.eu/.well-known/sha256.json -o sha256.json
+curl -sS https://hgpedu.eu/.well-known/sha256.json.minisig -o sha256.json.minisig
+
+minisign -V -p minisign.pub -m sha256.json -x sha256.json.minisig
+</code></pre>
+
+<h2>3) Trust-First in one paragraph</h2>
+<p>
+Trust is explicit: domains publish machine-readable manifests and signatures; agents choose an allowlist and can audit everything.
+HTML is for humans; signed manifests are the truth source.
+</p>
+
+<h2>4) Safe agent rules</h2>
+<ul>
+  <li>Never trust HTML alone; always fetch manifests + signatures.</li>
+  <li>Prefer deterministic JSON/NDJSON APIs.</li>
+  <li>Log request-id + timestamp + hashes; fail closed if verification fails.</li>
+</ul>
+
+    </div>
+
+    <div class="footer">
+      <div>HGPeDU is a static trust node: integrity via <code>.well-known/sha256.json</code> + <code>minisign</code>.</div>
+      <div class="muted">If you changed anything, regenerate and re-sign the manifest before deployment.</div>
+    </div>
+  </div>
+</body>
+</html>

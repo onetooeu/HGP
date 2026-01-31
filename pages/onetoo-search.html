@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="sk">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>ONETOO Search (SK)</title>
+  <link rel="stylesheet" href="/assets/style.css"/>
+  <script defer src="/assets/app.js?v=20260110-portal-fix2"></script>
+
+</head>
+<body>
+  <div class="container">
+    <div class="topbar">
+      <div class="brand">
+        <div class="logo"></div>
+        <div>
+          <div class="title">HGP Edu Portal</div>
+          <div class="subtitle">Experimental • AI-native • Research • ONETOO Suite</div>
+        </div>
+      </div>
+      <div class="nav">
+        <a class="pill" href="/index.html">← Back</a>
+        <a class="pill" href="/pages/showroom.html">Showroom</a>
+        <a class="pill" href="/pages/tfws.html">TFWS v2</a>
+        <a class="pill" href="/pages/safety.html">Safety</a>
+        <a class="pill" href="/pages/research.html">Research</a>
+        <a class="pill" href="/pages/portal.html">Portal</a>
+        <a class="pill" href="/pages/ams.html">AMS ✨</a>
+        <a class="pill" href="/pages/downloads.html">Downloads</a>
+        <a class="pill" href="/pages/onetoo.html">ONETOO Map</a>
+        <a class="pill" href="/pages/api.html">Automation</a>
+      <a class="pill" href="/pages/onetoo-hub.html">ONETOO Hub</a>
+      <a class="pill" href="/pages/onetoo-search.html">Search</a>
+      <a class="pill" href="/pages/trust-verify.html">Trust & Verify</a>
+      <a class="pill" href="/pages/federation.html">Federation</a>
+      <a class="pill" href="/pages/status.html">Status</a>
+      <a class="pill" href="/pages/agents.html">Agents</a>
+      <a class="pill" href="/pages/specs.html">Specs</a>
+      <a class="pill" href="/pages/ai-handbook.html">AI Handbook</a>
+
+        <a class="pill" href="/pages/onetoo-hub.html">ONETOO Hub</a>
+        <a class="pill" href="/pages/onetoo-search.html">Search</a>
+        <a class="pill" href="/pages/trust-verify.html">Trust & Verify</a>
+        <a class="pill" href="/pages/federation.html">Federation</a>
+        <a class="pill" href="/pages/status.html">Status</a>
+        <a class="pill" href="/pages/agents.html">Agents</a>
+        <a class="pill" href="/pages/specs.html">Specs</a>
+        <a class="pill" href="/pages/ai-handbook.html">AI Handbook</a>
+      </div>
+    </div>
+
+    <div class="warez-marquee">
+      <div class="track">
+        <span id="warez-slogan">ONETOO · HGP · TFWS</span>
+        &nbsp;::&nbsp; BUILD <span class="badge">2026-01-31</span>
+        &nbsp;::&nbsp; TRUST-FIRST · SIGNED · REPRODUCIBLE
+      </div>
+    </div>
+
+    <div class="card">
+      <h1 style="margin:0 0 8px 0">ONETOO Search (SK)</h1>
+      
+<p class="muted">
+ONETOO Search je deterministický “AI index” uzol. Na tejto stránke je rýchly návod pre ľudí aj agentov:
+ako robiť dotazy, ako interpretovať výsledky, a ako si budovať vlastný allowlist.
+</p>
+
+<h2>1) UI & API</h2>
+<ul>
+  <li>UI: <a href="https://search.onetoo.eu/" target="_blank" rel="noopener">https://search.onetoo.eu/</a></li>
+  <li>API (príklad): <a href="https://search.onetoo.eu/search/v1?q=hgp&limit=10" target="_blank" rel="noopener">/search/v1?q=hgp&amp;limit=10</a></li>
+</ul>
+
+<h2>2) Pre agentov: odporúčaný “query discipline”</h2>
+<ul>
+  <li><b>Always specify limit</b> (napr. 10/25), aby sa výsledky dali auditovať.</li>
+  <li><b>Cache-bust for audits</b>: pri porovnávaní použite <code>?cb=TIMESTAMP</code>.</li>
+  <li><b>Log query context</b>: prečo sa pýtam, aký je cieľ, aké zdroje sú allowed.</li>
+  <li><b>Deterministic replay</b>: ak je to možné, ulož aj raw JSON a jeho hash.</li>
+</ul>
+
+<h2>3) Bezpečnostný režim</h2>
+<ul>
+  <li>Výsledok vyhodnocuj ako <b>pointer</b>, nie ako pravdu.</li>
+  <li>Skutočnú dôveru získavaš až cez <b>podpisované manifesty</b> (Trust &amp; Verify).</li>
+</ul>
+
+<p class="muted">
+Tip: Pre “AI-native browsing” používaj kombináciu: Search → Trust verify → Portal / AMS workflow.
+</p>
+
+    </div>
+
+    <div class="footer">
+      <div>HGPeDU is a static trust node: integrity via <code>.well-known/sha256.json</code> + <code>minisign</code>.</div>
+      <div class="muted">If you modified anything, regenerate and re-sign the manifest before deployment.</div>
+    </div>
+  </div>
+</body>
+</html>

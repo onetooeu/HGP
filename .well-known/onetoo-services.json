@@ -1,0 +1,150 @@
+{
+  "schema_version": "2026-01-31",
+  "node": {
+    "name": "hgpedu.eu",
+    "role": "showroom + trust node + ai launchpad"
+  },
+  "links": {
+    "hgpedu_root": "https://hgpedu.eu/",
+    "onetoo_root": "https://www.onetoo.eu/",
+    "portal": "https://portal.onetoo.eu/",
+    "search": "https://search.onetoo.eu/"
+  },
+  "services": [
+    {
+      "id": "ams-console",
+      "title": "AMS Console (hosted on HGPeDU)",
+      "type": "ui",
+      "url": "https://hgpedu.eu/onetoo/ams.html",
+      "talks_to": [
+        "https://portal.onetoo.eu"
+      ],
+      "notes": "Hosted UI mirror; uses portal.onetoo.eu AMS gateway via CORS."
+    },
+    {
+      "id": "ams-gateway",
+      "title": "AMS Gateway (portal)",
+      "type": "api",
+      "base_url": "https://portal.onetoo.eu/ams/v1",
+      "endpoints": [
+        {
+          "method": "GET",
+          "path": "/health"
+        },
+        {
+          "method": "GET",
+          "path": "/audit/v1/events.ndjson"
+        },
+        {
+          "method": "POST",
+          "path": "/submit"
+        }
+      ],
+      "notes": "Exact paths may vary by deployment; see portal manifests/spec."
+    },
+    {
+      "id": "portal-ui",
+      "title": "ONETOO Portal UI",
+      "type": "ui",
+      "url": "https://portal.onetoo.eu/",
+      "endpoints": [
+        {
+          "label": "entities",
+          "url": "https://portal.onetoo.eu/entities"
+        },
+        {
+          "label": "search",
+          "url": "https://portal.onetoo.eu/search"
+        },
+        {
+          "label": "ams-ui",
+          "url": "https://portal.onetoo.eu/ams"
+        }
+      ]
+    },
+    {
+      "id": "search-ui",
+      "title": "ONETOO AI Search UI",
+      "type": "ui",
+      "url": "https://search.onetoo.eu/"
+    },
+    {
+      "id": "search-api",
+      "title": "ONETOO AI Search API",
+      "type": "api",
+      "base_url": "https://search.onetoo.eu/search/v1",
+      "endpoints": [
+        {
+          "method": "GET",
+          "path": "",
+          "query": {
+            "q": "string",
+            "limit": "int"
+          }
+        }
+      ]
+    },
+    {
+      "id": "trust-root",
+      "title": "ONETOO Trust Root (www)",
+      "type": "trust",
+      "url": "https://www.onetoo.eu/",
+      "well_known": [
+        {
+          "name": "ai-trust-hub",
+          "path": "/.well-known/ai-trust-hub.json"
+        },
+        {
+          "name": "minisign pubkey",
+          "path": "/.well-known/minisign.pub"
+        }
+      ]
+    }
+  ],
+  "repositories": [
+    {
+      "name": "HGP",
+      "url": "https://github.com/onetooeu/HGP"
+    },
+    {
+      "name": "onetoo-eu",
+      "url": "https://github.com/onetooeu/onetoo-eu"
+    },
+    {
+      "name": "onetoo-eu-archival",
+      "url": "https://github.com/onetooeu/onetoo-eu-archival"
+    },
+    {
+      "name": "onetoo-ai-search-holy-grail",
+      "url": "https://github.com/onetooeu/onetoo-ai-search-holy-grail"
+    },
+    {
+      "name": "onetoo-ai-autopilot",
+      "url": "https://github.com/onetooeu/onetoo-ai-autopilot"
+    },
+    {
+      "name": "onetoo-ai-search-v2.0",
+      "url": "https://github.com/onetooeu/onetoo-ai-search-v2.0"
+    },
+    {
+      "name": "onetoo-ai-search",
+      "url": "https://github.com/onetooeu/onetoo-ai-search"
+    },
+    {
+      "name": "trust-first-web-standard-ver-2",
+      "url": "https://github.com/onetooeu/trust-first-web-standard-ver-2"
+    },
+    {
+      "name": "tfws-tools",
+      "url": "https://github.com/onetooeu/tfws-tools"
+    },
+    {
+      "name": "tfws-adoption-kit",
+      "url": "https://github.com/onetooeu/tfws-adoption-kit"
+    },
+    {
+      "name": "trust-first-web-standard",
+      "url": "https://github.com/onetooeu/trust-first-web-standard"
+    }
+  ]
+}

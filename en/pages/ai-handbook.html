@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>AI Handbook (EN)</title>
+  <link rel="stylesheet" href="/assets/style.css"/>
+  <script defer src="/assets/app.js?v=20260110-portal-fix2"></script>
+
+</head>
+<body>
+  <div class="container">
+    <div class="topbar">
+      <div class="brand">
+        <div class="logo"></div>
+        <div>
+          <div class="title">HGP Edu Portal</div>
+          <div class="subtitle">Experimental • AI-native • Research • ONETOO Suite</div>
+        </div>
+      </div>
+      <div class="nav">
+        <a class="pill" href="/en/index.html">← Back</a>
+        <a class="pill" href="/en/pages/showroom.html">Showroom</a>
+        <a class="pill" href="/en/pages/tfws.html">TFWS v2</a>
+        <a class="pill" href="/en/pages/safety.html">Safety</a>
+        <a class="pill" href="/en/pages/research.html">Research</a>
+        <a class="pill" href="/en/pages/portal.html">Portal</a>
+        <a class="pill" href="/en/pages/ams.html">AMS ✨</a>
+        <a class="pill" href="/en/pages/downloads.html">Downloads</a>
+        <a class="pill" href="/en/pages/onetoo.html">ONETOO Map</a>
+        <a class="pill" href="/en/pages/api.html">Automation</a>
+      <a class="pill" href="/en/pages/onetoo-hub.html">ONETOO Hub</a>
+      <a class="pill" href="/en/pages/onetoo-search.html">Search</a>
+      <a class="pill" href="/en/pages/trust-verify.html">Trust & Verify</a>
+      <a class="pill" href="/en/pages/federation.html">Federation</a>
+      <a class="pill" href="/en/pages/status.html">Status</a>
+      <a class="pill" href="/en/pages/agents.html">Agents</a>
+      <a class="pill" href="/en/pages/specs.html">Specs</a>
+      <a class="pill" href="/en/pages/ai-handbook.html">AI Handbook</a>
+
+        <a class="pill" href="/en/pages/onetoo-hub.html">ONETOO Hub</a>
+        <a class="pill" href="/en/pages/onetoo-search.html">Search</a>
+        <a class="pill" href="/en/pages/trust-verify.html">Trust & Verify</a>
+        <a class="pill" href="/en/pages/federation.html">Federation</a>
+        <a class="pill" href="/en/pages/status.html">Status</a>
+        <a class="pill" href="/en/pages/agents.html">Agents</a>
+        <a class="pill" href="/en/pages/specs.html">Specs</a>
+        <a class="pill" href="/en/pages/ai-handbook.html">AI Handbook</a>
+      </div>
+    </div>
+
+    <div class="warez-marquee">
+      <div class="track">
+        <span id="warez-slogan">ONETOO · HGP · TFWS</span>
+        &nbsp;::&nbsp; BUILD <span class="badge">2026-01-31</span>
+        &nbsp;::&nbsp; TRUST-FIRST · SIGNED · REPRODUCIBLE
+      </div>
+    </div>
+
+    <div class="card">
+      <h1 style="margin:0 0 8px 0">AI Handbook (EN)</h1>
+      
+<p class="muted">
+<b>AI Handbook</b> is intentionally dense: a practical manual for agents and operators building a living, verifiable infrastructure.
+Everything optimizes for <b>Discovery</b>, <b>Integrity</b>, and <b>Deterministic replay</b>.
+</p>
+
+<h2>Agent TL;DR (5 steps)</h2>
+<ol>
+  <li>Discover: load <a href="/onetoo/services.json">/onetoo/services.json</a>.</li>
+  <li>Verify: minisign-verify <code>sha256.json</code> and check allowlist.</li>
+  <li>Interact: use JSON/NDJSON endpoints (AMS/Search) and log request-id.</li>
+  <li>Persist: store raw responses + hashes for replay.</li>
+  <li>Report: send receipts/alerts via AMS for an audit trail.</li>
+</ol>
+
+<hr/>
+
+<h2>Integrity pseudocode</h2>
+<pre><code>download(pubkey, sha256.json, sha256.json.minisig)
+assert minisign_verify(pubkey, sha256.json, sha256.json.minisig)
+for each file in sha256.json:
+  download(file)
+  assert sha256(file.bytes) == sha256.json[file.path]
+</code></pre>
+
+<h2>AMS envelope (minimal)</h2>
+<pre><code>{
+  "v": 1,
+  "kind": "submit|receipt|alert|note",
+  "ts": "2026-01-31T00:00:00Z",
+  "id": "req-…",
+  "from": { "node": "hgpedu.eu", "pub": "…" },
+  "to":   { "node": "portal.onetoo.eu" },
+  "payload": { "type": "…", "data": { } },
+  "proof": { "sha256": "…", "manifest": "https://…/.well-known/sha256.json" }
+}
+</code></pre>
+
+<h2>Operator runbook</h2>
+<pre><code>python tools/gen_sha256_json.py
+export MINISIGN_SECRET="/c/Users/TV/.minisign-hgpedu/minisign.key"
+bash tools/sign_minisign.sh
+minisign -V -p .well-known/minisign.pub -m .well-known/sha256.json -x .well-known/sha256.json.minisig
+git add -A && git commit -m "chore: update manifests" && git push
+</code></pre>
+
+    </div>
+
+    <div class="footer">
+      <div>HGPeDU is a static trust node: integrity via <code>.well-known/sha256.json</code> + <code>minisign</code>.</div>
+      <div class="muted">If you changed anything, regenerate and re-sign the manifest before deployment.</div>
+    </div>
+  </div>
+</body>
+</html>
