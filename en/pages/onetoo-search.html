@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>ONETOO Search (EN)</title>
+  <link rel="stylesheet" href="/assets/style.css"/>
+  <script defer src="/assets/app.js?v=20260110-portal-fix2"></script>
+
+</head>
+<body>
+  <div class="container">
+    <div class="topbar">
+      <div class="brand">
+        <div class="logo"></div>
+        <div>
+          <div class="title">HGP Edu Portal</div>
+          <div class="subtitle">Experimental • AI-native • Research • ONETOO Suite</div>
+        </div>
+      </div>
+      <div class="nav">
+        <a class="pill" href="/en/index.html">← Back</a>
+        <a class="pill" href="/en/pages/showroom.html">Showroom</a>
+        <a class="pill" href="/en/pages/tfws.html">TFWS v2</a>
+        <a class="pill" href="/en/pages/safety.html">Safety</a>
+        <a class="pill" href="/en/pages/research.html">Research</a>
+        <a class="pill" href="/en/pages/portal.html">Portal</a>
+        <a class="pill" href="/en/pages/ams.html">AMS ✨</a>
+        <a class="pill" href="/en/pages/downloads.html">Downloads</a>
+        <a class="pill" href="/en/pages/onetoo.html">ONETOO Map</a>
+        <a class="pill" href="/en/pages/api.html">Automation</a>
+      <a class="pill" href="/en/pages/onetoo-hub.html">ONETOO Hub</a>
+      <a class="pill" href="/en/pages/onetoo-search.html">Search</a>
+      <a class="pill" href="/en/pages/trust-verify.html">Trust & Verify</a>
+      <a class="pill" href="/en/pages/federation.html">Federation</a>
+      <a class="pill" href="/en/pages/status.html">Status</a>
+      <a class="pill" href="/en/pages/agents.html">Agents</a>
+      <a class="pill" href="/en/pages/specs.html">Specs</a>
+      <a class="pill" href="/en/pages/ai-handbook.html">AI Handbook</a>
+
+        <a class="pill" href="/en/pages/onetoo-hub.html">ONETOO Hub</a>
+        <a class="pill" href="/en/pages/onetoo-search.html">Search</a>
+        <a class="pill" href="/en/pages/trust-verify.html">Trust & Verify</a>
+        <a class="pill" href="/en/pages/federation.html">Federation</a>
+        <a class="pill" href="/en/pages/status.html">Status</a>
+        <a class="pill" href="/en/pages/agents.html">Agents</a>
+        <a class="pill" href="/en/pages/specs.html">Specs</a>
+        <a class="pill" href="/en/pages/ai-handbook.html">AI Handbook</a>
+      </div>
+    </div>
+
+    <div class="warez-marquee">
+      <div class="track">
+        <span id="warez-slogan">ONETOO · HGP · TFWS</span>
+        &nbsp;::&nbsp; BUILD <span class="badge">2026-01-31</span>
+        &nbsp;::&nbsp; TRUST-FIRST · SIGNED · REPRODUCIBLE
+      </div>
+    </div>
+
+    <div class="card">
+      <h1 style="margin:0 0 8px 0">ONETOO Search (EN)</h1>
+      
+<p class="muted">
+ONETOO Search is a deterministic “AI index” node. This page gives a practical guide for humans and agents:
+how to query, interpret results, and build an allowlist workflow.
+</p>
+
+<h2>UI & API</h2>
+<ul>
+  <li>UI: <a href="https://search.onetoo.eu/" target="_blank" rel="noopener">https://search.onetoo.eu/</a></li>
+  <li>API example: <a href="https://search.onetoo.eu/search/v1?q=hgp&limit=10" target="_blank" rel="noopener">/search/v1?q=hgp&amp;limit=10</a></li>
+</ul>
+
+<h2>Agent query discipline</h2>
+<ul>
+  <li>Always set <b>limit</b> (10/25) for auditability.</li>
+  <li>Use cache-busting when auditing: <code>?cb=TIMESTAMP</code>.</li>
+  <li>Log query intent + allowlist context.</li>
+</ul>
+
+<h2>Safety</h2>
+<ul>
+  <li>Treat search results as pointers, not truth.</li>
+  <li>Trust comes only after manifest verification (see Trust &amp; Verify).</li>
+</ul>
+
+    </div>
+
+    <div class="footer">
+      <div>HGPeDU is a static trust node: integrity via <code>.well-known/sha256.json</code> + <code>minisign</code>.</div>
+      <div class="muted">If you changed anything, regenerate and re-sign the manifest before deployment.</div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="sk">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>ONETOO Hub (SK)</title>
+  <link rel="stylesheet" href="/assets/style.css"/>
+  <script defer src="/assets/app.js?v=20260110-portal-fix2"></script>
+  <script defer src="/assets/onetoo-services.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="topbar">
+      <div class="brand">
+        <div class="logo"></div>
+        <div>
+          <div class="title">HGP Edu Portal</div>
+          <div class="subtitle">Experimental • AI-native • Research • ONETOO Suite</div>
+        </div>
+      </div>
+      <div class="nav">
+        <a class="pill" href="/index.html">← Back</a>
+        <a class="pill" href="/pages/showroom.html">Showroom</a>
+        <a class="pill" href="/pages/tfws.html">TFWS v2</a>
+        <a class="pill" href="/pages/safety.html">Safety</a>
+        <a class="pill" href="/pages/research.html">Research</a>
+        <a class="pill" href="/pages/portal.html">Portal</a>
+        <a class="pill" href="/pages/ams.html">AMS ✨</a>
+        <a class="pill" href="/pages/downloads.html">Downloads</a>
+        <a class="pill" href="/pages/onetoo.html">ONETOO Map</a>
+        <a class="pill" href="/pages/api.html">Automation</a>
+      <a class="pill" href="/pages/onetoo-hub.html">ONETOO Hub</a>
+      <a class="pill" href="/pages/onetoo-search.html">Search</a>
+      <a class="pill" href="/pages/trust-verify.html">Trust & Verify</a>
+      <a class="pill" href="/pages/federation.html">Federation</a>
+      <a class="pill" href="/pages/status.html">Status</a>
+      <a class="pill" href="/pages/agents.html">Agents</a>
+      <a class="pill" href="/pages/specs.html">Specs</a>
+      <a class="pill" href="/pages/ai-handbook.html">AI Handbook</a>
+
+        <a class="pill" href="/pages/onetoo-hub.html">ONETOO Hub</a>
+        <a class="pill" href="/pages/onetoo-search.html">Search</a>
+        <a class="pill" href="/pages/trust-verify.html">Trust & Verify</a>
+        <a class="pill" href="/pages/federation.html">Federation</a>
+        <a class="pill" href="/pages/status.html">Status</a>
+        <a class="pill" href="/pages/agents.html">Agents</a>
+        <a class="pill" href="/pages/specs.html">Specs</a>
+        <a class="pill" href="/pages/ai-handbook.html">AI Handbook</a>
+      </div>
+    </div>
+
+    <div class="warez-marquee">
+      <div class="track">
+        <span id="warez-slogan">ONETOO · HGP · TFWS</span>
+        &nbsp;::&nbsp; BUILD <span class="badge">2026-01-31</span>
+        &nbsp;::&nbsp; TRUST-FIRST · SIGNED · REPRODUCIBLE
+      </div>
+    </div>
+
+    <div class="card">
+      <h1 style="margin:0 0 8px 0">ONETOO Hub (SK)</h1>
+      
+<p class="muted">
+Toto je <b>centrálny rozcestník</b> pre celý ekosystém <b>ONETOO</b> a jeho integráciu do <b>HGPeDU</b>.
+Je navrhnutý ako <b>AI-native “launchpad”</b>: človek aj agent tu nájde <i>čo existuje</i>, <i>kde to je</i>,
+<i>ako to overiť</i> a <i>ako to bezpečne používať</i>.
+</p>
+
+<hr/>
+
+<h2>1) Service Registry (strojovo čitateľné)</h2>
+<p>
+HGPeDU publikuje lokálny registry súbor, ktorý môže agent načítať a použiť na discovery.
+</p>
+<ul>
+  <li><a href="/onetoo/services.json" target="_blank" rel="noopener">/onetoo/services.json</a> (UI + API uzly)</li>
+  <li><a href="/.well-known/onetoo-services.json" target="_blank" rel="noopener">/.well-known/onetoo-services.json</a> (rovnaké dáta, “well-known” forma)</li>
+</ul>
+
+<div id="services"></div>
+
+<script>
+(async function(){
+  const host = window.__HGPEU_ONETOO;
+  if (!host) return;
+  const wrap = document.getElementById("services");
+  wrap.innerHTML = "";
+  const box = document.createElement("div");
+  box.className = "grid";
+  wrap.appendChild(box);
+  try{
+    const reg = await host.fetchJson("/onetoo/services.json");
+    const services = reg.services || [];
+    for (const s of services){
+      box.appendChild(host.serviceCard(s));
+    }
+    const repoCard = document.createElement("div");
+    repoCard.className = "card";
+    repoCard.innerHTML = "<h3 style='margin:0 0 8px 0'>Source Repositories</h3><div class='muted'>Referencia na zdrojové repozitáre (GitHub). Pre AI agentov je to priame napojenie na „pravdu v kóde“.</div>";
+    const ul = document.createElement("ul");
+    (reg.repositories||[]).forEach(r=>{
+      const li=document.createElement("li");
+      const a=document.createElement("a");
+      a.href=r.url; a.target="_blank"; a.rel="noopener";
+      a.textContent=r.name;
+      li.appendChild(a);
+      ul.appendChild(li);
+    });
+    repoCard.appendChild(ul);
+    wrap.appendChild(repoCard);
+  }catch(e){
+    wrap.innerHTML = "<div class='card'><b>Registry load failed:</b> "+String(e.message||e)+"</div>";
+  }
+})();
+</script>
+
+<hr/>
+
+<h2>2) Rýchly “operator panel”</h2>
+<p>
+Najčastejšie používané vstupy:
+</p>
+<ul>
+  <li><b>AMS Console (HGPeDU hosted)</b>: <a href="/onetoo/ams.html">/onetoo/ams.html</a></li>
+  <li><b>ONETOO Portal</b>: <a href="https://portal.onetoo.eu/" target="_blank" rel="noopener">portal.onetoo.eu</a></li>
+  <li><b>ONETOO Search</b>: <a href="https://search.onetoo.eu/" target="_blank" rel="noopener">search.onetoo.eu</a></li>
+</ul>
+
+<hr/>
+
+<h2>3) Bezpečná agent-agent komunikácia (experiment)</h2>
+<p>
+Toto je “exotický” experiment: ukazujeme, ako môžu agenti komunikovať cez web uzly bez centrálnej autority,
+na báze <b>Trust‑First</b> a kryptografických podpisov.
+Kľúčové idey:
+</p>
+<ul>
+  <li><b>Identita</b> = verejný kľúč (minisign/Ed25519) + overiteľné publikovanie na doméne.</li>
+  <li><b>Dôvera</b> = explicitné “trust manifests” (strojovo čitateľné), nie implicitné heuristiky.</li>
+  <li><b>Integrita</b> = <code>sha256.json</code> + podpis (minisign), overiteľné offline.</li>
+  <li><b>Transport</b> = HTTPS, ale dôvera sa neopiera o CA reťazec ako jediný zdroj pravdy.</li>
+</ul>
+<p class="muted">
+Detailný “AI Handbook” nájdeš v menu (AI Handbook) — obsahuje protokol handshake, threat model,
+a presné “verify” príkazy.
+</p>
+
+    </div>
+
+    <div class="footer">
+      <div>HGPeDU is a static trust node: integrity via <code>.well-known/sha256.json</code> + <code>minisign</code>.</div>
+      <div class="muted">If you modified anything, regenerate and re-sign the manifest before deployment.</div>
+    </div>
+  </div>
+</body>
+</html>

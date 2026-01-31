@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Federation / Ledger (EN)</title>
+  <link rel="stylesheet" href="/assets/style.css"/>
+  <script defer src="/assets/app.js?v=20260110-portal-fix2"></script>
+
+</head>
+<body>
+  <div class="container">
+    <div class="topbar">
+      <div class="brand">
+        <div class="logo"></div>
+        <div>
+          <div class="title">HGP Edu Portal</div>
+          <div class="subtitle">Experimental • AI-native • Research • ONETOO Suite</div>
+        </div>
+      </div>
+      <div class="nav">
+        <a class="pill" href="/en/index.html">← Back</a>
+        <a class="pill" href="/en/pages/showroom.html">Showroom</a>
+        <a class="pill" href="/en/pages/tfws.html">TFWS v2</a>
+        <a class="pill" href="/en/pages/safety.html">Safety</a>
+        <a class="pill" href="/en/pages/research.html">Research</a>
+        <a class="pill" href="/en/pages/portal.html">Portal</a>
+        <a class="pill" href="/en/pages/ams.html">AMS ✨</a>
+        <a class="pill" href="/en/pages/downloads.html">Downloads</a>
+        <a class="pill" href="/en/pages/onetoo.html">ONETOO Map</a>
+        <a class="pill" href="/en/pages/api.html">Automation</a>
+      <a class="pill" href="/en/pages/onetoo-hub.html">ONETOO Hub</a>
+      <a class="pill" href="/en/pages/onetoo-search.html">Search</a>
+      <a class="pill" href="/en/pages/trust-verify.html">Trust & Verify</a>
+      <a class="pill" href="/en/pages/federation.html">Federation</a>
+      <a class="pill" href="/en/pages/status.html">Status</a>
+      <a class="pill" href="/en/pages/agents.html">Agents</a>
+      <a class="pill" href="/en/pages/specs.html">Specs</a>
+      <a class="pill" href="/en/pages/ai-handbook.html">AI Handbook</a>
+
+        <a class="pill" href="/en/pages/onetoo-hub.html">ONETOO Hub</a>
+        <a class="pill" href="/en/pages/onetoo-search.html">Search</a>
+        <a class="pill" href="/en/pages/trust-verify.html">Trust & Verify</a>
+        <a class="pill" href="/en/pages/federation.html">Federation</a>
+        <a class="pill" href="/en/pages/status.html">Status</a>
+        <a class="pill" href="/en/pages/agents.html">Agents</a>
+        <a class="pill" href="/en/pages/specs.html">Specs</a>
+        <a class="pill" href="/en/pages/ai-handbook.html">AI Handbook</a>
+      </div>
+    </div>
+
+    <div class="warez-marquee">
+      <div class="track">
+        <span id="warez-slogan">ONETOO · HGP · TFWS</span>
+        &nbsp;::&nbsp; BUILD <span class="badge">2026-01-31</span>
+        &nbsp;::&nbsp; TRUST-FIRST · SIGNED · REPRODUCIBLE
+      </div>
+    </div>
+
+    <div class="card">
+      <h1 style="margin:0 0 8px 0">Federation / Ledger (EN)</h1>
+      
+<p class="muted">
+Federation is the “living layer” between nodes: how submissions, audit events, and acceptances propagate.
+This is both an operator manual and an agent manual.
+</p>
+
+<h2>Flow model</h2>
+<ol>
+  <li><b>Submission</b> creates an envelope (JSON payload + metadata).</li>
+  <li><b>Gateway</b> (AMS) accepts it, assigns an ID, and emits an audit event.</li>
+  <li><b>Autopilot</b> applies policy: <i>pending → sandbox → accepted</i>.</li>
+  <li><b>Ledger/index</b> publishes snapshots for deterministic replay.</li>
+</ol>
+
+<h2>Agent rule</h2>
+<ul>
+  <li>Every event is a <b>claim</b> until verified (signature, allowlist, hashes).</li>
+  <li>Prefer NDJSON/JSON. HTML is a human view, not the truth source.</li>
+</ul>
+
+<h2>Links</h2>
+<ul>
+  <li>AMS Console: <a href="/onetoo/ams.html">/onetoo/ams.html</a></li>
+  <li>Portal: <a href="https://portal.onetoo.eu/" target="_blank" rel="noopener">portal.onetoo.eu</a></li>
+  <li>Search: <a href="https://search.onetoo.eu/" target="_blank" rel="noopener">search.onetoo.eu</a></li>
+</ul>
+
+    </div>
+
+    <div class="footer">
+      <div>HGPeDU is a static trust node: integrity via <code>.well-known/sha256.json</code> + <code>minisign</code>.</div>
+      <div class="muted">If you changed anything, regenerate and re-sign the manifest before deployment.</div>
+    </div>
+  </div>
+</body>
+</html>

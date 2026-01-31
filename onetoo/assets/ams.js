@@ -746,7 +746,9 @@ async function loadDemo(){
     return;
   }
 
-  const lines = text.split(/\r?\n/).map(x=>x.trim()).filter(Boolean);
+  const lines = text.split(/
+?
+/).map(x=>x.trim()).filter(Boolean);
   const events = [];
   for (const ln of lines){
     const obj = safeJson(ln, null);

@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Specs (EN)</title>
+  <link rel="stylesheet" href="/assets/style.css"/>
+  <script defer src="/assets/app.js?v=20260110-portal-fix2"></script>
+
+</head>
+<body>
+  <div class="container">
+    <div class="topbar">
+      <div class="brand">
+        <div class="logo"></div>
+        <div>
+          <div class="title">HGP Edu Portal</div>
+          <div class="subtitle">Experimental • AI-native • Research • ONETOO Suite</div>
+        </div>
+      </div>
+      <div class="nav">
+        <a class="pill" href="/en/index.html">← Back</a>
+        <a class="pill" href="/en/pages/showroom.html">Showroom</a>
+        <a class="pill" href="/en/pages/tfws.html">TFWS v2</a>
+        <a class="pill" href="/en/pages/safety.html">Safety</a>
+        <a class="pill" href="/en/pages/research.html">Research</a>
+        <a class="pill" href="/en/pages/portal.html">Portal</a>
+        <a class="pill" href="/en/pages/ams.html">AMS ✨</a>
+        <a class="pill" href="/en/pages/downloads.html">Downloads</a>
+        <a class="pill" href="/en/pages/onetoo.html">ONETOO Map</a>
+        <a class="pill" href="/en/pages/api.html">Automation</a>
+      <a class="pill" href="/en/pages/onetoo-hub.html">ONETOO Hub</a>
+      <a class="pill" href="/en/pages/onetoo-search.html">Search</a>
+      <a class="pill" href="/en/pages/trust-verify.html">Trust & Verify</a>
+      <a class="pill" href="/en/pages/federation.html">Federation</a>
+      <a class="pill" href="/en/pages/status.html">Status</a>
+      <a class="pill" href="/en/pages/agents.html">Agents</a>
+      <a class="pill" href="/en/pages/specs.html">Specs</a>
+      <a class="pill" href="/en/pages/ai-handbook.html">AI Handbook</a>
+
+        <a class="pill" href="/en/pages/onetoo-hub.html">ONETOO Hub</a>
+        <a class="pill" href="/en/pages/onetoo-search.html">Search</a>
+        <a class="pill" href="/en/pages/trust-verify.html">Trust & Verify</a>
+        <a class="pill" href="/en/pages/federation.html">Federation</a>
+        <a class="pill" href="/en/pages/status.html">Status</a>
+        <a class="pill" href="/en/pages/agents.html">Agents</a>
+        <a class="pill" href="/en/pages/specs.html">Specs</a>
+        <a class="pill" href="/en/pages/ai-handbook.html">AI Handbook</a>
+      </div>
+    </div>
+
+    <div class="warez-marquee">
+      <div class="track">
+        <span id="warez-slogan">ONETOO · HGP · TFWS</span>
+        &nbsp;::&nbsp; BUILD <span class="badge">2026-01-31</span>
+        &nbsp;::&nbsp; TRUST-FIRST · SIGNED · REPRODUCIBLE
+      </div>
+    </div>
+
+    <div class="card">
+      <h1 style="margin:0 0 8px 0">Specs (EN)</h1>
+      
+<p class="muted">
+Specs, living docs, and tooling pointers. This is the single place for unambiguous rules.
+</p>
+
+<h2>TFWS v2</h2>
+<ul>
+  <li>Docs: <a href="/en/pages/tfws.html">/en/pages/tfws.html</a></li>
+  <li>Tools/adoption kits live in GitHub repos (see ONETOO Hub).</li>
+</ul>
+
+<h2>HGPeDU manifests</h2>
+<ul>
+  <li><a href="/.well-known/ai-hgpedu.json" target="_blank" rel="noopener">/.well-known/ai-hgpedu.json</a></li>
+  <li><a href="/.well-known/ai-trust-hub.json" target="_blank" rel="noopener">/.well-known/ai-trust-hub.json</a></li>
+  <li><a href="/.well-known/ai-governance.json" target="_blank" rel="noopener">/.well-known/ai-governance.json</a></li>
+  <li><a href="/.well-known/sha256.json" target="_blank" rel="noopener">/.well-known/sha256.json</a></li>
+</ul>
+
+<h2>Operator commands</h2>
+<pre><code>minisign -V -p .well-known/minisign.pub -m .well-known/sha256.json -x .well-known/sha256.json.minisig
+python tools/gen_sha256_json.py
+bash tools/sign_minisign.sh
+python tools/linkcheck_local.py
+</code></pre>
+
+    </div>
+
+    <div class="footer">
+      <div>HGPeDU is a static trust node: integrity via <code>.well-known/sha256.json</code> + <code>minisign</code>.</div>
+      <div class="muted">If you changed anything, regenerate and re-sign the manifest before deployment.</div>
+    </div>
+  </div>
+</body>
+</html>
