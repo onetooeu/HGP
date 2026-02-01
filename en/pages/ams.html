@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>AMS ✨ (EN)</title>
   <link rel="stylesheet" href="/assets/style.css"/>
-  <script defer src="/assets/app.js?v=20260110-portal-fix2"></script>
+  <script defer src="/assets/app.js?v=20260201-portal-sync1"></script>
 </head>
 <body>
   <div class="container">
@@ -46,10 +46,11 @@
           <h2 style="margin-top:0">Live endpoints</h2>
           <ul>
             <li><a href="https://portal.onetoo.eu/ams" target="_blank" rel="noopener">Open AMS on portal.onetoo.eu</a></li>
-            <li><a href="https://portal.onetoo.eu/audit/v1/events.ndjson" target="_blank" rel="noopener">Audit stream (NDJSON)</a></li>
+            <li><a href="https://portal.onetoo.eu/audit/v1/events.ndjson?limit=100" target="_blank" rel="noopener">Audit stream (NDJSON)</a></li>
             <li><a href="https://portal.onetoo.eu/.well-known/ams-gateway-spec.json" target="_blank" rel="noopener">Gateway spec</a></li>
+            <li><a href="https://hgpedu.eu/onetoo/services.json" target="_blank" rel="noopener">ONETOO services descriptor (JSON)</a></li>
           </ul>
-          <p class="muted">Note: write operations require a token. Read access depends on gateway settings.</p>
+          <p class="muted">Note: write operations require a token. Audit stream may be admin-only unless the gateway enables public audit (AUDIT_PUBLIC=1).</p>
         </div>
       </div>
     </div>
