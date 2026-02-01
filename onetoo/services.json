@@ -1,0 +1,99 @@
+{
+  "schema_version": "onetoo.services.v1",
+  "generated_utc": "2026-02-01T07:09:00Z",
+  "build": "2026-02-01",
+  "publisher": {
+    "name": "HGP Edu Portal",
+    "canonical_url": "https://hgpedu.eu",
+    "role": "education/showcase"
+  },
+  "services": {
+    "trust_root": {
+      "url": "https://www.onetoo.eu",
+      "discovery": "https://www.onetoo.eu/.well-known/ai-trust-hub.json"
+    },
+    "portal_ui": {
+      "url": "https://portal.onetoo.eu",
+      "entrypoints": {
+        "home": "https://portal.onetoo.eu/",
+        "entities": "https://portal.onetoo.eu/portal/entities",
+        "search": "https://portal.onetoo.eu/portal/search",
+        "artifacts": "https://portal.onetoo.eu/portal/artifacts",
+        "ams_ui": "https://portal.onetoo.eu/ams"
+      }
+    },
+    "ai_search": {
+      "url": "https://search.onetoo.eu",
+      "discovery": "https://search.onetoo.eu/.well-known/index.json"
+    },
+    "agents": {
+      "url": "https://agents.onetoo.eu",
+      "discovery": "https://agents.onetoo.eu/.well-known/index.json"
+    },
+    "ams_gateway": {
+      "origin": "https://portal.onetoo.eu",
+      "base_url": "https://portal.onetoo.eu/ams/v1",
+      "spec": "https://portal.onetoo.eu/.well-known/ams-gateway-spec.json",
+      "endpoints": {
+        "health": {
+          "method": "GET",
+          "path": "/health"
+        },
+        "policy": {
+          "method": "GET",
+          "path": "/policy"
+        },
+        "envelopes_list": {
+          "method": "GET",
+          "path": "/envelopes"
+        },
+        "envelopes_submit": {
+          "method": "POST",
+          "path": "/envelopes",
+          "auth": "bearer or x-ams-token"
+        },
+        "threads": {
+          "method": "GET",
+          "path": "/threads"
+        },
+        "artifacts_list": {
+          "method": "GET",
+          "path": "/artifacts"
+        },
+        "artifacts_submit": {
+          "method": "POST",
+          "path": "/artifacts",
+          "auth": "bearer or x-ams-token"
+        },
+        "sync": {
+          "method": "POST",
+          "path": "/sync",
+          "auth": "bearer or x-ams-token"
+        }
+      }
+    },
+    "audit": {
+      "url": "https://portal.onetoo.eu/audit/v1/events.ndjson",
+      "example_public": "https://portal.onetoo.eu/audit/v1/events.ndjson?limit=100",
+      "note": "May be admin-only unless AUDIT_PUBLIC=1 on the gateway."
+    }
+  },
+  "repositories": [
+    {
+      "name": "onetooeu/onetoo-eu",
+      "url": "https://github.com/onetooeu/onetoo-eu"
+    },
+    {
+      "name": "onetooeu/onetoo-portal3-ui",
+      "url": "https://github.com/onetooeu/onetoo-portal3-ui"
+    },
+    {
+      "name": "onetooeu/HGP",
+      "url": "https://github.com/onetooeu/HGP"
+    }
+  ],
+  "notes": [
+    "This descriptor is informational and meant for humans + AI agents.",
+    "Authoritative contract for AMS gateway is the published spec URL."
+  ]
+}

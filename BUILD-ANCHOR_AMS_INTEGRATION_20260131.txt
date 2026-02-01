@@ -32,3 +32,10 @@ QUICK TESTS
 curl -I https://hgpedu.eu/pages/ams.html
 curl -I https://hgpedu.eu/onetoo/ams.html
 curl -I https://portal.onetoo.eu/.well-known/ams-gateway-spec.json
+
+
+# UPDATE 2026-02-01 — Portal sync fixes
+- Fix AMS docs: audit stream link now includes ?limit=100 (matches gateway spec)
+- Add ONETOO services descriptor: /onetoo/services.json + /.well-known/onetoo-services.json
+- Bump app.js cache-buster to v=20260201-portal-sync1 across pages
+- Regenerate .well-known/sha256.json (+ _verify/sha256.json) — requires re-signing minisig after update
