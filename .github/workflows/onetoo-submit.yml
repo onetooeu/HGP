@@ -3,6 +3,10 @@ concurrency:
   group: hgp-main-writes
   cancel-in-progress: false
 
+# Make env available for the whole workflow (supports secrets OR vars)
+env:
+  ONETOO_TOKEN: ${{ secrets.ONETOO_TOKEN || vars.ONETOO_TOKEN }}
+  ONETOO_SUBMIT_ENDPOINT: ${{ secrets.ONETOO_SUBMIT_ENDPOINT || vars.ONETOO_SUBMIT_ENDPOINT }}
 
 on:
   push:
@@ -23,23 +27,23 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
+      - name: Guard submit env
+        run: |
+          test -n "${ONETOO_SUBMIT_ENDPOINT}" || { echo "Missing ONETOO_SUBMIT_ENDPOINT (set secret or repo variable)"; exit 1; }
+          test -n "${ONETOO_TOKEN}" || { echo "Missing ONETOO_TOKEN (set secret or repo variable)"; exit 1; }
+
       - name: Submit new portal entries to ONETOO
-        env:
-          ONETOO_TOKEN: ${{ secrets.ONETOO_TOKEN }}
-          ONETOO_SUBMIT_ENDPOINT: ${{ secrets.ONETOO_SUBMIT_ENDPOINT }}
         run: |
           python tools/onetoo_submit.py --portal-index data/portal/index.json
 
-      - name: Commit submission state
+      - name: Commit & push submission state (robust)
         run: |
-          git config user.name "hgpedu-onetoo-submit"
-          git config user.email "actions@users.noreply.github.com"
-          git add portal/submissions.json
-          git commit -m "onetoo: update submission ledger" || echo "No changes"
-          git push
+          bash .github/scripts/commit-if-changed.sh "portal/submissions.json" "onetoo: update submission ledger [skip ci]"
