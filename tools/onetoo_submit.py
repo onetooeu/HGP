@@ -20,7 +20,7 @@ DEFAULT_ENDPOINT = "https://search.onetoo.eu/contrib/v2/submit"
 
 def utc_now() -> str:
     import datetime
-    return datetime.datetime.utcnow().replace(microsecond=0).isoformat() + "Z"
+    return datetime.datetime.now(datetime.UTC).replace(microsecond=0).isoformat().replace("+00:00","Z")
 
 def load_json(p: Path, default):
     if not p.exists():
