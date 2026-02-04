@@ -3,10 +3,10 @@ concurrency:
   group: hgp-main-writes
   cancel-in-progress: false
 
-# Make env available for the whole workflow (supports secrets OR vars)
+# Workflow-wide env (use ONE source of truth to avoid expression quirks)
 env:
-  ONETOO_TOKEN: ${{ secrets.ONETOO_TOKEN || vars.ONETOO_TOKEN }}
-  ONETOO_SUBMIT_ENDPOINT: ${{ secrets.ONETOO_SUBMIT_ENDPOINT || vars.ONETOO_SUBMIT_ENDPOINT }}
+  ONETOO_TOKEN: ${{ secrets.ONETOO_TOKEN }}
+  ONETOO_SUBMIT_ENDPOINT: ${{ vars.ONETOO_SUBMIT_ENDPOINT }}
 
 on:
   push:
@@ -37,8 +37,8 @@ jobs:
 
       - name: Guard submit env
         run: |
-          test -n "${ONETOO_SUBMIT_ENDPOINT}" || { echo "Missing ONETOO_SUBMIT_ENDPOINT (set secret or repo variable)"; exit 1; }
-          test -n "${ONETOO_TOKEN}" || { echo "Missing ONETOO_TOKEN (set secret or repo variable)"; exit 1; }
+          test -n "${ONETOO_SUBMIT_ENDPOINT}" || { echo "Missing ONETOO_SUBMIT_ENDPOINT (set repo variable)"; exit 1; }
+          test -n "${ONETOO_TOKEN}" || { echo "Missing ONETOO_TOKEN (set secret)"; exit 1; }
 
       - name: Submit new portal entries to ONETOO
         run: |
