@@ -3,7 +3,6 @@ concurrency:
   group: hgp-main-writes
   cancel-in-progress: false
 
-# Workflow-wide env (use ONE source of truth to avoid expression quirks)
 env:
   ONETOO_TOKEN: ${{ secrets.ONETOO_TOKEN }}
   ONETOO_SUBMIT_ENDPOINT: ${{ vars.ONETOO_SUBMIT_ENDPOINT }}
@@ -15,7 +14,7 @@ on:
       - "data/portal/index.json"
       - "data/portal/entries.jsonl"
   schedule:
-    - cron: "17 */6 * * *"  # every 6h
+    - cron: "17 */6 * * *"
   workflow_dispatch:
 
 permissions:
@@ -33,12 +32,18 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: "3.11"
 
       - name: Guard submit env
         run: |
-          test -n "${ONETOO_SUBMIT_ENDPOINT}" || { echo "Missing ONETOO_SUBMIT_ENDPOINT (set repo variable)"; exit 1; }
-          test -n "${ONETOO_TOKEN}" || { echo "Missing ONETOO_TOKEN (set secret)"; exit 1; }
+          if [ -z "${ONETOO_SUBMIT_ENDPOINT}" ]; then
+            echo "Missing ONETOO_SUBMIT_ENDPOINT"
+            exit 1
+          fi
+          if [ -z "${ONETOO_TOKEN}" ]; then
+            echo "Missing ONETOO_TOKEN"
+            exit 1
+          fi
 
       - name: Submit new portal entries to ONETOO
         run: |
@@ -46,4 +51,6 @@ jobs:
 
       - name: Commit & push submission state (robust)
         run: |
-          bash .github/scripts/commit-if-changed.sh "portal/submissions.json" "onetoo: update submission ledger [skip ci]"
+          bash .github/scripts/commit-if-changed.sh \
+            "portal/submissions.json" \
+            "onetoo: update submission ledger [skip ci]"
