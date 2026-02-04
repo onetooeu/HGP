@@ -17,10 +17,6 @@ on:
 permissions:
   contents: write
 
-concurrency:
-  group: onetoo-submit
-  cancel-in-progress: false
-
 jobs:
   submit:
     runs-on: ubuntu-latest

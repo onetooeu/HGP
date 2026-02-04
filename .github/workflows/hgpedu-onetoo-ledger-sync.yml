@@ -13,10 +13,6 @@ on:
 permissions:
   contents: write
 
-concurrency:
-  group: hgpedu-onetoo-ledger-sync
-  cancel-in-progress: true
-
 jobs:
   sync:
     runs-on: ubuntu-latest
