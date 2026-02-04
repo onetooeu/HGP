@@ -4,8 +4,8 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  ONETOO_TOKEN: ${{ secrets.ONETOO_TOKEN }}
   ONETOO_SUBMIT_ENDPOINT: ${{ vars.ONETOO_SUBMIT_ENDPOINT }}
+  ONETOO_TOKEN: ${{ secrets.ONETOO_TOKEN }}
 
 on:
   push:
@@ -34,14 +34,10 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Guard submit env
+      - name: Guard endpoint
         run: |
           if [ -z "${ONETOO_SUBMIT_ENDPOINT}" ]; then
             echo "Missing ONETOO_SUBMIT_ENDPOINT"
-            exit 1
-          fi
-          if [ -z "${ONETOO_TOKEN}" ]; then
-            echo "Missing ONETOO_TOKEN"
             exit 1
           fi
 
