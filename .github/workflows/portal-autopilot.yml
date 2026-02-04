@@ -1,4 +1,8 @@
 name: Portal Autopilot
+concurrency:
+  group: hgp-main-writes
+  cancel-in-progress: false
+
 
 on:
   issues:

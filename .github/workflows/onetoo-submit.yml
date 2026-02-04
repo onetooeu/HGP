@@ -1,4 +1,8 @@
 name: ONETOO Submit Autopilot
+concurrency:
+  group: hgp-main-writes
+  cancel-in-progress: false
+
 
 on:
   push:

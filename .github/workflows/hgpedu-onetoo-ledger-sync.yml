@@ -1,4 +1,8 @@
 name: hgpedu-onetoo-ledger-sync
+concurrency:
+  group: hgp-main-writes
+  cancel-in-progress: false
+
 
 on:
   workflow_dispatch:
