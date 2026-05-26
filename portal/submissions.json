@@ -1,6 +1,6 @@
 {
   "schema_version": "hgpedu.onetoo.status.v2",
-  "generated_utc": "2026-05-25T20:00:21Z",
+  "generated_utc": "2026-05-26T04:33:33Z",
   "publisher": {
     "name": "HGPEdu",
     "domain": "hgpedu.eu",
@@ -15,7 +15,7 @@
       "status": "missing",
       "status_raw": "missing",
       "http": 200,
-      "checked_utc": "2026-05-25T19:58:16Z"
+      "checked_utc": "2026-05-26T04:33:33Z"
     }
   }
 }
